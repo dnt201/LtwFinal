@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    <!-- Các link không liên quan -->
+    <excludes>
+        <pattern>/404-page.html</pattern>
+        <pattern>/ajax*</pattern>
+        <pattern>/ckfinder*</pattern>
+        <pattern>/api*</pattern>
+        <pattern>/register*</pattern>
+        <pattern>/update*</pattern>
+    </excludes>
+
+
+    <decorator name="web" page="web.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>
