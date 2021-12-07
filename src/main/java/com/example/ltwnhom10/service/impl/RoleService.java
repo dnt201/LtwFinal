@@ -30,15 +30,17 @@ public class RoleService implements IRoleService{
         return roleDAO.findById(roleId);
     }
 
-    /*@Override
-    public Integer delete(List<Integer> ids) {
-        return roleDAO.delete(ids);
+    @Override
+    public Integer delete(List<Integer> list) {
+        return roleDAO.delete(list);
     }
-     */
 
     @Override
     public List<RoleModel> findAll() {
         return roleDAO.findAll();
     }
+
+    @Override
+    public Integer findRoleByRoleName(String roleName) { return roleDAO.findRoleByRoleName(roleName); }
 
 }

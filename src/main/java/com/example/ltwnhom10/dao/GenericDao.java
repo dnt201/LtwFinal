@@ -15,10 +15,9 @@ import java.util.List;
 public interface GenericDao<ID extends Serializable, T> {
     List<T> findAll();
     T update(T entity);
-    Long delete(T object);
     void save(T entity);
     T findById(ID id);
+    Integer delete(List<ID> ids);
     //Object[] findByProperty(String property, Object value,String sortExpression, String sortDirection);
-    //Integer delete(List<ID> ids);
     //public List<T> findAllPaging(Pageble pageble);
 }

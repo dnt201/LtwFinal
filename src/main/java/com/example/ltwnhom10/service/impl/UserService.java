@@ -41,21 +41,30 @@ public  class UserService implements IUserService {
     return userModel;
   }
 
-  /*@Override
-  //public Integer delete(List<Integer> ids) {
-  //return userDAO.delete(ids);
-  //}
+  @Override
+  public Integer delete(List<Integer> list) {
+    return userDAO.delete(list);
+  }
 
   @Override
   public UsersModel isUserExist(UsersModel model) {
-    return userDAO.findUserByUsername(model.getUserName());
+    return userDAO.findUserByUsername(model.getUsername());
   }
 
+  /*
   @Override
   public List<UsersModel> findAllPaging(Pageble pageble) {
     return userDAO.findAllPaging(pageble);
   }
-*/
+  */
+
+  @Override
+  public UsersModel findUserByUsername(String username) {
+    return userDAO.findUserByUsername(username);
+  }
+
+  @Override
+  public UsersModel findByUsernameAndPassword(String username, String password){ return userDAO.findUserByUsernameAndPassword(username, password); }
 
   @Override
   public List<UsersModel> findAll() {

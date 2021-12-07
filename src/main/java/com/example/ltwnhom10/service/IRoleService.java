@@ -11,6 +11,7 @@ public interface IRoleService {
     public void save(RoleModel roleModel);
     public void update(RoleModel roleModel);
     RoleModel findByID(Integer roleId);
-    //public Integer delete(List<Integer> ids);
+    public Integer delete(List<Integer> list);
     public List<RoleModel> findAll();
+    public Integer findRoleByRoleName(String roleName);
 }
