@@ -6,7 +6,6 @@
         <pattern>/ajax*</pattern>
         <pattern>/ckfinder*</pattern>
         <pattern>/api*</pattern>
-        <pattern>/register*</pattern>
         <pattern>/update*</pattern>
     </excludes>
 

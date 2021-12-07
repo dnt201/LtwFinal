@@ -41,19 +41,20 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        String url;
+        String url="";
 
-        String key = request.getParameter("key");
         if(action != null && action.equals("login")) {
+            url="/views/web/login.jsp";
             System.out.println("login");
         }
         else if (action != null && action.equals("logout")){
             System.out.println("logout");
         }
         else {
-            RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
-            rd.forward(request, response);
+            url="/views/web/home.jsp";
         }
+        RequestDispatcher rd = request.getRequestDispatcher(url);
+        rd.forward(request, response);
     }
 
     @Override
