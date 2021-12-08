@@ -27,10 +27,46 @@ public class DiscountModel extends AbstractModel<DiscountModel> {
     @Column(name = "discount_percent")
     private BigDecimal discountPercent;
 
-    @Column(name = "day_end")
-    private Timestamp dayEnd;
-    
     @OneToMany(mappedBy = "discount",fetch = FetchType.LAZY)
     private List<ProductModel> productList;
-    
+
+    public Integer getDiscount_id() {
+        return discount_id;
+    }
+
+    public void setDiscount_id(Integer discount_id) {
+        this.discount_id = discount_id;
+    }
+
+    public String getDiscountName() {
+        return discountName;
+    }
+
+    public void setDiscountName(String discountName) {
+        this.discountName = discountName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(BigDecimal discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public List<ProductModel> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<ProductModel> productList) {
+        this.productList = productList;
+    }
 }

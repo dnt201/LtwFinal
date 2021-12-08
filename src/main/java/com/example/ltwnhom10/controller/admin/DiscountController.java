@@ -47,8 +47,7 @@ public class DiscountController extends HttpServlet
             case "add": {
                 discount = HttpUtil.of(request.getReader()).toModel(DiscountModel.class);
                 discountService.save(discountModel);
-
-                url = "/views/admin/List/ListDiscount.jsp";
+                //url = "/views/admin/List/ListDiscount.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
             }

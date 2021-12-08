@@ -25,6 +25,17 @@ import java.util.Date;
 public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if (action != null && action.equals("register")){
+            String message = request.getParameter("message");
+            System.out.println("Đã nhận action kia:"+message);
+            System.out.println(message);
+            if (message!=null){
+                if(message.equals("user_has_exist"))
+                    request.setAttribute("messageResponse", "Username đã tồn tại, vui lòng sử dụng username khác!!!");
+            }
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/register.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -42,7 +53,7 @@ public class RegisterController extends HttpServlet {
         UsersModel userExist = userService.isUserExist(usersModel);
 
         if (userExist != null)
-            response.sendRedirect(request.getContextPath()+"/login?action=login&&messageResponse=User_has_exist&&alert=danger");
+            response.sendRedirect(request.getContextPath()+"/register?action=register&&message=user_has_exist");
         else
         {
             System.out.println("into");
