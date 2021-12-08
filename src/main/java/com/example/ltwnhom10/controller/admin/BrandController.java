@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "BrandController", urlPatterns = {"/admin-brand"})
+@WebServlet(name = "BrandAdmin", urlPatterns = {"/admin/brand"})
 public class BrandController extends HttpServlet {
     private IBrandService brandService;
 
@@ -34,7 +34,7 @@ public class BrandController extends HttpServlet {
             }
             case "edit": {
                 url = "/views/admin/Insert/InsertBrand.jsp";
-                Integer id = Integer.parseInt(request.getParameter("brandId"));
+                Integer id = Integer.parseInt(request.getParameter("brand_id"));
                 brand = brandService.findById(id);
                 request.setAttribute("BrandModel", brand);
             }

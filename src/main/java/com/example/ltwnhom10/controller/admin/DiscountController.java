@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DiscountController", urlPatterns = {"/admin-discount"})
+@WebServlet(name = "DiscountAdmin", urlPatterns = {"/admin/discount"})
 public class DiscountController extends HttpServlet
 {
     private IDiscountService discountService;
@@ -40,7 +40,7 @@ public class DiscountController extends HttpServlet
             }
             case "edit": {
                 url = "/views/admin/Insert/InsertDiscount.jsp";
-                Integer id = Integer.parseInt(request.getParameter("discountId"));
+                Integer id = Integer.parseInt(request.getParameter("discount_id"));
                 discountModel = discountService.findByID(id);
                 request.setAttribute("discountModel", discountModel);
             }

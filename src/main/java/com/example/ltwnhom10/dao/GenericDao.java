@@ -10,10 +10,6 @@ import com.example.ltwnhom10.paging.Pageable;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- *
- * @author asus
- */
 public interface GenericDao<ID extends Serializable, T> {
     List<T> findAll();
     T update(T entity);
