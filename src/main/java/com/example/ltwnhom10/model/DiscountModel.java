@@ -16,7 +16,7 @@ public class DiscountModel extends AbstractModel<DiscountModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "discount_id",nullable = false)
-    private Integer discountId;
+    private Integer discount_id;
     
     @Column(name = "name",nullable = false)
     private String discountName;

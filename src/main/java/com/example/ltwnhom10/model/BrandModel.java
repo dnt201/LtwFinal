@@ -17,5 +17,27 @@ public class BrandModel extends AbstractModel<BrandModel> {
     @OneToMany(mappedBy = "brandModel",fetch = FetchType.LAZY)
     private List<ProductModel> productList;
 
+    public Integer getBrand_id() {
+        return brand_id;
+    }
 
+    public void setBrand_id(Integer brand_id) {
+        this.brand_id = brand_id;
+    }
+
+    public String getBrand_name() {
+        return brand_name;
+    }
+
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
+    }
+
+    public List<ProductModel> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<ProductModel> productList) {
+        this.productList = productList;
+    }
 }

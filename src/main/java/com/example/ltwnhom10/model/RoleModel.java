@@ -8,7 +8,7 @@ import java.util.List;
 public class RoleModel extends AbstractModel<UsersModel> {
     @Id
     @Column(name = "role_id",nullable=false)
-    private Integer roleId;
+    private Integer role_id;
 
     @Column(name = "role_name")
     private String roleName;
@@ -17,11 +17,11 @@ public class RoleModel extends AbstractModel<UsersModel> {
     private List<UsersModel> userList;
 
     public Integer getRoleId() {
-        return roleId;
+        return role_id;
     }
 
     public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+        this.role_id = roleId;
     }
 
     public String getRoleName() {
