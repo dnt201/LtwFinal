@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout"})
+@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout","/products"})
 public class HomeController extends HttpServlet {
 
     @Override
@@ -38,6 +38,10 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
             //SessionUtil.getInstance().removeValue(request, order);
             response.sendRedirect(request.getContextPath()+"/home-page");
+        }
+        else if (action != null && action.equals("products")){
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/products.jsp");
+            requestDispatcher.forward(request, response);
         }
         else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/home.jsp");
