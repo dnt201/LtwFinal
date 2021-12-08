@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "brand")
-public class BrandModel {
+public class BrandModel extends AbstractModel<BrandModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id",nullable = false)

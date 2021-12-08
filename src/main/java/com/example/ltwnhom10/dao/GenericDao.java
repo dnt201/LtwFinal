@@ -5,6 +5,8 @@
  */
 package com.example.ltwnhom10.dao;
 
+import com.example.ltwnhom10.paging.Pageable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,10 +17,10 @@ import java.util.List;
 public interface GenericDao<ID extends Serializable, T> {
     List<T> findAll();
     T update(T entity);
-    Long delete(T object);
     void save(T entity);
     T findById(ID id);
-    //Object[] findByProperty(String property, Object value,String sortExpression, String sortDirection);
-    //Integer delete(List<ID> ids);
-    //public List<T> findAllPaging(Pageble pageble);
+    Integer delete(List<ID> ids);
+    public List<T> findAllPaging(Pageable pageable);
+    Object[] findByProperty(String property, Object value,String sortExpression, String sortDirection);
+
 }
