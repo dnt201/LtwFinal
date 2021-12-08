@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 @Entity
 @Table(name="roles")
-public class RoleModel{
+public class RoleModel extends AbstractModel<UsersModel> {
     @Id
     @Column(name = "role_id",nullable=false)
     private Integer roleId;

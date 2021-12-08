@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
-public class ProductModel{
+public class ProductModel extends AbstractModel<ProductModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)

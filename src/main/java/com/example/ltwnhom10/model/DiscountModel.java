@@ -6,12 +6,13 @@
 package com.example.ltwnhom10.model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "discount")
-public class DiscountModel{
+public class DiscountModel extends AbstractModel<DiscountModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "discount_id",nullable = false)
@@ -25,6 +26,9 @@ public class DiscountModel{
     
     @Column(name = "discount_percent")
     private BigDecimal discountPercent;
+
+    @Column(name = "day_end")
+    private Timestamp dayEnd;
     
     @OneToMany(mappedBy = "discount",fetch = FetchType.LAZY)
     private List<ProductModel> productList;

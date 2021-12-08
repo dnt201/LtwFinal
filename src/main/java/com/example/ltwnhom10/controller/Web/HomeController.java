@@ -76,7 +76,7 @@ public class HomeController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/admin-home");
                 }
             }else {
-                request.setAttribute(CoreConstant.TYPE_ALERT, CoreConstant.TYPE_ERROR);
+                request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
 //                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/login.jsp");
@@ -84,7 +84,7 @@ public class HomeController extends HttpServlet {
             }
         }
         else{
-            request.setAttribute(CoreConstant.TYPE_ALERT, CoreConstant.TYPE_ERROR);
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
 //                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/login.jsp");

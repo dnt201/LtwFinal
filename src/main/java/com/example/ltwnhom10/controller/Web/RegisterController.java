@@ -9,12 +9,14 @@ import com.example.ltwnhom10.service.impl.UserService;
 import com.example.ltwnhom10.utl.Bcrypt;
 import com.example.ltwnhom10.utl.FormUtil;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.rmi.ServerException;
 
+@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 public class RegisterController extends HttpServlet {
 
     @Override
@@ -43,8 +45,8 @@ public class RegisterController extends HttpServlet {
 
             userService.save(usersModel);
 
-            request.setAttribute("messageResponse", "Signup Success");
-            request.setAttribute("alert", CoreConstant.TYPE_SUCCESS);
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Signup Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
 
             response.sendRedirect(request.getContextPath() + "/login?action=login");
         }

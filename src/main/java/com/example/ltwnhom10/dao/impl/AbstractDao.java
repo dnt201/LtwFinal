@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.ltwnhom10.dao.impl;
 
-//import com.myshop.constant.CoreConstant;
+import com.example.ltwnhom10.constance.CoreConstant;
 import com.example.ltwnhom10.dao.GenericDao;
-//import com.myshop.paging.Pageble;
+import com.example.ltwnhom10.paging.Pageable;
 import com.example.ltwnhom10.utl.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -19,10 +14,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author asus
- */
 public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T> {
 
     private Class<T> persistenceClass;
@@ -113,29 +104,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
         }
         return result;
     }
-    // delete
-    @Override
-    public Integer delete(List<ID> ids) {
-        Integer count = 0;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        try {
-            for (ID item : ids) {
-                T t = (T) session.get(persistenceClass, item);
-                session.delete(t);
-                count++;
-            }
-            transaction.commit();
-        } catch (HibernateException e) {
-            transaction.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-        return count;
-    }
 
-/*
     public Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection) {
         List<T> list = new ArrayList<T>();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -201,7 +170,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
     }
 
     @Override
-    public List<T> findAllPaging(Pageble pageble) {
+    public List<T> findAllPaging(Pageable pageable) {
         List<T> list = new ArrayList<T>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -210,17 +179,15 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             //HQL
             StringBuilder sql = new StringBuilder("from ");
             sql.append(this.getPersistenceClassName());
-            if (pageble.getSorter().getSortName() != null && pageble.getSorter().getSortBy() != null) {
-                sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy() + " ");
+            if (pageable.getSorter().getSortName() != null && pageable.getSorter().getSortBy() != null) {
+                sql.append(" ORDER BY " + pageable.getSorter().getSortName() + " " + pageable.getSorter().getSortBy() + " ");
             }
             //use HQL call Query
             Query query = session.createQuery(sql.toString());
-            if (pageble.getOffset() != null && pageble.getLimit() != null) {
-                query.setFirstResult(pageble.getOffset());
-                query.setMaxResults(pageble.getLimit());
+            if (pageable.getOffset() != null && pageable.getLimit() != null) {
+                query.setFirstResult(pageable.getOffset());
+                query.setMaxResults(pageable.getLimit());
             }
-            //use SQL Native call Query
-            //Query query = this.getSession().createSQLQuery(sql.toString());
             list = query.list();
             transaction.commit();
         } catch (HibernateException e) {
@@ -231,5 +198,4 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
         }
         return list;
     }
-*/
 }

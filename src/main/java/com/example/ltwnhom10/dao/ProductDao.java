@@ -8,10 +8,6 @@ package com.example.ltwnhom10.dao;
 import com.example.ltwnhom10.model.ProductModel;
 import java.util.List;
 
-/**
- *
- * @author asus
- */
 public interface ProductDao extends GenericDao<Integer, ProductModel>{
-    public List<ProductModel> findByManufacture(Integer manufactId);
+    public List<ProductModel> findByBrand(Integer brandId);
 }
