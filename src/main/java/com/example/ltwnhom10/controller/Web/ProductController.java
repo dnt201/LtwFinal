@@ -30,9 +30,10 @@ public class ProductController extends HttpServlet {
         Pageable pageable = new PageRequest(product.getPage(),product.getMaxPageItem(),new Sorter(product.getSortName(),product.getSortBy()));
         product.setListResult(productService.findAllPaging(pageable));
         product.setTotalItem(productService.getTotalItem());
-        product.setTotalPage((int) Math.ceil((double) product.getTotalItem() / product.getMaxPageItem()));
+        if(product.getMaxPageItem()!=null)
+            product.setTotalPage((int) Math.ceil((double) product.getTotalItem() / product.getMaxPageItem()));
         request.setAttribute(CoreConstant.MODEL, product);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/product/product.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/products.jsp");
         requestDispatcher.forward(request, response);
     }
 }
