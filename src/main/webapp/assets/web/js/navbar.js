@@ -4,6 +4,6 @@ function toggleNav() {
         x.className+= " active"
     }
     else {
-        x.className = "topnav";
+        x.className = "nav";
     }
 }

@@ -26,17 +26,17 @@
                 <div class="flex_row_evenly w80">
                     <div class="member_item">
                         <img src="<c:url value='/assets/web/images/nha.jpg'/>" alt="Avatar member"/>
-                        <p class="mb_4px"> Trần Duy Nhã </p>
+                        <p class="mb_4px"> T.D Nhã </p>
                         <p> 19110251 </p>
                     </div>
                     <div class="member_item">
                         <img src="<c:url value='/assets/web/images/duc.jpg'/>" alt="Avatar member"/>
-                        <p class="mb_4px"> Quản Minh Đức </p>
+                        <p class="mb_4px"> Q.M Đức </p>
                         <p> 19110015 </p>
                     </div>
                     <div class="member_item">
                         <img src="<c:url value='/assets/web/images/long.jpg'/>" alt="Avatar member"/>
-                        <p class="mb_4px"> Võ Bảo Long </p>
+                        <p class="mb_4px"> V.B Long </p>
                         <p> 19110015 </p>
                     </div>
                 </div>

@@ -63,7 +63,7 @@ public class HomeController extends HttpServlet {
             if (user != null) {
                 if (bcrypt.verifyAndUpdateHash(model.getPassword(), user.getPassword())) {
                     SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
-                    System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.toString());
+                    System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.getRoleModel().getRoleName());
                     String role = user.getRoleModel().getRoleName();
                     if (role.equals(CoreConstant.ROLE_USER)) {
                         response.sendRedirect(request.getContextPath() + "/home-page");
