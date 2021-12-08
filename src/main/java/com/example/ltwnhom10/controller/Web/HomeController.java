@@ -20,8 +20,6 @@ import java.io.IOException;
 @WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout"})
 public class HomeController extends HttpServlet {
 
-    private  static final long serialVersionUID = 2686801510274002166L;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -39,10 +37,11 @@ public class HomeController extends HttpServlet {
         else if (action != null && action.equals("logout")){
             SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
             //SessionUtil.getInstance().removeValue(request, order);
-            response.sendRedirect(request.getContextPath()+"/home");
+            response.sendRedirect(request.getContextPath()+"/home-page");
         }
         else {
-            /*Render Product*/
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/home.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 

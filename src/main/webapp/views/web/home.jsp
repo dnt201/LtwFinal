@@ -30,7 +30,6 @@
     </button>
 </div>
 
-
     <div class="flex_column_center w-100">
         <h1 class="button mt_16px mb_16px ">Products</h1>
         <a href="<c:url value='/products'/>" class="pd_1628 mb_16px bg_gray cl_white btnHomePage">

@@ -15,7 +15,7 @@ public class ProductModel extends AbstractModel<ProductModel> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
-    private Integer productId;
+    private Integer product_id;
 
     @Column(name = "name", nullable = false)
     private String productName;

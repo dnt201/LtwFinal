@@ -14,7 +14,6 @@ public class OrderItemsKey implements Serializable {
     Integer product_id;
 
     public OrderItemsKey(){
-
     }
 
     @Override
