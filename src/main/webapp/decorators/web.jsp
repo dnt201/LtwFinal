@@ -11,8 +11,7 @@
     <!--Bootsrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
+    <!-- My javascript -->
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css" />
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -29,6 +28,8 @@
           href="<c:url value='/assets/web/css/login.css'/> ">
     <link rel="stylesheet" type="text/css"
           href="<c:url value='/assets/web/css/register.css'/> ">
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/assets/web/css/products.css'/> ">
     <!-- Font family -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Genos:wght@300&display=swap"
           rel="stylesheet">
@@ -57,6 +58,9 @@
 <%--        };--%>
 <%--        firebase.initializeApp(firebaseConfig);--%>
 <%--    </script>&ndash;%&gt;--%>
+
+<script src="<c:url value='/assets/web/js/navbar.js'/>"></script>
+
 </body>
 
 </html>
