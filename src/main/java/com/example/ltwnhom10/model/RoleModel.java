@@ -11,7 +11,7 @@ public class RoleModel extends AbstractModel<UsersModel> {
     private Integer role_id;
 
     @Column(name = "role_name")
-    private String roleName;
+    private String role_name;
 
     @OneToMany(mappedBy = "roleModel",fetch = FetchType.LAZY)
     private List<UsersModel> userList;
@@ -25,11 +25,11 @@ public class RoleModel extends AbstractModel<UsersModel> {
     }
 
     public String getRoleName() {
-        return roleName;
+        return role_name;
     }
 
     public void setRoleName(String roleName) {
-        this.roleName = roleName;
+        this.role_name = roleName;
     }
 
     public List<UsersModel> getUserList() {

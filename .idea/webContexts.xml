@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/user-list.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/errorPage/error_404.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/errorPage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/products.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web" />
       </map>
     </option>
   </component>

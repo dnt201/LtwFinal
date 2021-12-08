@@ -35,20 +35,22 @@
                     <!--<FontAwesomeIcon icon={faUser}/>-->
                 </a>
             </li>
-
+            <c:if test="${not empty User}">
             <li class="cover-size btn login">
                 <a href="<c:url value='/logout?action=logout'/>">
                     Logout</a>
             </li>
-
-            <li class="cover-size btn login">
-                <a href="<c:url value='/login?action=login'/>">
-                    Login</a>
-            </li>
-            <li class="cover-size btn login">
-                <a href="<c:url value='/register?action=register'/>">
-                    Register</a>
-            </li>
+            </c:if>
+            <c:if test="${empty User}">
+                <li class="cover-size btn login">
+                    <a href="<c:url value='/login?action=login'/>">
+                        Login</a>
+                </li>
+                <li class="cover-size btn login">
+                    <a href="<c:url value='/register?action=register'/>">
+                        Register</a>
+                </li>
+            </c:if>
             <li class="cover-size btn admin">
                 <a href="<c:url value='/admin'/>">
                     Admin</a>

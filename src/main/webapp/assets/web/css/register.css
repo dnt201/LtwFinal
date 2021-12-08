@@ -3,7 +3,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
 .w48 {
     width: 48%;
 }
@@ -11,7 +10,6 @@
     color: #e74c3c;
     font-weight: bold;
 }
-
 .form_register_container {
     min-height: 100vh;
     display: flex;

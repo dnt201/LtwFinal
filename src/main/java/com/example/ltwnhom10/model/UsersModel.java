@@ -32,6 +32,15 @@ public class UsersModel extends AbstractModel<UsersModel> {
     @Column(name = "address")
     private String address;
 
+
+    @Column(name = "phone_number")
+    private String phone;
+
+    @Column(name = "create_at",nullable = false)
+    private Timestamp createAt;
+
+
+
     public int getUser_id() {
         return user_id;
     }
@@ -68,6 +77,7 @@ public class UsersModel extends AbstractModel<UsersModel> {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -79,13 +89,6 @@ public class UsersModel extends AbstractModel<UsersModel> {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    @Column(name = "phone_number")
-    private String phone;
-
-    @Column(name = "create_at",nullable = false)
-    private Timestamp createAt;
-
 
     @ManyToOne
     @JoinColumn(name="role_id",nullable = false)

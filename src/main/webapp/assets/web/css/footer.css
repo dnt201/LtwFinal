@@ -87,6 +87,7 @@ footer {
     align-items: center;
     margin-bottom: 4px;
     transition: 1s;
+    justify-content: flex-end;
 }
 
 .member_item:hover {
@@ -110,7 +111,7 @@ footer {
         align-items: center;
     }
     .member_list {
-        width: 70%;
+        width: 100%;
     }
 
     .social_list {

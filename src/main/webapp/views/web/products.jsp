@@ -1,8 +1,8 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="ListProductPage">
-    <img class="background" src="" alt="background"/>
-    <div class="container">
+    <img class="background" src="<c:url value='/assets/web/images/backgroundProduct.png'/>" alt="background"/>
+    <div class="list-product-container">
         <div class="left-sidebar">
             <h2 class="header-left-sidebar"> Bộ lọc sản phẩm</h2>
             <div class="filter-wrap">
@@ -13,7 +13,7 @@
                             <input type="radio" class="option-input radio" name="brand"
                                    value=Acer
                             />
-                            <span>MSI</span>
+                            <span>Acer</span>
                         </div>
                         <div class="filter-item mg-b-8px">
                             <input type="radio" class="option-input radio" name="brand"
@@ -27,7 +27,6 @@
                             />
                             <span>All</span>
                         </div>
-                        {/*End render hãng*/}
                     </div>
                 </div>
             </div>
@@ -45,20 +44,22 @@
                     <div class="price-filter"> 20Tr - 30Tr</div>
                     <div class="price-filter"> 30Tr - 40Tr</div>
                     <div class="price-filter"> Trên 40tr</div>
-                    {listPrice.map((item) => (
 
                     <div class="price-filter-input-wrap">
                         <div class="m-b-8px">Hoặc nhập giá trị dưới đây</div>
-                        <div class="filter-input-price m-b-8px">
-                            <input placeholder="Từ"/>
-                            <input placeholder="Đến"/>
+                        <div class="filter-input-price">
+                            <input class="form-input tu"
+                                   placeholder="Từ"
+                            />
+                            <input class="form-input"
+                                   placeholder="Đến"
+                            />
                         </div>
                     </div>
                     <button class="btn-apply-price" onclick="">Áp dụng</button>
                 </div>
             </div>
         </div>
-
         <div class="product-list">
             <div class="list-header">
                 <div class="header-name-list">
@@ -86,11 +87,626 @@
                     </select>
                 </div>
             </div>
-            <div class="product-list">
-                <div>Product 1</div>
-                <div>Product 1</div>
-                <div>Product 1</div>
+            <div class="product-list list">
+                <%--Bắt đầu render list--%>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=1'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=2'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=3'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=4'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=5'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=6'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=7'/>" class="btn-details">Details</a>
+                    </div>
+                    <div class="item-product">
+                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <h4 class="name"><b>Tên product</b></h4>
+                        <div class="box-price">
+                            <div class="sale-product">
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                            </div>
+                            <button class="add-to-card">
+                                <i class="fas fa-cart-plus add-to-card-icon"></i>
+                            </button>
+                        </div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img
+                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                alt=""/>
+                                        <b>i5-10300h</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
+                                        <b>Rx 9900M</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>8Gb</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <b>SSD: 512</b>
+                                            <b>HDD: None</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="detail">
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                             alt=""/>
+                                        <b>2.4Kg</b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="detail ml_16px">
+                                        <img
+                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
+                                        <div class="flex_column_start">
+                                            <div>
+                                                <b>15.6'</b>
+                                                <b>FullHd</b>
+                                            </div>
+                                            <b>144hz</b>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="<c:url value='/detail-product?product_id=8'/>" class="btn-details">Details</a>
+                    </div>
             </div>
+
+
         </div>
     </div>
 </div>

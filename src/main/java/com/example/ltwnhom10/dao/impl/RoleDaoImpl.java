@@ -19,7 +19,7 @@ public class RoleDaoImpl  extends AbstractDao<Integer, RoleModel> implements Rol
             Session session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             try{
-                StringBuilder sqlcmd = new StringBuilder("SELECT role_id FROM roles WHERE role_name= :roleName");
+                StringBuilder sqlcmd = new StringBuilder("SELECT role_id FROM RoleModel WHERE role_name= :roleName");
                 Query query = session.createQuery(sqlcmd.toString());
                 query.setParameter("roleName", roleName);
 

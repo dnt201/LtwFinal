@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 public class RegisterController extends HttpServlet {
@@ -36,14 +38,19 @@ public class RegisterController extends HttpServlet {
         RoleService roleService = new RoleService();
         IUserService userService = new UserService();
         UsersModel usersModel = FormUtil.toModel(UsersModel.class, request);
+
         UsersModel userExist = userService.isUserExist(usersModel);
 
         if (userExist != null)
             response.sendRedirect(request.getContextPath()+"/login?action=login&&messageResponse=User_has_exist&&alert=danger");
         else
         {
+            System.out.println("into");
             RoleModel role = new RoleModel();
             usersModel.setRoleModel(role);
+            Date date = new Date();
+            Timestamp ts =  new Timestamp(date.getTime());
+            usersModel.setCreateAt(ts);
 
             Integer role_id = roleService.findRoleByRoleName(CoreConstant.ROLE_USER);
             usersModel.getRoleModel().setRoleId(role_id);

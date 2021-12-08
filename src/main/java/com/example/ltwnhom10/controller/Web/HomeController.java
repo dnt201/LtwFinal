@@ -36,6 +36,7 @@ public class HomeController extends HttpServlet {
         }
         else if (action != null && action.equals("logout")){
             SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
+            System.out.println("Logout");
             //SessionUtil.getInstance().removeValue(request, order);
             response.sendRedirect(request.getContextPath()+"/home-page");
         }
@@ -62,9 +63,10 @@ public class HomeController extends HttpServlet {
             if (user != null) {
                 if (bcrypt.verifyAndUpdateHash(model.getPassword(), user.getPassword())) {
                     SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
+                    System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.toString());
                     String role = user.getRoleModel().getRoleName();
                     if (role.equals(CoreConstant.ROLE_USER)) {
-                        response.sendRedirect(request.getContextPath() + "/home");
+                        response.sendRedirect(request.getContextPath() + "/home-page");
                     } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
                         response.sendRedirect(request.getContextPath() + "/admin-home");
                     }
@@ -73,10 +75,11 @@ public class HomeController extends HttpServlet {
                 model = userService.findByUsernameAndPassword(model.getUsername(), model.getPassword());
                 SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, model);
                 String role = user.getRoleModel().getRoleName();
+                System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.toString());
                 if (role.equals(CoreConstant.ROLE_USER)) {
-                    response.sendRedirect(request.getContextPath() + "/home");
+                    response.sendRedirect(request.getContextPath() + "/home-page");
                 } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                    response.sendRedirect(request.getContextPath() + "/admin-home");
+                    response.sendRedirect(request.getContextPath() + "/admin");
                 }
             }else {
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);

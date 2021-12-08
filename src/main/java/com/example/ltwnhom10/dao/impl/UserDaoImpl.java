@@ -14,12 +14,14 @@ public class UserDaoImpl extends AbstractDao<Integer, UsersModel> implements Use
         UsersModel user = new UsersModel();
         Transaction transaction = null;
 
+        System.out.println(username);
+
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             try {
-                StringBuilder sqlcmd = new StringBuilder("From UsersModel WHERE userName= :userName");
-                Query query = session.createSQLQuery(sqlcmd.toString());
+                StringBuilder sqlcmd = new StringBuilder("From UsersModel WHERE username= :userName");
+                Query query = session.createQuery(sqlcmd.toString());
                 query.setParameter("userName", username);
 
                 user = (UsersModel) query.uniqueResult();
