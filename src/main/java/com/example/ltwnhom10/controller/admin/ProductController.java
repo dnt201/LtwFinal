@@ -54,7 +54,7 @@ public class ProductController extends HttpServlet {
                 product = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
                 productService.save(product);
 
-                url = "/views/admin/List/ListProduct.jsp";
+                //url = "/views/admin/List/ListProduct.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
             }

@@ -41,8 +41,7 @@ public class BrandController extends HttpServlet {
             case "add": {
                 brand = HttpUtil.of(request.getReader()).toModel(BrandModel.class);
                 brandService.save(brand);
-
-                url = "/views/admin/List/ListBrand.jsp";
+                //url = "/views/admin/List/ListBrand.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
             }

@@ -25,20 +25,23 @@
         <div class="move-right">
             <li class="cover-size btn user">
                 <a href="<c:url value='/cart'/>">
+                    <i class="fa fa-shopping-cart"></i>
                     <!-- <FontAwesomeIcon icon={faShoppingCart}/>-->
-                    <span class="number-items-cart"><i class="fas fa-truck"></i> </span>
+                    <span class="number-items-cart"><i>0</i> </span>
                 </a>
             </li>
-
             <li class="cover-size btn user">
                 <a href="<c:url value='/user'/>">
                     <!--<FontAwesomeIcon icon={faUser}/>-->
+                    <i class="fa fa-user"></i>
                 </a>
             </li>
             <c:if test="${not empty User}">
             <li class="cover-size btn login">
+                <c:out value = "${User.getRoleModel().getRoleName()}"/>
                 <a href="<c:url value='/logout?action=logout'/>">
-                    Logout</a>
+                    Logout
+                </a>
             </li>
             </c:if>
             <c:if test="${empty User}">
@@ -51,10 +54,12 @@
                         Register</a>
                 </li>
             </c:if>
+            <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
             <li class="cover-size btn admin">
                 <a href="<c:url value='/admin'/>">
                     Admin</a>
             </li>
+            </c:if>
         </div>
     </ul>
 </header>

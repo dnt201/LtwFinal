@@ -559,9 +559,13 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                             <button class="add-to-card">
+                                aaaaaa
+                                <c:out value = "${User.getRoleModel().getRoleName()}"/>
                                 <i class="fas fa-cart-plus add-to-card-icon"></i>
                             </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -629,7 +633,7 @@
                     </div>
                     <div class="item-product">
                         <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
+                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product images"/>
                         <h4 class="name"><b>Tên product</b></h4>
                         <div class="box-price">
                             <div class="sale-product">

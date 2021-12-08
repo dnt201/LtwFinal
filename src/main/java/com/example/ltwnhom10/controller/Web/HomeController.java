@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 @WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout"})
@@ -25,11 +26,10 @@ public class HomeController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action != null && action.equals("login")){
-            String alert = request.getParameter("alert");
             String message = request.getParameter("message");
-            if (message!=null && alert!=null){
-                request.setAttribute("messageResponse", message);
-                request.setAttribute("alert", alert);
+           if(message!=null){
+               if(message.equals("username_password_invalid"))
+                   request.setAttribute("messageResponse", "Username or password is incorrect!! Try again!!!");
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/login.jsp");
             requestDispatcher.forward(request, response);
@@ -63,38 +63,41 @@ public class HomeController extends HttpServlet {
             if (user != null) {
                 if (bcrypt.verifyAndUpdateHash(model.getPassword(), user.getPassword())) {
                     SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
-                    System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.toString());
                     String role = user.getRoleModel().getRoleName();
                     if (role.equals(CoreConstant.ROLE_USER)) {
                         response.sendRedirect(request.getContextPath() + "/home-page");
                     } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                        response.sendRedirect(request.getContextPath() + "/admin-home");
+                        //response.sendRedirect(request.getContextPath() + "/admin-home");
+                        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/adminPage.jsp");
+                        requestDispatcher.forward(request, response);
                     }
+                }
+                else{ request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
+                    response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
                 }
             } else if (model != null) {
                 model = userService.findByUsernameAndPassword(model.getUsername(), model.getPassword());
                 SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, model);
                 String role = user.getRoleModel().getRoleName();
-                System.out.println("vo model aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.toString());
                 if (role.equals(CoreConstant.ROLE_USER)) {
                     response.sendRedirect(request.getContextPath() + "/home-page");
                 } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                    response.sendRedirect(request.getContextPath() + "/admin");
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/adminPage.jsp");
+                    requestDispatcher.forward(request, response);
+                    //response.sendRedirect(request.getContextPath() + "/admin");
                 }
-            }else {
+            }
+            else {
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
-//                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/login.jsp");
-                requestDispatcher.forward(request, response);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
+                response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
             }
         }
         else{
             request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
-//                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/login.jsp");
-            requestDispatcher.forward(request, response);
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
+            response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
         }
     }
 }
