@@ -29,10 +29,8 @@ public class DiscountController extends HttpServlet
             throws ServletException, IOException {
 
         String url="";
-        ObjectMapper mapper = new ObjectMapper();
         DiscountModel discountModel = null;
         String action = request.getParameter("action");
-        String key = request.getParameter("key");
 
         switch (action){
             case "insert": {
