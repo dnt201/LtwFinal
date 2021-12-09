@@ -29,6 +29,15 @@
                 </li>
             </ul>
         </div>
+        <span class="me-2" id="categoryBulkAction">
+            <label>Sort by:</label>
+            <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">A-Z</option>
+                <option value="-1"> Z-A </option>
+                <option></option>
+            </select>
+        </span>
         <form id="formsubmit" action="<c:url value='/admin/brand'/>" method="get">
             <div class="card card-table">
                 <div class="preload-wrapper">
@@ -63,16 +72,7 @@
                         </tbody>
                     </table>
                     <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
-                    <span class="me-2" id="categoryBulkAction">
-                                <label>Sort</label>
-                                <select id="sort" onchange="Sort(this)"
-                                        class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">A-Z</option>
-                                    <option value="-1"> Z-A </option>
-                                    <option></option>
-                                </select>
-                            </span>
+
 
                 </div>
             </div>
@@ -95,8 +95,8 @@
                     shouldSwitch = false;
                     x = rows[i].getElementsByTagName("TD")[1];
                     y = rows[i + 1].getElementsByTagName("TD")[1];
-                    if ((value ==="1" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
-                        ((value ==="-1" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()))) {
+                    if ((value === "1" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
+                        ((value === "-1" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()))) {
                         shouldSwitch = true;
                         break;
                     }

@@ -32,13 +32,13 @@
                                 </div>
                             </div>
                             <div style="margin-top: 10px" class="form-text" id="notification"></div>
-                            <input type="hidden" value="" id="id" name="" />
                             <c:if test="${empty BrandModel}">
                                 <input type="hidden" name="action" value="add"/>
                                 <button style="margin-top: 10px"
-                                        class="btn btn-outline-primary mb-4">Add Manufacture</button>
+                                        class="btn btn-outline-primary mb-4">Add brand</button>
                             </c:if>
                             <c:if test="${not empty BrandModel}">
+                                <input type="hidden" value=${BrandModel.brand_id} id="brand_id" name="brand_id">
                                 <input type="hidden" name="action" value="update"/>
                                 <button  style="margin-top: 10px"
                                         class="btn btn-outline-danger mb-4">Update</button>

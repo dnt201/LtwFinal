@@ -55,11 +55,9 @@ public class BrandController extends HttpServlet {
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             brand = FormUtil.toModel(BrandModel.class, request);
             brandService.update(brand);
-
             request.setAttribute("discountModel", brand);
-            url = "/admin/insert/BrandInsert.jsp";
+            url = "/views/admin/insert/BrandInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
-            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
         }
         else {
             BrandModel model = new BrandModel();
