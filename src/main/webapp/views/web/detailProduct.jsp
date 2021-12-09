@@ -35,10 +35,17 @@
                     <div class="old-price"> 100000</div>
                 </div>
             </div>
+
             <div class="button">
+                <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                 <button onclick="" }> Add to cart <i class="fa fa-cart-arrow-down"></i></button>
                 <button onClick=""> Buy now <i class="fa fa-receipt"></i></button>
+                </c:if>
+                <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
+                    <button className="btn-details" onClick=""> Details</button>
+                </c:if>
             </div>
+
         </div>
     </div>
     <div class="review-wrap">

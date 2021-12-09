@@ -67,9 +67,7 @@ public class HomeController extends HttpServlet {
                     if (role.equals(CoreConstant.ROLE_USER)) {
                         response.sendRedirect(request.getContextPath() + "/home-page");
                     } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                        //response.sendRedirect(request.getContextPath() + "/admin-home");
-                        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/adminPage.jsp");
-                        requestDispatcher.forward(request, response);
+                        response.sendRedirect(request.getContextPath() + "/admin");
                     }
                 }
                 else{ request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
@@ -83,9 +81,7 @@ public class HomeController extends HttpServlet {
                 if (role.equals(CoreConstant.ROLE_USER)) {
                     response.sendRedirect(request.getContextPath() + "/home-page");
                 } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/adminPage.jsp");
-                    requestDispatcher.forward(request, response);
-                    //response.sendRedirect(request.getContextPath() + "/admin");
+                    response.sendRedirect(request.getContextPath() + "/admin");
                 }
             }
             else {

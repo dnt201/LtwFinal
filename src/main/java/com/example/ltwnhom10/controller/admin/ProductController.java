@@ -1,6 +1,8 @@
 package com.example.ltwnhom10.controller.admin;
 
 import com.example.ltwnhom10.constance.CoreConstant;
+import com.example.ltwnhom10.model.BrandModel;
+import com.example.ltwnhom10.model.DiscountModel;
 import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.service.IBrandService;
 import com.example.ltwnhom10.service.IDiscountService;
@@ -26,58 +28,79 @@ public class ProductController extends HttpServlet {
     private IBrandService brandService;
     private IDiscountService discountService;
 
-    public ProductController(){
+    public ProductController() {
         this.brandService = new BrandService();
         this.productService = new ProductService();
         this.discountService = new DiscountService();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        ProductModel product = FormUtil.toModel(ProductModel.class, request);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProductModel product = null;
         String url = "";
         String action = request.getParameter("action");
+        if (action == null) {
+            url = "/views/admin/list/ProductList.jsp";
+            ProductModel model = new ProductModel();
+            model.setListResult(productService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            request.setAttribute("brandModel", brandService.findAll());
+            request.setAttribute("discountModel", discountService.findAll());
+        }
+        else if (action.equals("insert")) {
+            url = "/views/admin/insert/ProductInsert.jsp";
+            System.out.println("Insert product");
+        }
+        else if (action.equals("edit")) {
+            url = "/views/admin/insert/ProductInsert.jsp";
+            Integer id = Integer.parseInt(request.getParameter("product_id"));
+            product = productService.findByID(id);
+            request.setAttribute("productModel", product);
+            request.setAttribute("brandModel", brandService.findAll());
+            request.setAttribute("discountModel", discountService.findAll());
+        }
+        else if (action.equals("add")) {
+            product = FormUtil.toModel(ProductModel.class, request);
 
-        switch (action){
-            case "insert": {
-                url = url = "/views/admin/Insert/InsertProduct.jsp";
-            }
-            case "edit": {
-                url = "/views/admin/Insert/InsertProduct.jsp";
-                Integer id = Integer.parseInt(request.getParameter("product_id"));
-                product = productService.findByID(id);
-                request.setAttribute("productModel", product);
-                request.setAttribute("brandModel", brandService.findAll());
-                request.setAttribute("discountModel", discountService.findAll());
-            }
-            case "add": {
-                product = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
-                productService.save(product);
+            DiscountModel discount = new DiscountModel();
+            BrandModel brand = new BrandModel();
 
-                //url = "/views/admin/List/ListProduct.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
-                request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-            }
-            case "update": {
-                product = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
-                productService.update(product);
+            brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
+            discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
 
-                request.setAttribute("productModel", product);
-                url = "/views/admin/Insert/InsertProduct.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
-                request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-            }
-            default: {
-                url = "/views/admin/List/ListProduct.jsp";
-                ProductModel model = new ProductModel();
-                model.setListResult(productService.findAll());
-                request.setAttribute(CoreConstant.MODEL, model);
-                request.setAttribute("brandModel", brandService.findAll());
-                request.setAttribute("discountModel", discountService.findAll());
-            }
+            product.setDiscount(discount);
+            product.setBrandModel(brand);
+            productService.save(product);
 
+            //url = "/views/admin/List/ListProduct.jsp";
+            url = "/views/web/adminPage.jsp";
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+        }
+        else if (action.equals("update")) {
+            product = FormUtil.toModel(ProductModel.class, request);
+            productService.update(product);
+
+            request.setAttribute("productModel", product);
+            url = "/views/admin/insert/ProductInsert.jsp";
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+        }
+        else {
+            url = "/views/admin/list/ProductList.jsp";
+            ProductModel model = new ProductModel();
+            model.setListResult(productService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            request.setAttribute("brandModel", brandService.findAll());
+            request.setAttribute("discountModel", discountService.findAll());
+        }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
             requestDispatcher.forward(request, response);
-        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
     }
 }

@@ -98,9 +98,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -174,9 +177,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -251,9 +257,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -328,9 +337,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -405,9 +417,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -482,9 +497,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>
@@ -561,7 +579,6 @@
                             </div>
                             <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                             <button class="add-to-card">
-                                aaaaaa
                                 <c:out value = "${User.getRoleModel().getRoleName()}"/>
                                 <i class="fas fa-cart-plus add-to-card-icon"></i>
                             </button>
@@ -640,9 +657,12 @@
                                 <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
                             </div>
-                            <button class="add-to-card">
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
+                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                                <button class="add-to-card">
+                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
+                                </button>
+                            </c:if>
                         </div>
                         <table>
                             <tbody>

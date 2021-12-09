@@ -29,7 +29,7 @@ public class UserController extends HttpServlet {
         users.setListResult(userService.findAll());
 
         request.setAttribute(CoreConstant.MODEL, users);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/admin/List/ListUser.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/admin/list/UserList.jsp");
         requestDispatcher.forward(request, response);
     }
 

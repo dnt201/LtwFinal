@@ -28,6 +28,6 @@
             <i class="errorLogin"><b>${messageResponse}</b></i>
         </c:if>
         <button class="login-btn" type="submit" >Login</button>
-        <p class="login-bottom-text">Don't have a account yet? <a to="/register"> Click here to register!</a> </p>
+        <p class="login-bottom-text">Don't have a account yet? <a href="<c:url value='/register'/>"> Click here to register!</a> </p>
     </form>
 </div>

@@ -1,7 +1,7 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<header class="nav"  id="top-nav" >
+<header class="nav" id="top-nav">
     <div class="menu-icons" onclick="toggleNav()">
         <i class="fas fa-bars"></i>
         <i class="fas fa-times"></i>
@@ -23,13 +23,16 @@
             <a href="<c:url value='/products?action=products'/>">Products</a>
         </li>
         <div class="move-right">
-            <li class="cover-size btn user">
-                <a href="<c:url value='/cart'/>">
-                    <i class="fa fa-shopping-cart"></i>
-                    <!-- <FontAwesomeIcon icon={faShoppingCart}/>-->
-                    <span class="number-items-cart"><i>0</i> </span>
-                </a>
-            </li>
+            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                <li class="cover-size btn user">
+                    <a href="<c:url value='/cart'/>">
+                        <i class="fa fa-shopping-cart"></i>
+                        <!-- <FontAwesomeIcon icon={faShoppingCart}/>-->
+                        <span class="number-items-cart"><i>0</i> </span>
+                    </a>
+
+                </li>
+            </c:if>
             <li class="cover-size btn user">
                 <a href="<c:url value='/user'/>">
                     <!--<FontAwesomeIcon icon={faUser}/>-->
@@ -37,12 +40,12 @@
                 </a>
             </li>
             <c:if test="${not empty User}">
-            <li class="cover-size btn login">
-                <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                <a href="<c:url value='/logout?action=logout'/>">
-                    Logout
-                </a>
-            </li>
+                <li class="cover-size btn login">
+                    <c:out value="${User.getRoleModel().getRoleName()}"/>
+                    <a href="<c:url value='/logout?action=logout'/>">
+                        Logout
+                    </a>
+                </li>
             </c:if>
             <c:if test="${empty User}">
                 <li class="cover-size btn login">
@@ -55,10 +58,10 @@
                 </li>
             </c:if>
             <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
-            <li class="cover-size btn admin">
-                <a href="<c:url value='/admin'/>">
-                    Admin</a>
-            </li>
+                <li class="cover-size btn admin">
+                    <a href="<c:url value='/admin'/>">
+                        Admin</a>
+                </li>
             </c:if>
         </div>
     </ul>

@@ -3,8 +3,6 @@
     <!-- Các link không liên quan -->
     <excludes>
         <pattern>/404-page.html</pattern>
-        <pattern>/ajax*</pattern>
-        <pattern>/ckfinder*</pattern>
         <pattern>/api*</pattern>
         <pattern>/update*</pattern>
     </excludes>
@@ -13,4 +11,9 @@
     <decorator name="web" page="web.jsp">
         <pattern>/*</pattern>
     </decorator>
+
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/admin*</pattern>
+    </decorator>
+
 </decorators>
