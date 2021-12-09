@@ -6,16 +6,16 @@
     <div class="cart-information">
         <h1 class="w-100p center">Thông tin</h1>
         <div class="m-l-8px">
-            <h3>Họ tên:</h3>
-            <h3>Gmail: </h3>
+            <h4>Họ tên:</h4>
+            <h4>Gmail: </h4>
             <div class="lv1">
-                <h3>Số điện thoại: </h3>
+                <h4>Số điện thoại: </h4>
                 <input type="number"
                        placeholder="Ex: 0333123123"
                 />
             </div>
             <div class="lv1">
-                <h3>Địa chỉ: </h3>
+                <h4>Địa chỉ: </h4>
                 <input
                         type="text"
                         placeholder="Ex: 110/20 Phạm Văn Đồng Phường Linh Chiểu"}
