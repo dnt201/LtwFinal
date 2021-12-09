@@ -12,7 +12,7 @@ function validatePassWorkConfirm() {
     let x = document.forms["register-form"]["password"].value;
     let y = document.forms["register-form"]["confPassword"].value;
     console.log(x,y);
-    if (x != y) {
+    if (x !== y) {
         console.log("x khác y");
         document.getElementById("mess_error_register").innerHTML = "Password not match! Please try again!";
         return false;

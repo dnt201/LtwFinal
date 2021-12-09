@@ -37,6 +37,7 @@ public class BrandController extends HttpServlet {
                 url = "/views/admin/insert/BrandInsert.jsp";
                 Integer id = Integer.parseInt(request.getParameter("brand_id"));
                 brand = brandService.findById(id);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
                 request.setAttribute("BrandModel", brand);
                 break;
             }
@@ -44,9 +45,8 @@ public class BrandController extends HttpServlet {
                 brand = FormUtil.toModel(BrandModel.class, request);
                 if (brand != null) {
                     brandService.save(brand);
-                    //url = "/views/admin/List/ListBrand.jsp";
+                    url = "/views/admin/insert/BrandInsert.jsp";
                     request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
-                    request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
                 }
                 else {
 

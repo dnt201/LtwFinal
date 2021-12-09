@@ -11,10 +11,10 @@
     font-weight: bold;
 }
 .form_register_container {
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: row;
+    margin-bottom: 7.5%;
 }
 
 .wrap-register {

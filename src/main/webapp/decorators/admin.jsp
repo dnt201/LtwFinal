@@ -35,6 +35,8 @@
           href="<c:url value='/assets/web/css/header.css'/> ">
     <link rel="stylesheet" type="text/css"
           href="<c:url value='/assets/web/css/footer.css'/> ">
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/assets/admin/css/form-custom.css'/> ">
 
     <!-- Font family -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Genos:wght@300&display=swap"
