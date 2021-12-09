@@ -50,12 +50,12 @@
                                 <td>${item.discountPercent}
                                 <td>
                                     <a class="me-3 text-lg text-success"
-                                       href="/admin-discount?action=edit&discountId=${item.discount_id}"
+                                       href="<c:url value = '/admin/discount?action=edit&discount_id=${item.discount_id}'/>"
                                     >
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <a class="text-lg text-danger"
-                                       href="/admin-discount?action=delete&discountId=${item.discount_id}"
+                                       href="<c:url value = '/admin/discount?action=delete&discount_id=${item.discount_id}'/>"
                                     >
                                         <i class="far fa-trash-alt"></i>
                                     </a>
@@ -114,5 +114,3 @@
 </script>
 </body>
 </html>
-
-
