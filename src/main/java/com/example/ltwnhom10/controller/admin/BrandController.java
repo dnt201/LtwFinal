@@ -27,14 +27,14 @@ public class BrandController extends HttpServlet {
         BrandModel brand = null;
         String url = "";
         String action = request.getParameter("action");
-
+        if(action==null) url = "/views/admin/list/BrandList.jsp"; else {
         switch (action){
             case "insert":{
-                url = "/views/admin/Insert/InsertBrand.jsp";
+                url = "/views/admin/insert/BrandInsert.jsp";
                 break;
             }
             case "edit": {
-                url = "/views/admin/Insert/InsertBrand.jsp";
+                url = "/views/admin/insert/BrandInsert.jsp";
                 Integer id = Integer.parseInt(request.getParameter("brand_id"));
                 brand = brandService.findById(id);
                 request.setAttribute("BrandModel", brand);
@@ -58,7 +58,7 @@ public class BrandController extends HttpServlet {
                 brandService.update(brand);
 
                 request.setAttribute("discountModel", brand);
-                url = "/views/admin/Insert/InsertBrand.jsp";
+                url = "/admin/insert/BrandInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
                 break;
@@ -67,8 +67,9 @@ public class BrandController extends HttpServlet {
                 BrandModel model = new BrandModel();
                 model.setListResult(brandService.findAll());
                 request.setAttribute(CoreConstant.MODEL, model);
-                url = "/views/admin/List/ListBrand.jsp";
+                url = "/views/admin/list/BrandList.jsp";
             }
+        }
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
