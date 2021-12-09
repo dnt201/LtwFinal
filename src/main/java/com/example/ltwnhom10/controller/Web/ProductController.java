@@ -1,10 +1,13 @@
 package com.example.ltwnhom10.controller.Web;
 
 import com.example.ltwnhom10.constance.CoreConstant;
+import com.example.ltwnhom10.model.BrandModel;
 import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.paging.PageRequest;
 import com.example.ltwnhom10.paging.Pageable;
+import com.example.ltwnhom10.service.IBrandService;
 import com.example.ltwnhom10.service.IProductService;
+import com.example.ltwnhom10.service.impl.BrandService;
 import com.example.ltwnhom10.service.impl.ProductService;
 import com.example.ltwnhom10.sort.Sorter;
 import com.example.ltwnhom10.utl.FormUtil;
@@ -26,13 +29,20 @@ public class ProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductModel product = FormUtil.toModel(ProductModel.class, request);
-        //tien - brand - discount
+        BrandModel model = new BrandModel();
+        IBrandService brandService = new BrandService();
+
         Pageable pageable = new PageRequest(product.getPage(),product.getMaxPageItem(),new Sorter(product.getSortName(),product.getSortBy()));
         product.setListResult(productService.findAllPaging(pageable));
         product.setTotalItem(productService.getTotalItem());
+
         if(product.getMaxPageItem()!=null)
             product.setTotalPage((int) Math.ceil((double) product.getTotalItem() / product.getMaxPageItem()));
+
+        model.setListResult(brandService.findAll());
+        request.setAttribute("brand", model);
         request.setAttribute(CoreConstant.MODEL, product);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/products.jsp");
         requestDispatcher.forward(request, response);
     }

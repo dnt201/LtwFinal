@@ -9,24 +9,14 @@
                 <div class="filter-header">Hãng sản xuất</div>
                 <div class="filter-body">
                     <div class="find-filter-wrap">
-                        <div class="filter-item mg-b-8px">
-                            <input type="radio" class="option-input radio" name="brand"
-                                   value=Acer
-                            />
-                            <span>Acer</span>
-                        </div>
-                        <div class="filter-item mg-b-8px">
-                            <input type="radio" class="option-input radio" name="brand"
-                                   value=MSI
-                            />
-                            <span>MSI</span>
-                        </div>
-                        <div class="filter-item mg-b-8px">
-                            <input type="radio" class="option-input radio" name="brand"
-                                   value={0}
-                            />
-                            <span>All</span>
-                        </div>
+                        <c:forEach var="item" items="${brand.listResult}">
+                            <div class="filter-item mg-b-8px">
+                                <input type="radio" class="option-input radio" name="brand"
+                                       value=${item.brand_name}
+                                />
+                                <span>${item.brand_name}</span>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -63,8 +53,8 @@
         <div class="product-list">
             <div class="list-header">
                 <div class="header-name-list">
-                    <h2 class="mg-r-8px">Loại sản phẩm</h2>
-                    <span>Số lượng sản phẩm</span>
+                    <h2 class="mg-r-8px">Loại sản phẩm: </h2>
+                    <h2><c:out value="${model.totalItem}"/> </h2>
                 </div>
                 <div class="header-sort-list">
                     <span class="mg-r-8px">Sắp xếp theo</span>
@@ -88,574 +78,15 @@
                 </div>
             </div>
             <div class="product-list list">
-                <%--Bắt đầu render list--%>
+                <c:forEach var="item" items="${model.listResult}">
                     <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=1'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=2'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=3'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=4'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=5'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                    <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=6'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product imgaes"/>
-                        <h4 class="name"><b>Tên product</b></h4>
-                        <div class="box-price">
-                            <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
-                            </div>
-                            <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                            <button class="add-to-card">
-                                <c:out value = "${User.getRoleModel().getRoleName()}"/>
-                                <i class="fas fa-cart-plus add-to-card-icon"></i>
-                            </button>
-                            </c:if>
-                        </div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
-                                                alt=""/>
-                                        <b>i5-10300h</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>8Gb</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
-                                             alt=""/>
-                                        <b>2.4Kg</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="detail ml_16px">
-                                        <img
-                                                src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
-                                        <div class="flex_column_start">
-                                            <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
-                                            </div>
-                                            <b>144hz</b>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a href="<c:url value='/detail-product?product_id=7'/>" class="btn-details">Details</a>
-                    </div>
-                    <div class="item-product">
-                        <div class="stick-percent"><p>Giảm 10%</p></div>
+                        <div class="stick-percent"><p>Giảm ${item.discount.discountPercent}%</p></div>
                         <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product images"/>
-                        <h4 class="name"><b>Tên product</b></h4>
+                        <h4 class="name"><b>${item.productName}</b></h4>
                         <div class="box-price">
                             <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "27000000" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "30000000" /> đ</span>
+                                <span class="price-sale"><fmt:formatNumber type = "number" value = "${item.price - item.price*item.discount.discountPercent/100}" /> đ</span>
+                                <span class="price-old"><fmt:formatNumber type = "number" value = "${item.price}" /> đ</span>
                             </div>
                             <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                                 <button class="add-to-card">
@@ -672,14 +103,14 @@
                                         <img
                                                 src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
                                                 alt=""/>
-                                        <b>i5-10300h</b>
+                                        <b>${item.sCpu}</b>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="detail ml_16px">
                                         <img
                                                 src="<c:url value='/assets/web/images/gpu.png'/>" alt=""/>
-                                        <b>Rx 9900M</b>
+                                        <b>${item.sVga}</b>
                                     </div>
                                 </td>
                             </tr>
@@ -688,15 +119,15 @@
                                     <div class="detail">
                                         <img src="<c:url value='/assets/web/images/ram.png'/>" data-ll-status="loaded"
                                              alt=""/>
-                                        <b>8Gb</b>
+                                        <b>${item.sRam}</b>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="detail ml_16px">
                                         <img src="<c:url value='/assets/web/images/storage.png'/>" alt=""/>
                                         <div class="flex_column_start">
-                                            <b>SSD: 512</b>
-                                            <b>HDD: None</b>
+                                            <b>SSD: ${item.sSsd}</b>
+                                            <b>HDD: ${item.sSsd}</b>
                                         </div>
                                     </div>
                                 </td>
@@ -707,7 +138,7 @@
                                     <div class="detail">
                                         <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
                                              alt=""/>
-                                        <b>2.4Kg</b>
+                                        <b>${item.sWeight}</b>
                                     </div>
                                 </td>
                                 <td>
@@ -716,18 +147,19 @@
                                                 src="<c:url value='/assets/web/images/size.png'/>" alt=""/>
                                         <div class="flex_column_start">
                                             <div>
-                                                <b>15.6'</b>
-                                                <b>FullHd</b>
+                                                <b>${item.sSize}</b>
+                                                <b>${item.sResolution}</b>
                                             </div>
-                                            <b>144hz</b>
+                                            <b>${item.sHz}</b>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <a href="<c:url value='/detail-product?product_id=8'/>" class="btn-details">Details</a>
+                        <a href="<c:url value='/detail-product?product_id=${item.product_id}'/>" class="btn-details">Details</a>
                     </div>
+                </c:forEach>
             </div>
 
 
