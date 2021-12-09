@@ -26,4 +26,43 @@ public class OrderDetailsModel {
     @OneToMany(mappedBy = "orderDetails",fetch = FetchType.LAZY)
     private List<OrderItemsModel> orderItemsList;
 
+    public Integer getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Timestamp getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
+    }
+
+    public UsersModel getUsersModel() {
+        return usersModel;
+    }
+
+    public void setUsersModel(UsersModel usersModel) {
+        this.usersModel = usersModel;
+    }
+
+    public List<OrderItemsModel> getOrderItemsList() {
+        return orderItemsList;
+    }
+
+    public void setOrderItemsList(List<OrderItemsModel> orderItemsList) {
+        this.orderItemsList = orderItemsList;
+    }
 }

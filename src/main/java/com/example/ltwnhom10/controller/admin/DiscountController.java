@@ -29,36 +29,39 @@ public class DiscountController extends HttpServlet
             throws ServletException, IOException {
 
         String url="";
-        ObjectMapper mapper = new ObjectMapper();
-        DiscountModel discountModel = null;
+        DiscountModel discount = null;
         String action = request.getParameter("action");
-        String key = request.getParameter("key");
 
         switch (action){
             case "insert": {
                 url = "/views/admin/Insert/InsertDiscount.jsp";
+                break;
             }
             case "edit": {
                 url = "/views/admin/Insert/InsertDiscount.jsp";
                 Integer id = Integer.parseInt(request.getParameter("discount_id"));
-                discountModel = discountService.findByID(id);
-                request.setAttribute("discountModel", discountModel);
+                discount = discountService.findByID(id);
+                request.setAttribute("discountModel", discount);
+                break;
             }
             case "add": {
-                discount = HttpUtil.of(request.getReader()).toModel(DiscountModel.class);
-                discountService.save(discountModel);
+                discount = FormUtil.toModel(DiscountModel.class, request);
+                discountService.save(discount);
                 //url = "/views/admin/List/ListDiscount.jsp";
+                url = "/views/web/adminPage.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+                break;
             }
             case "update": {
-                discount = HttpUtil.of(request.getReader()).toModel(DiscountModel.class);
-                discountService.update(discountModel);
+                discount = FormUtil.toModel(DiscountModel.class, request);
+                discountService.update(discount);
 
                 request.setAttribute("discountModel", discount);
                 url = "/views/admin/Insert/InsertDiscount.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+                break;
             }
             default: {
                 discount.setListResult(discountService.findAll());

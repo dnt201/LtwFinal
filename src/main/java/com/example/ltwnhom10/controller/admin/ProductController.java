@@ -1,6 +1,8 @@
 package com.example.ltwnhom10.controller.admin;
 
 import com.example.ltwnhom10.constance.CoreConstant;
+import com.example.ltwnhom10.model.BrandModel;
+import com.example.ltwnhom10.model.DiscountModel;
 import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.service.IBrandService;
 import com.example.ltwnhom10.service.IDiscountService;
@@ -34,13 +36,14 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        ProductModel product = FormUtil.toModel(ProductModel.class, request);
+        ProductModel product = null;
         String url = "";
         String action = request.getParameter("action");
 
         switch (action){
             case "insert": {
                 url = url = "/views/admin/Insert/InsertProduct.jsp";
+                break;
             }
             case "edit": {
                 url = "/views/admin/Insert/InsertProduct.jsp";
@@ -49,23 +52,36 @@ public class ProductController extends HttpServlet {
                 request.setAttribute("productModel", product);
                 request.setAttribute("brandModel", brandService.findAll());
                 request.setAttribute("discountModel", discountService.findAll());
+                break;
             }
             case "add": {
-                product = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+                product = FormUtil.toModel(ProductModel.class, request);
+
+                DiscountModel discount = new DiscountModel();
+                BrandModel brand = new BrandModel();
+
+                brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
+                discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
+
+                product.setDiscount(discount);
+                product.setBrandModel(brand);
                 productService.save(product);
 
                 //url = "/views/admin/List/ListProduct.jsp";
+                url = "/views/web/adminPage.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+                break;
             }
             case "update": {
-                product = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+                product = FormUtil.toModel(ProductModel.class, request);
                 productService.update(product);
 
                 request.setAttribute("productModel", product);
                 url = "/views/admin/Insert/InsertProduct.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+                break;
             }
             default: {
                 url = "/views/admin/List/ListProduct.jsp";
@@ -79,5 +95,11 @@ public class ProductController extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
             requestDispatcher.forward(request, response);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
     }
 }
