@@ -35,9 +35,10 @@
                         <thead>
                         <tr>
                             <th style="padding-left: 10px"></th>
-                            <th>Discount Name</th>
-                            <th>Description</th>
-                            <th>Discount Percent</th>
+                            <th>Product Name</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Lasted Price</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -45,17 +46,18 @@
                         <c:forEach var="item" items="${model.listResult}">
                             <tr>
                                 <td style="padding-left: 10px"></td>
-                                <td>${item.discountName}</td>
-                                <td>${item.description}</td>
-                                <td>${item.discountPercent}
+                                <td>${item.productName}</td>
+                                <td>${item.brandModel.brand_name}</td>
+                                <td>${item.price}
+                                <td>${item.price - item.price*item.discount.discountPercent/100}</td>
                                 <td>
                                     <a class="me-3 text-lg text-success"
-                                       href="/admin-discount?action=edit&discountId=${item.discount_id}"
+                                       href="<c:url value = '/admin/product?action=edit&product_id=${item.product_id}'/>"
                                     >
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <a class="text-lg text-danger"
-                                       href="/admin-discount?action=delete&discountId=${item.discount_id}"
+                                       href="<c:url value = '/admin/product?action=delete&product_id=${item.product_id}'/>"
                                     >
                                         <i class="far fa-trash-alt"></i>
                                     </a>
@@ -114,5 +116,3 @@
 </script>
 </body>
 </html>
-
-

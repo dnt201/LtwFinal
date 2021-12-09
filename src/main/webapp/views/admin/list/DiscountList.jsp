@@ -71,8 +71,8 @@
                         <select id="sort" onchange="Sort(this)"
                                 class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value = "1">A-Z</option>
-                            <option value = "-1"> Z-A</option>
+                            <option value="1">A-Z</option>
+                            <option value="-1"> Z-A</option>
                             <option></option>
                         </select>
                     </span>
@@ -114,5 +114,3 @@
 </script>
 </body>
 </html>
-
-
