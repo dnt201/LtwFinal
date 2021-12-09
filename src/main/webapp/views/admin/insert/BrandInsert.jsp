@@ -1,6 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 
+
+<div class="breadcrumb" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <ul class="breadcrumb">
+        <li>
+            <a href="<c:url value='/admin'/>">
+                <i class="ace-icon fa fa-home home-icon"></i>
+            </a>
+        </li>
+        <li style="margin-left: 12px">
+            <i class="fas fa-angle-right"></i>
+            <a href="<c:url value='/admin/brand'/>">
+            List Brand
+            </a>
+        </li>
+        <li style="margin-left: 12px">
+            <i class="fas fa-angle-right"></i>
+                <c:if test="${empty BrandModel}">
+                    Insert Brand
+                </c:if>
+                <c:if test="${not empty BrandModel}">
+                    Edit Brand
+                </c:if>
+        </li>
+    </ul>
+</div>
 <div class="wrap-form-center">
     <form id="form" action="<c:url value='/admin/brand'/>" class="formCenter shadow p-3 mb-5 bg-body rounded">
         <div class="form-header">
@@ -35,15 +66,15 @@
                             <c:if test="${empty BrandModel}">
                                 <input type="hidden" name="action" value="add"/>
                                 <button style="margin-top: 10px"
-                                        class="btn btn-outline-primary mb-4">Add brand</button>
+                                        class="btn btn-outline-primary mb-4" type="submit">Add brand</button>
                             </c:if>
                             <c:if test="${not empty BrandModel}">
                                 <input type="hidden" value=${BrandModel.brand_id} id="brand_id" name="brand_id">
                                 <input type="hidden" name="action" value="update"/>
                                 <button  style="margin-top: 10px"
-                                        class="btn btn-outline-danger mb-4">Update</button>
+                                        class="btn btn-outline-danger mb-4"  type="submit">Update</button>
                                 <button  style="margin-top: 10px"
-                                        class="btn btn-outline-success mb-4">Save</button>
+                                        class="btn btn-outline-success mb-4"  type="submit">Save</button>
                             </c:if>
 
                         </div>

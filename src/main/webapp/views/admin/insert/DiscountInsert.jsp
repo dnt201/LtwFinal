@@ -1,9 +1,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 
+<div class="breadcrumb" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <ul class="breadcrumb">
+        <li>
+            <a href="<c:url value='/admin'/>">
+                <i class="ace-icon fa fa-home home-icon"></i>
+            </a>
+        </li>
+        <li style="margin-left: 12px">
+            <i class="fas fa-angle-right"></i>
+            <a href="<c:url value='/admin/discount'/>">
+                List Discount
+            </a>
+        </li>
+        <li style="margin-left: 12px">
+            <i class="fas fa-angle-right"></i>
+            <c:if test="${empty discountModel}">
+                Insert Discount
+            </c:if>
+            <c:if test="${not empty discountModel}">
+                Edit Discount
+            </c:if>
+        </li>
+    </ul>
+</div>
 <div class="wrap">
     <div class="wrap-form-center">
-        <form id="form" action="<c:url value='/admin/brand'/>" class="formCenter shadow p-3 mb-5 bg-body rounded">
+        <form id="form" action="<c:url value='/admin/discount'/>" class="formCenter shadow p-3 mb-5 bg-body rounded">
             <div class="form-header">
                 <h1>Discount Insert or Update</h1>
                 <ul class="list-inline text-sm">
@@ -64,9 +94,7 @@
                                     <input type="hidden" value=${discountModel.discount_id} id="discount_id" name="discount_id"/>
                                     <input type="hidden" name="action" value="update"/>
                                     <button  style="margin-top: 12px"
-                                             class="btn btn-outline-danger mb-4">Update</button>
-                                    <button  style="margin-top: 12px"
-                                             class="btn btn-outline-success mb-4">Save</button>
+                                             class="btn btn-outline-danger mb-4" type="submit">Update</button>
                                 </c:if>
 
                             </div>

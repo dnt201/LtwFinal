@@ -58,6 +58,7 @@
 <button onclick="topFunction()" id="myBtn-scroll-top" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
 
 <%@ include file="/common/web/footer.jsp" %>
+<script src="<c:url value='/assets/web/js/navbar.js'/>"></script>
 </body>
 
 </html>

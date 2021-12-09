@@ -63,7 +63,6 @@ public class DiscountController extends HttpServlet {
             request.setAttribute("discountModel", discount);
             url = "/views/admin/insert/DiscountInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
-            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
         }
         else {
             DiscountModel model = new DiscountModel();
