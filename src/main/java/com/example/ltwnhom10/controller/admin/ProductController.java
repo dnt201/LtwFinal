@@ -47,11 +47,11 @@ public class ProductController extends HttpServlet {
             request.setAttribute("brandModel", brandService.findAll());
             request.setAttribute("discountModel", discountService.findAll());
         }
-        else if (action.equals("insert")) {
+        else if (action.equals(CoreConstant.ACTION_INSERT)) {
             url = "/views/admin/insert/ProductInsert.jsp";
             System.out.println("Insert product");
         }
-        else if (action.equals("edit")) {
+        else if (action.equals(CoreConstant.ACTION_EDIT)) {
             url = "/views/admin/insert/ProductInsert.jsp";
             Integer id = Integer.parseInt(request.getParameter("product_id"));
             product = productService.findByID(id);
@@ -59,7 +59,7 @@ public class ProductController extends HttpServlet {
             request.setAttribute("brandModel", brandService.findAll());
             request.setAttribute("discountModel", discountService.findAll());
         }
-        else if (action.equals("add")) {
+        else if (action.equals(CoreConstant.ACTION_ADD)) {
             product = FormUtil.toModel(ProductModel.class, request);
 
             DiscountModel discount = new DiscountModel();
@@ -77,7 +77,7 @@ public class ProductController extends HttpServlet {
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
             request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
         }
-        else if (action.equals("update")) {
+        else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             product = FormUtil.toModel(ProductModel.class, request);
             productService.update(product);
 

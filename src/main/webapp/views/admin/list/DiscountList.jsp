@@ -1,5 +1,5 @@
-<%@include file="/common/taglib.jsp"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
             </script>
             <ul class="breadcrumb">
                 <li>
-                    <a  href="<c:url value='/admin'/>">
+                    <a href="<c:url value='/admin'/>">
                         <i class="ace-icon fa fa-home home-icon"></i>
                     </a>
                 </li>
@@ -34,7 +34,7 @@
                     <table class="table table-hover table-borderless align-middle mb-0" id="userDatatable">
                         <thead>
                         <tr>
-                            <th style="padding-left: 10px"> </th>
+                            <th style="padding-left: 10px"></th>
                             <th>Discount Name</th>
                             <th>Description</th>
                             <th>Discount Percent</th>
@@ -45,17 +45,17 @@
                         <c:forEach var="item" items="${model.listResult}">
                             <tr>
                                 <td style="padding-left: 10px"></td>
-                                <td >${item.discountName}</td>
-                                <td >${item.description}</td>
-                                <td >${item.discountPercent}
+                                <td>${item.discountName}</td>
+                                <td>${item.description}</td>
+                                <td>${item.discountPercent}
                                 <td>
                                     <a class="me-3 text-lg text-success"
-                                       href="/admin-discount?action=edit&&discountId=${item.discountId}"
+                                       href="/admin-discount?action=edit&discountId=${item.discount_id}"
                                     >
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <a class="text-lg text-danger"
-                                        href="/admin-discount?action=delete&&discountId=${item.discountId}"
+                                       href="/admin-discount?action=delete&discountId=${item.discount_id}"
                                     >
                                         <i class="far fa-trash-alt"></i>
                                     </a>
@@ -67,13 +67,15 @@
                     </table>
                     <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
                     <span class="me-2" id="categoryBulkAction">
-                                <label>Sort</label>
-                                <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option>A-Z</option>
-                                    <option></option>
-                                </select>
-                            </span>
+                        <label>Sort</label>
+                        <select id="sort" onchange="Sort(this)"
+                                class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value = "1">A-Z</option>
+                            <option value = "-1"> Z-A</option>
+                            <option></option>
+                        </select>
+                    </span>
 
                 </div>
             </div>
@@ -85,7 +87,7 @@
     function Sort(param) {
         var message = document.getElementById('sort');
         var value = param.value;
-        if (value === 'A-Z') {
+        if (value === "1" || value === "-1") {
             var table, rows, switching, i, x, y, shouldSwitch;
             table = document.getElementById("userDatatable");
             switching = true;
@@ -93,13 +95,11 @@
                 switching = false;
                 rows = table.rows;
                 for (i = 1; i < (rows.length - 1); i++) {
-                    // Start by saying there should be no switching:
                     shouldSwitch = false;
                     x = rows[i].getElementsByTagName("TD")[1];
                     y = rows[i + 1].getElementsByTagName("TD")[1];
-                    // Check if the two rows should switch place:
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
+                    if ((value === "1" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
+                        (value === "-1" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())) {
                         shouldSwitch = true;
                         break;
                     }
