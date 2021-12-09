@@ -26,11 +26,7 @@ public class DiscountModel extends AbstractModel<DiscountModel> {
     
     @Column(name = "discount_percent")
     private BigDecimal discountPercent;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> Frontend
     @OneToMany(mappedBy = "discount",fetch = FetchType.LAZY)
     private List<ProductModel> productList;
 

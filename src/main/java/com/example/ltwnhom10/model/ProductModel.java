@@ -42,6 +42,9 @@ public class ProductModel extends AbstractModel<ProductModel> {
     @Column(name = "sSsd", nullable = false)
     private String sSsd;
 
+    @Column(name = "sHdd", nullable = false)
+    private String sHdd;
+
     @Column(name = "sWeight", nullable = false)
     private String sWeight;
 
@@ -160,6 +163,11 @@ public class ProductModel extends AbstractModel<ProductModel> {
     public void setsSsd(String sSsd) {
         this.sSsd = sSsd;
     }
+
+
+    public String getsHdd() { return sHdd; }
+
+    public void setsHdd(String sHdd) { this.sHdd = sHdd; }
 
     public String getsWeight() {
         return sWeight;
