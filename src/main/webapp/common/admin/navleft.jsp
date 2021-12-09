@@ -1,12 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+
+<c:if test="${empty User}">
+  <c:redirect url ="/home-page"/>
+</c:if>
+<c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+  <c:redirect url ="/home-page"/>
+</c:if>
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" disabled="disabled" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin<sup>NDL Shop</sup></div>
+    <div class="sidebar-brand-text mx-3">Admin<sup>2</sup></div>
   </a>
 
   <!-- Divider -->

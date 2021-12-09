@@ -55,6 +55,7 @@
         <dec:body/>
     </div>
 </div>
+<button onclick="topFunction()" id="myBtn-scroll-top" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
 
 <%@ include file="/common/web/footer.jsp" %>
 </body>

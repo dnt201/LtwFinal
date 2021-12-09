@@ -48,10 +48,12 @@
                                 <td>${item.brand_name}</td>
                                 <td>
                                     <a class="me-3 text-lg text-success"
-                                       href="/admin/brand?action=edit&brand_id=${item.brand_id}"><i
-                                            class="far fa-edit"></i></a>
+                                       href="<c:url value='/admin/brand?action=edit&brand_id=${item.brand_id}'/>"
+                                    >
+                                        <i class="far fa-edit"></i>
+                                    </a>
                                     <a class="text-lg text-danger"
-                                       href="/admin/brand?action=delete&brand_id=${item.brand_id}"
+                                       href="<c:url value='/admin/brand?action=delete&brand_id=${item.brand_id}'/>"
                                     >
                                         <i class="far fa-trash-alt"></i>
                                     </a>

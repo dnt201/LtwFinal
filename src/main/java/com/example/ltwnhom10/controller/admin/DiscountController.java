@@ -9,6 +9,7 @@ import com.example.ltwnhom10.utl.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -73,6 +74,7 @@ public class DiscountController extends HttpServlet {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
         requestDispatcher.forward(request, response);
+
 
     }
 

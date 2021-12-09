@@ -48,9 +48,8 @@ public class BrandController extends HttpServlet {
             brand = FormUtil.toModel(BrandModel.class, request);
             if (brand != null) {
                 brandService.save(brand);
-                //url = "/views/admin/List/ListBrand.jsp";
+                url = "/views/admin/insert/BrandInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
-                request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
             }
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {

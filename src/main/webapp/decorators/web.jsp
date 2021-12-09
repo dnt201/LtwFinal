@@ -42,6 +42,7 @@
 <%@ include file="/common/web/header.jsp" %>
 <dec:body/>
 <%@ include file="/common/web/footer.jsp" %>
+<button onclick="topFunction()" id="myBtn-scroll-top" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
 
 
 <%--    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>&lt;%&ndash;--%>
