@@ -51,12 +51,42 @@
                                     <h6 class="form-label fw-bold">Price <i class="fa fa-dollar-sign"></i></h6>
                                     <input name="price" class="form-control" value="${model.price}"
                                            placeholder="Enter your price ...">
-                                    <h6 class="form-label fw-bold">brand_id <i class="fa fa-copyright"></i></h6>
-                                    <input name="brand_id" class="form-control" value="${model.brand_id}"
-                                           placeholder="Enter your brand_id ...">
+                                    <h6 class="form-label fw-bold">Brand: <i class="fa fa-copyright"></i></h6>
+                                    <select class="form-select" name="brand_id" id="brandModel">
+                                    <c:if test="${empty model}">
+                                        <c:forEach var="brand" items="${brandModel}">
+                                            <option value="${brand.brand_id}"> ${brand.brand_name}</option>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${not empty model}">
+                                        <c:forEach var="brand" items="${brandModel}">
+                                            <option value="${brand.brand_id}"
+                                                    <c:if test="${brand.brand_id == model.brandModel.brand_id}">selected="selected"
+                                            </c:if>>
+                                                    ${brand.brand_name}
+                                            </option>
+                                        </c:forEach>
+                                    </c:if>
+                                    </select>
                                     <h6 class="form-label fw-bold">discount_id <i class="fa fa-tags"></i></h6>
-                                    <input name="discount_id" class="form-control" value="${model.discount_id}"
-                                           placeholder="Enter your discount_id ...">
+                                    <%--KHông product -> add--%>
+                                    <select class="form-select" name="discount_id" id="discount_id">
+                                    <c:if test="${empty model}">
+                                        <c:forEach var="discount" items="${discountModel}">
+                                            <option value="${discount.discount_id}"> ${discount.discountName}</option>
+                                        </c:forEach>
+                                    </c:if>
+                                    <%--Có product -> Update và default check là model--%>
+                                    <c:if test="${not empty model}">
+                                        <c:forEach var="discount" items="${discountModel}">
+                                            <option value="${discount.discount_id}"
+                                                    <c:if test="${discount.discount_id == model.discount.discount_id}">selected="selected"
+                                            </c:if>>
+                                                    ${discount.discountName}
+                                            </option>
+                                        </c:forEach>
+                                    </c:if>
+                                    </select>
                                 </div>
 
                             </div>
@@ -85,6 +115,19 @@
                                            placeholder="Enter your vga ...">
                                 </div>
                             </div>
+                            <div class="row gy-3">
+                                <div class="col-md-3">
+                                    <h6 class="form-label fw-bold">Ram <i class="fa fa-weight-hanging"></i></h6>
+                                    <input name="sRam" class="form-control" value="${model.sRam}"
+                                           placeholder="Enter your sRam ...">
+                                </div>
+                                <div class="col-md-9">
+                                    <h6 class="form-label fw-bold">Detail RAM:</h6>
+                                    <input name="ram" class="form-control" value="${model.ram}"
+                                           placeholder="Enter your ram ...">
+                                </div>
+                            </div>
+
                             <div class="row gy-3">
                                 <div class="col-12">
                                     <h6 class="form-label fw-bold">Storage <i class="fa fa-hdd"></i></h6>
@@ -165,13 +208,13 @@
                             <div style="margin-top: 10px" class="form-text" id="notification"></div>
                             <c:if test="${empty model}">
                                 <input type="hidden" name="action" value="add" />
-                                <button style="margin-top: 10px" class="btn btn-outline-primary mb-4">Add
+                                <button style="margin-top: 10px" class="btn btn-outline-primary mb-4" type="submit">Add
                                     product</button>
                             </c:if>
                             <c:if test="${not empty model}">
                                 <input type="hidden" name="action" value="update" />
                                 <input type="hidden" name="product_id" value="${model.product_id}"/>
-                                <button style="margin-top: 10px" class="btn btn-outline-danger mb-4">Update</button>
+                                <button style="margin-top: 10px" class="btn btn-outline-danger mb-4" type="submits">Update</button>
                             </c:if>
 
                         </div>
