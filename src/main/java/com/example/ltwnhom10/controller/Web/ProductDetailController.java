@@ -29,9 +29,10 @@ public class ProductDetailController extends HttpServlet {
         String url = "";
         product = productService.findByID(Integer.parseInt(request.getParameter("product_id")));
         request.setAttribute(CoreConstant.MODEL, product);
-        product.setListResult(productService.findByBrand(product.getBrandModel().getBrand_id()));
-        request.setAttribute("OtherProducts", product);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/product/productDetails.jsp");
+        System.out.println(Integer.parseInt(request.getParameter("product_id")));
+        //product.setListResult(productService.findByBrand(product.getBrandModel().getBrand_id()));
+        //request.setAttribute("OtherProducts", product);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/detailProduct.jsp");
         requestDispatcher.forward(request, response);
     }
 

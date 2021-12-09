@@ -157,7 +157,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <a href="<c:url value='/detail-product?product_id=${item.product_id}'/>" class="btn-details">Details</a>
+                        <a href="<c:url value='/product/detail?product_id=${item.product_id}'/>" class="btn-details">Details</a>
                     </div>
                 </c:forEach>
             </div>

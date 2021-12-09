@@ -3,10 +3,10 @@
 <div class="detail-product-page-container">
     <div class="product-detail">
         <div class="product-detail-left loader_center">
-            <img src={`${product.images}`} alt="123"/>
+            <img src={`${model.image}`} alt="123"/>
         </div>
         <div class="product-detail-right">
-            <h1 class="name">Name product (có sale hong?)</h1>
+            <h1 class="name">${model.productName}</h1>
             <div class='rating'>
                 <span style="color: #f8e825;}"><i class="far fa-star"></i></span>
                 <span style="color: #f8e825;}"><i class="far fa-star"></i></span>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="price">
-                    <div class="new-price"> 100000</div>
-                    <div class="old-price"> 100000</div>
+                    <div class="new-price"> ${model.price - model.price*model.discount.discountPercent/100}</div>
+                    <div class="old-price"> ${model.price}</div>
                 </div>
             </div>
 
@@ -83,46 +83,44 @@
             <h2>Thông số kỹ thuật</h2>
             <div class="line-item">
                 <div>Tên sản phẩm</div>
-                <div>Msi Gf63</div>
+                <div>${model.productName}</div>
             </div>
             <div class="line-item">
                 <div>Thương hiệu</div>
-                <div>Acer</div>
+                <div${model.brandModel.brand_name}</div>
             </div>
             <div class="line-item">
                 <div>Màu sắc</div>
-                <div>8GB (4GB + 4GB Onboard) DDR4 2400MHz ( 1 Khe cắm / Hỗ trợ tối đa 20GB )</div>
+                <div>${model.color}</div>
             </div>
             <div class="line-item"> Thông tin chung</div>
             <div class="line-item">
                 <div>Thế hệ CPU</div>
-                <div>Core i5 , Intel Core thế hệ thứ 10 - Intel Core i5-1035G1 ( 1.2 GHz - 3.4 GHz / 4MB / 2 nhân, 4
-                    luồng )
-                </div>
+                <div>${model.cpu}</div>
             </div>
             <div class="line-item">
                 <div>Card đồ họa</div>
-                <div>NVIDIA GeForce MX330 2GB GDDR5 / Intel UHD Graphics</div>
+                <div>${model.vga}</div>
             </div>
             <div class="line-item">
                 <div>RAM</div>
-                <div>8GB (4GB + 4GB Onboard) DDR4 2400MHz ( 1 Khe cắm / Hỗ trợ tối đa 20GB )</div>
+                <div>${model.ram}</div>
             </div>
             <div class="line-item">
                 <div>Màn hình</div>
-                <div>8GB (4GB + 4GB Onboard) DDR4 2400MHz ( 1 Khe cắm / Hỗ trợ tối đa 20GB )</div>
+                <div>${model.monitor}</div>
             </div>
             <div class="line-item">
                 <div>Lưu trữ</div>
-                <div>8GB (4GB + 4GB Onboard) DDR4 2400MHz ( 1 Khe cắm / Hỗ trợ tối đa 20GB )</div>
+                <div>${model.storage}</div>
             </div>
             <div class="line-item">
                 <div>Pin</div>
-                <div>3 cell 36 Wh , Pin liền</div>
+                <div>${model.pin}</div>
             </div>
             <div class="line-item">
                 <div>Cổng kết nối</div>
-                <div>1 x M.2 NVMe, 1 x HDMI, 2 x USB 3.2, 1 x USB 2.0, LAN 1 Gb/s</div>
+                <div>${model.connection}</div>
             </div>
         </div>
     </div>
