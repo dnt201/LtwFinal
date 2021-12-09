@@ -23,13 +23,13 @@
             </div>
         </div>
         <div class="t-a-center">
-            Bạn chưa đăng nhập, hãy <Link class="lazy-css" to="/login">đăng nhập</Link> để hoàn tất đơn hàng! &#10084;
+            Bạn chưa đăng nhập, hãy <a class="lazy-css" href="<c:url value='/login'/>">đăng nhập</a> để hoàn tất đơn hàng! &#10084;
         </div>
     <div class="container-cart-page">
         <div class="cart-page-left flex-4">
             <div class="left-header">
                 <h1> Shopping Cart</h1>
-                <span>{cartItems.length} items </span>
+                <span>Số item </span>
             </div>
             <div class="left-list-item">
 
@@ -50,30 +50,30 @@
                     </thead>
                     <tbody>
                     <%-- map cart item--%>
-                    <tr key={cartItem.product} class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
+                    <tr class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
                         <td class="flex al-it-center jfct-center item-infor">
                             <div>
-                                <span class="cart-item-price">{cartItem.name}</span>
+                                <span class="cart-item-price">name</span>
                                 <br />
                                 <button class="remove-cart-item-btn">Remove <i class="fa fa-times remove-cart-item"></i></button>
                             </div>
-                            <img class="cart-item-img" src={cartItem.image} alt="123" />
+                            <img class="cart-item-img" src={cartItem.image} alt="image" />
                         </td>
                         <td>
                             <%--không sale--%>
-                            <span class="cart-item-price"> {Intl.NumberFormat('de-DE').format(cartItem.price) + " đ"}  </span>
+<%--                            <span class="cart-item-price"> 40000000 đ </span>--%>
 
                             <%--sale--%>
                             <div>
-                                <span class="cart-item-price-x"> {Intl.NumberFormat('de-DE').format(cartItem.price) + " đ"}  </span> <br />
-                                <span class="cart-item-price sale"> {Intl.NumberFormat('de-DE').format(cartItem.salePrice) + " đ"}  </span>
+                                <span class="cart-item-price-x"> 44000000 đ</span> <br />
+                                <span class="cart-item-price sale"> 44000000 đ </span>
                             </div>}
                         </td>
                         <td>
                             <input class="w-80p" type="number" id="quantity" name="quantity" value="1" min="1"/>
                         </td>
                         <td >
-                            <span>{Intl.NumberFormat('de-DE').format(cartItem.salePrice * cartItem.qty) + " đ"}</span>
+                            <span>44000000 đ</span>
                             }
                         </td>
                     </tr>)
