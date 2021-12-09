@@ -39,6 +39,7 @@ public class DiscountService implements IDiscountService {
 
     @Override
     public List<DiscountModel> findAll() {
-        return discountDAO.findAll();
+        List<DiscountModel> result = discountDAO.findAll();
+        return result;
     }
 }

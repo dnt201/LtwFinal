@@ -19,7 +19,9 @@ import java.io.IOException;
 public class BrandController extends HttpServlet {
     private IBrandService brandService;
 
-    public BrandController() {this.brandService = new BrandService();}
+    public BrandController() {
+        this.brandService = new BrandService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,49 +29,44 @@ public class BrandController extends HttpServlet {
         BrandModel brand = null;
         String url = "";
         String action = request.getParameter("action");
-        if(action==null) url = "/views/admin/list/BrandList.jsp"; else {
-        switch (action){
-            case "insert":{
-                url = "/views/admin/insert/BrandInsert.jsp";
-                break;
-            }
-            case "edit": {
-                url = "/views/admin/insert/BrandInsert.jsp";
-                Integer id = Integer.parseInt(request.getParameter("brand_id"));
-                brand = brandService.findById(id);
-                request.setAttribute("BrandModel", brand);
-                break;
-            }
-            case "add": {
-                brand = FormUtil.toModel(BrandModel.class, request);
-                if (brand != null) {
-                    brandService.save(brand);
-                    //url = "/views/admin/List/ListBrand.jsp";
-                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
-                    request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-                }
-                else {
-
-                }
-                break;
-            }
-            case "update": {
-                brand = FormUtil.toModel(BrandModel.class, request);
-                brandService.update(brand);
-
-                request.setAttribute("discountModel", brand);
-                url = "/admin/insert/BrandInsert.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+        if (action == null) {
+            BrandModel model = new BrandModel();
+            model.setListResult(brandService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            url = "/views/admin/list/BrandList.jsp";
+        }
+        else if (action.equals(CoreConstant.ACTION_INSERT)) {
+            url = "/views/admin/insert/BrandInsert.jsp";
+        }
+        else if (action.equals(CoreConstant.ACTION_EDIT)) {
+            url = "/views/admin/insert/BrandInsert.jsp";
+            Integer id = Integer.parseInt(request.getParameter("brand_id"));
+            brand = brandService.findById(id);
+            request.setAttribute("BrandModel", brand);
+        }
+        else if (action.equals(CoreConstant.ACTION_ADD)) {
+            brand = FormUtil.toModel(BrandModel.class, request);
+            if (brand != null) {
+                brandService.save(brand);
+                //url = "/views/admin/List/ListBrand.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-                break;
-            }
-            default: {
-                BrandModel model = new BrandModel();
-                model.setListResult(brandService.findAll());
-                request.setAttribute(CoreConstant.MODEL, model);
-                url = "/views/admin/list/BrandList.jsp";
             }
         }
+        else if (action.equals(CoreConstant.ACTION_UPDATE)) {
+            brand = FormUtil.toModel(BrandModel.class, request);
+            brandService.update(brand);
+
+            request.setAttribute("discountModel", brand);
+            url = "/admin/insert/BrandInsert.jsp";
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+        }
+        else {
+            BrandModel model = new BrandModel();
+            model.setListResult(brandService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            url = "/views/admin/list/BrandList.jsp";
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);

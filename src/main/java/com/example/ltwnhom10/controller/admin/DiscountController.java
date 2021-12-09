@@ -32,46 +32,45 @@ public class DiscountController extends HttpServlet {
         String url = "";
         DiscountModel discount = null;
         String action = request.getParameter("action");
-        if (action == null) url = "/views/admin/list/DiscountList.jsp";
-        else {
-            switch (action) {
-                case "insert": {
-                    url = "/views/admin/insert/DiscountInsert.jsp";
-                    break;
-                }
-                case "edit": {
-                    url = "/views/admin/insert/DiscountInsert.jsp";
-                    Integer id = Integer.parseInt(request.getParameter("discount_id"));
-                    discount = discountService.findByID(id);
-                    request.setAttribute("discountModel", discount);
-                    break;
-                }
-                case "add": {
-                    discount = FormUtil.toModel(DiscountModel.class, request);
-                    discountService.save(discount);
-                    //url = "/views/admin/List/ListDiscount.jsp";
-                    url = "/views/web/adminPage.jsp";
-                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
-                    request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-                    break;
-                }
-                case "update": {
-                    discount = FormUtil.toModel(DiscountModel.class, request);
-                    discountService.update(discount);
-
-                    request.setAttribute("discountModel", discount);
-                    url = "/views/admin/insert/DiscountInsert.jsp";
-                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
-                    request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
-                    break;
-                }
-                default: {
-                    discount.setListResult(discountService.findAll());
-                    request.setAttribute(CoreConstant.MODEL, discount);
-                    url = "/views/admin/list/DiscountList.jsp";
-                }
-            }
+        if (action == null) {
+            DiscountModel model = new DiscountModel();
+            model.setListResult(discountService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            url = "/views/admin/list/DiscountList.jsp";
         }
+        else if (action.equals(CoreConstant.ACTION_INSERT)){
+            url = "/views/admin/insert/DiscountInsert.jsp";
+        }
+        else if (action.equals(CoreConstant.ACTION_EDIT)){
+            url = "/views/admin/insert/DiscountInsert.jsp";
+            Integer id = Integer.parseInt(request.getParameter("discount_id"));
+            discount = discountService.findByID(id);
+            request.setAttribute("discountModel", discount);
+        }
+        else if (action.equals(CoreConstant.ACTION_ADD)){
+            discount = FormUtil.toModel(DiscountModel.class, request);
+            discountService.save(discount);
+            //url = "/views/admin/List/ListDiscount.jsp";
+            url = "/views/web/adminPage.jsp";
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+        }
+        else if (action.equals(CoreConstant.ACTION_UPDATE)) {
+            discount = FormUtil.toModel(DiscountModel.class, request);
+            discountService.update(discount);
+
+            request.setAttribute("discountModel", discount);
+            url = "/views/admin/insert/DiscountInsert.jsp";
+            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+        }
+        else {
+            DiscountModel model = new DiscountModel();
+            model.setListResult(discountService.findAll());
+            request.setAttribute(CoreConstant.MODEL, model);
+            url = "/views/admin/list/DiscountList.jsp";
+        }
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
         requestDispatcher.forward(request, response);
 
