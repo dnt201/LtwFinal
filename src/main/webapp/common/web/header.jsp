@@ -28,18 +28,21 @@
                     <a href="<c:url value='/cart'/>">
                         <i class="fa fa-shopping-cart"></i>
                         <!-- <FontAwesomeIcon icon={faShoppingCart}/>-->
-                        <span class="number-items-cart"><i>0</i> </span>
+                        <c:if test="${empty order || order.orderItemsList.size() <= 0}">
+                            <span class="number-items-cart"><i>0</i></span>
+                        </c:if>
+                        <c:if test="${order.orderItemsList.size() > 0}">
+                            <span class="number-items-cart"><i>${order.orderItemsList.size()}</i> </span>
+                        </c:if>
                     </a>
-
                 </li>
             </c:if>
-            <li class="cover-size btn user">
-                <a href="<c:url value='/user'/>">
-                    <!--<FontAwesomeIcon icon={faUser}/>-->
-                    <i class="fa fa-user"></i>
-                </a>
-            </li>
             <c:if test="${not empty User}">
+                <li class="cover-size btn user">
+                    <a href="<c:url value='/user'/>">
+                        <i class="fa fa-user"></i>
+                    </a>
+                </li>
                 <li class="cover-size btn login">
                     <c:out value="${User.getRoleModel().getRoleName()}"/>
                     <a href="<c:url value='/logout?action=logout'/>">

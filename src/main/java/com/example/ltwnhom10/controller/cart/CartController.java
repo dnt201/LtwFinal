@@ -13,7 +13,7 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/web/cart.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart/cart.jsp");
         dispatcher.forward(request, response);
     }
 }

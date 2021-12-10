@@ -313,3 +313,10 @@
     border: none;
     color:red;
 }
+.image-previews {
+    min-width: 50%;
+    min-height: 25vh;
+    max-height: 120px;
+    padding-bottom: 8px;
+    margin-left: 10%;
+}

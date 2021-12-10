@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UpdateProfileController", urlPatterns = {"/update-profile"})
+@WebServlet(name = "UpdateProfileController", urlPatterns = {"/update-profile","/user"})
 public class UpdateProfileController  extends HttpServlet {
 
     @Inject
@@ -40,7 +40,7 @@ public class UpdateProfileController  extends HttpServlet {
             SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/updateProfile.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");
         requestDispatcher.forward(request, response);
     }
 

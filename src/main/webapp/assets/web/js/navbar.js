@@ -7,7 +7,6 @@ function toggleNav() {
         x.className = "nav";
     }
 }
-
 function validatePassWorkConfirm() {
     let x = document.forms["register-form"]["password"].value;
     let y = document.forms["register-form"]["confPassword"].value;
@@ -25,7 +24,6 @@ function topFunction(){
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0;
 }
-
 mybutton = document.getElementById("myBtn-scroll-top");
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -33,4 +31,36 @@ function scrollFunction() {
     } else {
         mybutton.style.display = "none";
     }
+};
+
+myImageUpFirebase = document.getElementById("image-up-firebase");
+myImagePreviewUpFirebase = document.getElementById("image-preview-up-firebase");
+
+myImageUpFirebase.onchange = evt => {
+    const [file] = myImageUpFirebase.files;
+    if (file) {
+        myImagePreviewUpFirebase.src = URL.createObjectURL(file)
+    }
 }
+
+myStorage = document.getElementById("store-url-firebase");
+document.querySelector("#firebase-trigger").addEventListener("click",async function(event) {
+    event.preventDefault();
+    const file = myImageUpFirebase.files[0];
+    const metadata = {
+        contentType: file.type
+    };
+    const ref = firebase.storage().ref();
+    const name = file.name;
+    const up = ref.child(name).put(file, metadata);
+
+    await up.then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            myStorage.value = url;
+        })
+        .catch(console.error)
+
+    document.getElementById("wtfloihoai").submit();
+}, false);
+
+

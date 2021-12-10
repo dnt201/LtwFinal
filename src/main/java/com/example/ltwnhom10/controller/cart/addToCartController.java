@@ -34,7 +34,6 @@ public class addToCartController extends HttpServlet {
             if (product != null && request.getParameter("quantity") != null){
                     quantity = Integer.parseInt(request.getParameter("quantity"));
             }
-
             HttpSession session = request.getSession();
             if (session.getAttribute("order") == null){
                 BigDecimal total = new BigDecimal("0");
