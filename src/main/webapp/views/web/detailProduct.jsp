@@ -16,36 +16,38 @@
                 <span><i>0 lượt đánh giá</i></span>
             </div>
             <p class="des"> Description </p>
-            <div class="status-quantity-price">
-                <div class="status-quantity">
-                    <div class="status">
-                        <span class="all-ready-span"><i class="fa fa-check"></i>Còn hàng</span>
-                        <%--<span class="sold-out-span"><FontAwesomeIcon icon={faTimes} /> Hết hàng</span>--%>
+            <form action="<c:url value='/cart'/>">
+                <div class="status-quantity-price">
+                    <div class="status-quantity">
+                        <div class="status">
+                            <span class="all-ready-span"><i class="fa fa-check"></i>Còn hàng</span>
+                            <%--<span class="sold-out-span"><FontAwesomeIcon icon={faTimes} /> Hết hàng</span>--%>
+                        </div>
+                        <div class="quantity">
+                            <span>Số lượng</span>
+                            <input class="quantity-input" type="number" id="quantity-add-card" name="quantity"
+                                   min="1"
+                                   value="1"
+                            />
+                        </div>
                     </div>
-                    <div class="quantity">
-                        <span>Số lượng</span>
-                        <input class="quantity-input" type="number" id="quantity" name="quantity"
-                               min="1"
-                               value="1"
-                        />
+                    <div class="price">
+                        <div class="new-price"> ${model.price - model.price*model.discount.discountPercent/100}</div>
+                        <div class="old-price"> ${model.price}</div>
                     </div>
                 </div>
-                <div class="price">
-                    <div class="new-price"> ${model.price - model.price*model.discount.discountPercent/100}</div>
-                    <div class="old-price"> ${model.price}</div>
+
+                <div class="button">
+                    <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                        <input type="hidden" name="action" value="add"/>
+                        <input type="hidden" name="product_id" value="${model.product_id}"/>
+                        <button type="submit" > Add to cart <i class="fa fa-cart-arrow-down"></i></button>
+                    </c:if>
+                    <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
+                        <a className="btn-details" href=""> Details</a>
+                    </c:if>
                 </div>
-            </div>
-
-            <div class="button">
-                <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                <button onclick="" }> Add to cart <i class="fa fa-cart-arrow-down"></i></button>
-                <button onClick=""> Buy now <i class="fa fa-receipt"></i></button>
-                </c:if>
-                <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
-                    <button className="btn-details" onClick=""> Details</button>
-                </c:if>
-            </div>
-
+            </form>
         </div>
     </div>
     <div class="review-wrap">
@@ -81,7 +83,7 @@
     <div class="product-detail-information">
         <div class="wrap">
             <h2>Thông số kỹ thuật</h2>
-            <div class="line-item">
+            <div class="line-itezm">
                 <div>Tên sản phẩm</div>
                 <div>${model.productName}</div>
             </div>

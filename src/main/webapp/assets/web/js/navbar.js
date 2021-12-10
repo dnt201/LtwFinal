@@ -63,4 +63,13 @@ document.querySelector("#firebase-trigger").addEventListener("click",async funct
     document.getElementById("wtfloihoai").submit();
 }, false);
 
+function handleAddWithNumber(url){
+    let xmlHttp = new XMLHttpRequest();
+    console.log("onclick");
+    console.log(url);
+    let theURL = url+'&&'+document.getElementById("quantity-add-card").value;
+    xmlHttp.open( "GET", theURL, true ); // false for synchronous request
+    xmlHttp.send( null );
+}
+
 
