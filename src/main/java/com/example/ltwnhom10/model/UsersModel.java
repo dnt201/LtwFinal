@@ -38,8 +38,6 @@ public class UsersModel extends AbstractModel<UsersModel> {
     @Column(name = "create_at",nullable = false)
     private Timestamp createAt;
 
-
-
     public int getUser_id() {
         return user_id;
     }
