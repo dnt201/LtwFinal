@@ -93,9 +93,10 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
         Transaction transaction = session.beginTransaction();
         try {
             result = (T) session.get(persistenceClass, id);
-            if (result == null) {
+            /*if (result == null) {
                 throw new ObjectNotFoundException("Not found " + id, null);
             }
+             */
         } catch (HibernateException e) {
             transaction.rollback();
             throw e;
