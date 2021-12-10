@@ -52,11 +52,11 @@
                         <%-- map cart item--%>
                         <c:forEach var="item" items="${order.orderItemsList}">
                             <form action="/cart">
-<%--                                <input type="hidden" name="id" value="${item.id}"/>--%>
+                               <input type="hidden" name="id" value="${item.id}"/>
                                 <tr class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
                                     <td class="flex al-it-center jfct-center item-infor">
                                         <div>
-                                            <span class="cart-item-price">${item.productModel.productName} ${item.id}</span>
+                                            <span class="cart-item-price">${item.productModel.productName} ${item.id} ${item.id.order_id}${item.id.product_id} </span>
                                             <br/>
                                             <button class="remove-cart-item-btn">Remove <i
                                                     class="fa fa-times remove-cart-item"></i></button>
