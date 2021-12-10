@@ -76,7 +76,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.persist(entity);
+            session.merge(entity);
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
