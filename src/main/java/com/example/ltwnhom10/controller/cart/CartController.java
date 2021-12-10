@@ -50,7 +50,8 @@ public class CartController extends HttpServlet {
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart/cart.jsp");
             dispatcher.forward(request, response);
-        } else if (action.equals("add")) {
+        }
+        else if (action.equals("add")) {
             Integer quantity = 1;
             Integer id;
             if (request.getParameter("product_id") != null) {
@@ -178,20 +179,17 @@ public class CartController extends HttpServlet {
                         orderItemsKey.setProduct_id(item.getProductModel().getProduct_id());
                         item.setId(orderItemsKey);
 
-                        // dmm Nhaaaaa
                         item.setOrderDetails(order);
                         orderItemsService.save(item);
                     }
                     SessionUtil.getInstance().removeValue(request, "order");
                     request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
                     request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Check Out successfully an email will send to your mail!");
-                    RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("views/cart/cart.jsp"); // xem form detail product + thanks
                     rd.forward(request, response);
                 }
             }
-
         }
-
     }
 
     @Override
