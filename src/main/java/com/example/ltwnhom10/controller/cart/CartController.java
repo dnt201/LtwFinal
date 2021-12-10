@@ -1,10 +1,7 @@
 package com.example.ltwnhom10.controller.cart;
 
 import com.example.ltwnhom10.constance.CoreConstant;
-import com.example.ltwnhom10.model.OrderDetailsModel;
-import com.example.ltwnhom10.model.OrderItemsModel;
-import com.example.ltwnhom10.model.ProductModel;
-import com.example.ltwnhom10.model.UsersModel;
+import com.example.ltwnhom10.model.*;
 import com.example.ltwnhom10.service.IOrderDetailsService;
 import com.example.ltwnhom10.service.IOrderItemsService;
 import com.example.ltwnhom10.service.IProductService;
@@ -46,6 +43,11 @@ public class CartController extends HttpServlet {
         String url = "/views/cart/cart.jsp"; //homepage
 
         if (action == null) {
+            String message = request.getParameter("message");
+            if(message!=null){
+                if(message.equals("removeSuccess"))
+                    request.setAttribute("messageResponse", "Xoá thành công");
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart/cart.jsp");
             dispatcher.forward(request, response);
         } else if (action.equals("add")) {
@@ -106,7 +108,53 @@ public class CartController extends HttpServlet {
             } else {
                 response.sendRedirect(request.getContextPath() + "/home-page");
             }
-        } else if(action.equals("checkout")){
+        }
+        else if (action.equals("remove")){
+            OrderDetailsModel order = (OrderDetailsModel) session.getAttribute("order");
+            List<OrderItemsModel> listItems = order.getOrderItemsList();
+
+            int id = Integer.parseInt(request.getParameter("product_id"));
+
+            for (int i=0;i<listItems.size();i++)
+                if (listItems.get(i).getProductModel().getProduct_id() == id) listItems.remove(listItems.get(i));
+
+            order.setOrderItemsList(listItems);
+
+            SessionUtil.getInstance().removeValue(request, "order");
+            session.setAttribute("order", order);
+
+            response.sendRedirect(request.getContextPath() + "/cart?message=removeSuccess");
+        }
+        else if (action.equals("update")){
+            OrderDetailsModel order = (OrderDetailsModel) session.getAttribute("order");
+            List<OrderItemsModel> listItems = order.getOrderItemsList();
+
+            int id = Integer.parseInt(request.getParameter("product_id"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            int old_quantity = 0;
+
+            for (int i=0;i<listItems.size();i++)
+                if (listItems.get(i).getProductModel().getProduct_id() == id) {
+                    if (quantity < 1)
+                        listItems.remove(listItems.get(i));
+                    else {
+                        old_quantity = listItems.get(i).getQuantity();
+                        listItems.get(i).setQuantity(quantity);
+                        OrderItemsModel orderItemsModel = listItems.get(i);
+                        order.setTotal(order.getTotal().add(BigDecimal.valueOf(quantity-old_quantity).multiply(orderItemsModel.getProductModel().getPrice()
+                                .subtract(orderItemsModel.getProductModel().getPrice().multiply(orderItemsModel.getProductModel().getDiscount().getDiscountPercent().divide(BigDecimal.valueOf(100)))))));
+                    }
+                    break;
+                }
+
+            order.setOrderItemsList(listItems);
+
+            SessionUtil.getInstance().removeValue(request, "order");
+            session.setAttribute("order", order);
+
+            response.sendRedirect(request.getContextPath() + "/cart?message=removeSuccess");
+        }
+        else if(action.equals("checkout")){
             UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "User");
             if (user == null) {
                 response.sendRedirect(
@@ -119,10 +167,18 @@ public class CartController extends HttpServlet {
                 } else {
                     OrderDetailsModel order = (OrderDetailsModel) SessionUtil.getInstance().getValue(request, "order");
                     order.setUsersModel(user);
+
                     Integer orderDetailId = orderDetailsService.save(order);
                     order.setOrder_id(orderDetailId);
+
                     List<OrderItemsModel> listItems = order.getOrderItemsList();
                     for (OrderItemsModel item : listItems) {
+                        OrderItemsKey orderItemsKey = new OrderItemsKey();
+                        orderItemsKey.setOrder_id(orderDetailId);
+                        orderItemsKey.setProduct_id(item.getProductModel().getProduct_id());
+                        item.setId(orderItemsKey);
+
+                        // dmm Nhaaaaa
                         item.setOrderDetails(order);
                         orderItemsService.save(item);
                     }

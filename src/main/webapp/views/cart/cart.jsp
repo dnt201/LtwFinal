@@ -35,14 +35,16 @@
 
                     <table class="w-100p">
                         <colgroup>
-                            <col span="1" style="width:45%"/>
-                            <col span="1" style="width:15%"/>
-                            <col span="1" style="width:15%"/>
-                            <col span="1" style="width:25%"/>
+                            <col span="1" style="width:30%"/>
+                            <col span="1" style="width:30%"/>
+                            <col span="1" style="width:10%"/>
+                            <col span="1" style="width:10%"/>
+                            <col span="1" style="width:20%"/>
                         </colgroup>
                         <thead>
                         <tr>
                             <th>Item</th>
+                            <th>Image</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
@@ -51,16 +53,21 @@
                         <tbody>
                         <%-- map cart item--%>
                         <c:forEach var="item" items="${order.orderItemsList}">
-                            <form action="/cart">
-<%--                                <input type="hidden" name="id" value="${item.id}"/>--%>
+
                                 <tr class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
                                     <td class="flex al-it-center jfct-center item-infor">
                                         <div>
                                             <span class="cart-item-price">${item.productModel.productName} ${item.id}</span>
                                             <br/>
+                                            <form action="<c:url value ='/cart' />">
+                                                <input type="hidden" name="product_id" value="${item.productModel.product_id}"/>
+                                                <input type="hidden" name="action" value="remove"/>
                                             <button class="remove-cart-item-btn">Remove <i
                                                     class="fa fa-times remove-cart-item"></i></button>
+                                            </form>
                                         </div>
+                                    </td>
+                                    <td>
                                         <img class="cart-item-img"
                                              src=<c:url value='${item.productModel.image}'/>alt="image"/>
                                     </td>
@@ -82,10 +89,15 @@
 
                                     </td>
                                     <td>
+                                        <form action="<c:url value ='/cart' />">
+                                            <input type="hidden" name="product_id" value="${item.productModel.product_id}"/>
+                                            <input type="hidden" name="action" value="update"/>
                                         <input class="w-80p" type="number" id="quantity" name="quantity"
-                                               value=${item.quantity} min="1"/>
+                                               value="${item.quantity}" />
+                                        <button class="remove-cart-item-btn">Update<i
+                                                class="fa fa-times remove-cart-item"></i></button>
+                                        </form>
                                         <c:if test="${item.productModel.discount.discountPercent > 0}">
-                                            <br/>
                                             <span class="alert-danger">
                                             Sale ${item.productModel.discount.discountPercent}%
                                         </span>
@@ -97,7 +109,6 @@
                                 </span>
                                     </td>
                                 </tr>
-                            </form>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -147,7 +158,7 @@
                     </c:if>
                     <c:if test="${not empty User && not empty order && order.orderItemsList.size() > 0}">
                         <form action="<c:url value="/cart"/>">
-                            <input type="hidden" name="action" value="check-out"/>
+                            <input type="hidden" name="action" value="checkout"/>
                             <button class="checkout-footer">CHECKOUT</button>
                         </form>
                     </c:if>
