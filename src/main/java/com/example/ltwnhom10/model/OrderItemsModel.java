@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "order_items")
+@Table(name = "order_item")
 public class OrderItemsModel{
 
     @EmbeddedId
