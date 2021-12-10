@@ -58,7 +58,7 @@
 <button onclick="topFunction()" id="myBtn-scroll-top" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
 
 <%@ include file="/common/web/footer.jsp" %>
-<script src="<c:url value='/assets/web/js/navbar.js'/>"></script>
+    <script src="<c:url value='/assets/web/js/navbar.js'/>"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
     <script type="module">
