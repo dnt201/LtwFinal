@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp" %>
 
 <div class="wrap-form-center">
-    <form id="form" action="<c:url value='/admin/product'/>" class="formCenter shadow p-3 mb-5 bg-body rounded">
+    <form id="wtfloihoai" action="<c:url value='/admin/product'/>" class="formCenter shadow p-3 mb-5 bg-body rounded">
         <div class="form-header">
             <h1>Product Insert or Update</h1>
             <ul class="list-inline text-sm">
@@ -44,8 +44,15 @@
                             <div class="row gy-3">
                                 <div class="col-md-6">
                                     <h6 class="form-label fw-bold">Image <i class="fa fa-images"></i></h6>
-                                    <input name="image" class="form-control" value="${model.image}"
-                                           placeholder="Enter your image ...">
+                                    <input type =hidden id ="store-url-firebase" name="image">
+                                    <input type="file" id="image-up-firebase" name="khongphaicainay" class="form-control"
+                                           required>
+                                    <c:if test="${empty model}">
+                                    <img class="image-previews"  alt="Pumb" id="image-preview-up-firebase"/>
+                                    </c:if>
+                                    <c:if test="${not empty model}">
+                                        <img src="${model.image}"class="image-previews"  alt="Pumb" id="image-preview-up-firebase"/>
+                                    </c:if>
                                 </div>
                                 <div class="col-md-6">
                                     <h6 class="form-label fw-bold">Price <i class="fa fa-dollar-sign"></i></h6>
@@ -208,15 +215,14 @@
                             <div style="margin-top: 10px" class="form-text" id="notification"></div>
                             <c:if test="${empty model}">
                                 <input type="hidden" name="action" value="add" />
-                                <button style="margin-top: 10px" class="btn btn-outline-primary mb-4" type="submit">Add
+                                <button style="margin-top: 10px" class="btn btn-outline-primary mb-4" type="submit" id="firebase-trigger">Add
                                     product</button>
                             </c:if>
                             <c:if test="${not empty model}">
                                 <input type="hidden" name="action" value="update" />
                                 <input type="hidden" name="product_id" value="${model.product_id}"/>
-                                <button style="margin-top: 10px" class="btn btn-outline-danger mb-4" type="submits">Update</button>
+                                <button style="margin-top: 10px" class="btn btn-outline-danger mb-4" type="submit" id="firebase-trigger">Update</button>
                             </c:if>
-
                         </div>
                     </div>
                 </div>

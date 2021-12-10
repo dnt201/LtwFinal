@@ -3,28 +3,22 @@
 
 <div class="CartPage">
 <%--    {showDetailOder && orderCreate.order && <ThankForBuy handleClose={() => setShowDetailOrder(!showDetailOder)} id={orderCreate?.order?._id} user={orderCreate?.order?.user} thanks={true} />}--%>
+
     <div class="cart-information">
         <h1 class="w-100p center">Thông tin</h1>
+        <c:if test="${not empty User}">
         <div class="m-l-8px">
-            <h4>Họ tên:</h4>
-            <h4>Gmail: </h4>
-            <div class="lv1">
-                <h4>Số điện thoại: </h4>
-                <input type="number"
-                       placeholder="Ex: 0333123123"
-                />
-            </div>
-            <div class="lv1">
-                <h4>Địa chỉ: </h4>
-                <input
-                        type="text"
-                        placeholder="Ex: 110/20 Phạm Văn Đồng Phường Linh Chiểu"}
-                />
-            </div>
+            <h4>Họ tên: ${User.username}</h4>
+            <h4>Gmail: ${User.email}</h4>
+            <h4>Số điện thoại: ${User.phone}</h4>
+            <h4>Địa chỉ: ${User.address}</h4>
         </div>
+        </c:if>
+        <c:if test="${empty User}">
         <div class="t-a-center">
-            Bạn chưa đăng nhập, hãy <a class="lazy-css" href="<c:url value='/login'/>">đăng nhập</a> để hoàn tất đơn hàng! &#10084;
+            Bạn chưa đăng nhập, hãy <a class="lazy-css" href="<c:url value='/login?action=login'/>">đăng nhập</a> để hoàn tất đơn hàng! &#10084;
         </div>
+        </c:if>
     <div class="container-cart-page">
         <div class="cart-page-left flex-4">
             <div class="left-header">
@@ -50,14 +44,15 @@
                     </thead>
                     <tbody>
                     <%-- map cart item--%>
+                    <c:forEach var="item" items="${order.orderItemsList}">
                     <tr class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
                         <td class="flex al-it-center jfct-center item-infor">
                             <div>
-                                <span class="cart-item-price">name</span>
+                                <span class="cart-item-price">${item.productModel.productName}</span>
                                 <br />
                                 <button class="remove-cart-item-btn">Remove <i class="fa fa-times remove-cart-item"></i></button>
                             </div>
-                            <img class="cart-item-img" src={cartItem.image} alt="image" />
+                            <img class="cart-item-img" src=<c:url value='${item.productModel.image}'/>alt="image" />
                         </td>
                         <td>
                             <%--không sale--%>
@@ -65,23 +60,24 @@
 
                             <%--sale--%>
                             <div>
-                                <span class="cart-item-price-x"> 44000000 đ</span> <br />
-                                <span class="cart-item-price sale"> 44000000 đ </span>
-                            </div>}
+                                <span class="cart-item-price-x">${item.productModel.price}</span> <br />
+                                <span class="cart-item-price sale">${item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100}</span>
+                            </div>
                         </td>
                         <td>
-                            <input class="w-80p" type="number" id="quantity" name="quantity" value="1" min="1"/>
+                            <input class="w-80p" type="number" id="quantity" name="quantity" value=${item.quantity} min="1"/>
                         </td>
                         <td >
-                            <span>44000000 đ</span>
+                            <span>${(item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}</span>
                             }
                         </td>
                     </tr>)
-                    )}
-                    {/* End-item */}
+                    </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${empty order}">
                 <h3 class="ta-center w-100p"> <i>Bạn chưa có sản phẩm nào trong giỏ</i></h3>
+                </c:if>
             </div>
             <div class="footer">
                 <button>Back to shop</button>

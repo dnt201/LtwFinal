@@ -608,6 +608,11 @@ pre code {
         max-width: 1140px
     }
 }
+@media (min-width:1201px) {
+    .container {
+        max-width:96%;
+    }
+}
 
 .container-fluid {
     width: 100%;

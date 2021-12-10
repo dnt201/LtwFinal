@@ -32,7 +32,6 @@ public class UsersModel extends AbstractModel<UsersModel> {
     @Column(name = "address")
     private String address;
 
-
     @Column(name = "phone_number")
     private String phone;
 

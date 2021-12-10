@@ -44,12 +44,12 @@ public class ProductController extends HttpServlet {
             ProductModel model = new ProductModel();
             model.setListResult(productService.findAll());
             request.setAttribute(CoreConstant.MODEL, model);
-            request.setAttribute("brandModel", brandService.findAll());
-            request.setAttribute("discountModel", discountService.findAll());
+//            request.setAttribute("brandModel", brandService.findAll());
+//            request.setAttribute("discountModel", discountService.findAll());
         }
         else if (action.equals(CoreConstant.ACTION_INSERT)) {
-            request.setAttribute("brandModel", brandService.findAll());
-            request.setAttribute("discountModel", discountService.findAll());
+//            request.setAttribute("brandModel", brandService.findAll());
+//            request.setAttribute("discountModel", discountService.findAll());
             url = "/views/admin/insert/ProductInsert.jsp";
         }
         else if (action.equals(CoreConstant.ACTION_EDIT)) {
@@ -57,8 +57,8 @@ public class ProductController extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("product_id"));
             product = productService.findByID(id);
             request.setAttribute(CoreConstant.MODEL, product);
-            request.setAttribute("brandModel", brandService.findAll());
-            request.setAttribute("discountModel", discountService.findAll());
+//            request.setAttribute("brandModel", brandService.findAll());
+//            request.setAttribute("discountModel", discountService.findAll());
         }
         else if (action.equals(CoreConstant.ACTION_ADD)) {
             product = FormUtil.toModel(ProductModel.class, request);
@@ -73,7 +73,7 @@ public class ProductController extends HttpServlet {
             product.setBrandModel(brand);
             productService.save(product);
 
-            url = "/views/admin/List/ListProduct.jsp";
+            url = "/views/admin/insert/ProductInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
@@ -89,8 +89,8 @@ public class ProductController extends HttpServlet {
             product.setBrandModel(brand);
             productService.update(product);
             request.setAttribute(CoreConstant.MODEL, product);
-            request.setAttribute("brandModel", brandService.findAll());
-            request.setAttribute("discountModel", discountService.findAll());
+//            request.setAttribute("brandModel", brandService.findAll());
+//            request.setAttribute("discountModel", discountService.findAll());
             url = "/views/admin/insert/ProductInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
         }
@@ -99,9 +99,11 @@ public class ProductController extends HttpServlet {
             ProductModel model = new ProductModel();
             model.setListResult(productService.findAll());
             request.setAttribute(CoreConstant.MODEL, model);
+//            request.setAttribute("brandModel", brandService.findAll());
+//            request.setAttribute("discountModel", discountService.findAll());
+        }
             request.setAttribute("brandModel", brandService.findAll());
             request.setAttribute("discountModel", discountService.findAll());
-        }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
             requestDispatcher.forward(request, response);
     }

@@ -46,23 +46,23 @@
 <%@ include file="/common/web/footer.jsp" %>
 <button onclick="topFunction()" id="myBtn-scroll-top" title="Go to top"><i class="fa fa-angle-double-up"></i></button>
 
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
+<script type="module">
+    const firebaseConfig = {
+        apiKey: "AIzaSyDYgZ1VgYlLnC_y0mhHKHuMAhFq0i8g-ho",
+        authDomain: "doancongnghethongtin-2df4c.firebaseapp.com",
+        projectId: "doancongnghethongtin-2df4c",
+        storageBucket: "doancongnghethongtin-2df4c.appspot.com",
+        messagingSenderId: "311479252720",
+        appId: "1:311479252720:web:c6494cc2ac545d8cb3b435",
+        measurementId: "G-EKDXYS51BE"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
 
-<%--    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>&lt;%&ndash;--%>
 
-<%--    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>--%>
-<%--    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>--%>
-<%--    <script type="module">--%>
-<%--        const firebaseConfig = {--%>
-<%--            apiKey: "AIzaSyDYgZ1VgYlLnC_y0mhHKHuMAhFq0i8g-ho",--%>
-<%--            authDomain: "doancongnghethongtin-2df4c.firebaseapp.com",--%>
-<%--            projectId: "doancongnghethongtin-2df4c",--%>
-<%--            storageBucket: "doancongnghethongtin-2df4c.appspot.com",--%>
-<%--            messagingSenderId: "311479252720",--%>
-<%--            appId: "1:311479252720:web:c6494cc2ac545d8cb3b435",--%>
-<%--            measurementId: "G-EKDXYS51BE"--%>
-<%--        };--%>
-<%--        firebase.initializeApp(firebaseConfig);--%>
-<%--    </script>&ndash;%&gt;--%>
+
 
 <script src="<c:url value='/assets/web/js/navbar.js'/>"></script>
 

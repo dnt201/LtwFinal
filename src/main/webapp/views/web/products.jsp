@@ -81,7 +81,7 @@
                 <c:forEach var="item" items="${model.listResult}">
                     <div class="item-product">
                         <div class="stick-percent"><p>Giảm ${item.discount.discountPercent}%</p></div>
-                        <img class="img-product" src="<c:url value='/assets/web/images/ge76-1.png'/>" alt="product images"/>
+                        <img class="img-product" src="<c:url value='${item.image}'/>" alt="product images"/>
                         <h4 class="name"><b>${item.productName}</b></h4>
                         <div class="box-price">
                             <div class="sale-product">
@@ -89,10 +89,9 @@
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "${item.price}" /> đ</span>
                             </div>
                             <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <button class="add-to-card">
-                                    <c:out value = "${User.getRoleModel().getRoleName()}"/>
+                                <a class="add-to-card" href="<c:url value='/add-to-cart?add=products&&product_id=${item.product_id}'/> ">
                                     <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </button>
+                                </a>
                             </c:if>
                         </div>
                         <table>
