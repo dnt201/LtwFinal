@@ -29,8 +29,10 @@ public class HomeController extends HttpServlet {
             String message = request.getParameter("message");
            if(message!=null){
                if(message.equals("username_password_invalid"))
-                   request.setAttribute("messageResponse", "Username or password is incorrect!! Try again!!!");
-            }
+                   request.setAttribute("messageResponse", "Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại!");
+               else if(message.equals("not_login"))
+                   request.setAttribute("messageResponse","Đăng nhập để hoàn tất đơn hàng!");
+           }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/login.jsp");
             requestDispatcher.forward(request, response);
         }

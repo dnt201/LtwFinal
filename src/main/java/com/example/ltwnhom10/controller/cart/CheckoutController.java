@@ -37,7 +37,6 @@ public class CheckoutController extends HttpServlet {
             throws ServletException, IOException {
         UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if (user == null) {
-
             response.sendRedirect(
                     request.getContextPath() + "/login-dang-nhap?action=login&messageResponse=not_login&alert=danger");
         } else {
@@ -56,13 +55,6 @@ public class CheckoutController extends HttpServlet {
                     item.setOrderDetails(order);
                     orderItemsService.save(item);
                 }
-                /*
-                try {
-                    JavaMailUtil.sendMail(user.getEmail(), MailTemplateUtil.templateMailCongratulation(), "Conratulation!");
-                } catch (MessagingException ex) {
-                    Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                 */
                 SessionUtil.getInstance().removeValue(request, "order");
                 request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Check Out successfully an email will send to your mail!");

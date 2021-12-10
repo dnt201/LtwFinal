@@ -89,7 +89,7 @@
                                 <span class="price-old"><fmt:formatNumber type = "number" value = "${item.price}" /> đ</span>
                             </div>
                             <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <a class="add-to-card" href="<c:url value='/add-to-cart?add=products&&product_id=${item.product_id}'/> ">
+                                <a class="add-to-card" href="<c:url value='/cart?action=add&&product_id=${item.product_id}'/> ">
                                     <i class="fas fa-cart-plus add-to-card-icon"></i>
                                 </a>
                             </c:if>

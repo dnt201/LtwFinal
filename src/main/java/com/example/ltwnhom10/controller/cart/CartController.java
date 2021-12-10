@@ -1,11 +1,17 @@
 package com.example.ltwnhom10.controller.cart;
 
+import com.example.ltwnhom10.constance.CoreConstant;
 import com.example.ltwnhom10.model.OrderDetailsModel;
 import com.example.ltwnhom10.model.OrderItemsModel;
 import com.example.ltwnhom10.model.ProductModel;
+import com.example.ltwnhom10.model.UsersModel;
+import com.example.ltwnhom10.service.IOrderDetailsService;
+import com.example.ltwnhom10.service.IOrderItemsService;
 import com.example.ltwnhom10.service.IProductService;
+import com.example.ltwnhom10.service.impl.OrderDetailsService;
+import com.example.ltwnhom10.service.impl.OrderItemsService;
 import com.example.ltwnhom10.service.impl.ProductService;
-
+import com.example.ltwnhom10.utl.SessionUtil;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,8 +28,13 @@ import java.util.List;
 @WebServlet(name = "CartController", urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
     private IProductService productService;
+    private IOrderDetailsService orderDetailsService;
+    private IOrderItemsService orderItemsService;
+
     public CartController() {
         this.productService = new ProductService();
+        this.orderDetailsService = new OrderDetailsService();
+        this.orderItemsService = new OrderItemsService();
     }
 
     @Override
@@ -32,22 +43,21 @@ public class CartController extends HttpServlet {
         ServletContext sc = getServletContext();
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        String url ="/views/cart/cart.jsp"; //homepage
+        String url = "/views/cart/cart.jsp"; //homepage
 
-        if(action == null) {
+        if (action == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart/cart.jsp");
             dispatcher.forward(request, response);
-        }
-        else if(action.equals("add")){
+        } else if (action.equals("add")) {
             Integer quantity = 1;
             Integer id;
-            if(request.getParameter("product_id")!=null){
+            if (request.getParameter("product_id") != null) {
                 id = Integer.parseInt(request.getParameter("product_id"));
                 ProductModel product = productService.findByID(id);
-                if(product != null && request.getParameter("quantity") != null){
+                if (product != null && request.getParameter("quantity") != null) {
                     quantity = Integer.parseInt(request.getParameter("quantity"));
                 }
-                if(session.getAttribute("order") == null){
+                if (session.getAttribute("order") == null) {
                     BigDecimal total = new BigDecimal("0");
                     //tạo cart mới
                     OrderDetailsModel order = new OrderDetailsModel();
@@ -55,16 +65,81 @@ public class CartController extends HttpServlet {
                     List<OrderItemsModel> listItems = new ArrayList<OrderItemsModel>();
                     //line
                     OrderItemsModel item = new OrderItemsModel();
-                    item.setQuantity(quantity);
+                    item.setQuantity(quantity); //Đã được cập nhập số lượng
                     item.setProductModel(product);
+                    listItems.add(item);
+                    order.setOrderItemsList(listItems);
+                    BigDecimal j = new BigDecimal(quantity);
+                    order.setTotal(total.add((product.getPrice().subtract((product.getPrice().multiply(product.getDiscount().getDiscountPercent())
+                            .divide(BigDecimal.valueOf(100))))).multiply(j)));
+                    // Tính giá sản bill
+                    session.setAttribute("order", order);
+                } else { //nếu đã có cart
+                    OrderDetailsModel order = (OrderDetailsModel) session.getAttribute("order");
+                    List<OrderItemsModel> listItems = order.getOrderItemsList();
+                    boolean check = false;
+                    //Check xem đã tồn tại trong cart chưa
+                    for (OrderItemsModel item : listItems) {
+                        if (item.getProductModel().getProduct_id() == product.getProduct_id()) {
+                            BigDecimal total = new BigDecimal("0");
+                            BigDecimal number = new BigDecimal(quantity);
+                            item.setQuantity(item.getQuantity() + quantity);
+                            order.setTotal(order.getTotal().add((product.getPrice().subtract((product.getPrice().multiply(product.getDiscount().getDiscountPercent())
+                                    .divide(BigDecimal.valueOf(100))))).multiply(number)));
+                            check = true;
+
+                        }
+                    }
+                    //không có sản phẩm thì thêm mới
+                    if (check == false) {
+                        OrderItemsModel item = new OrderItemsModel();
+                        item.setQuantity(quantity);
+                        item.setProductModel(product);
+                        listItems.add(item);
+                        BigDecimal j = new BigDecimal(quantity);
+                        order.setTotal(order.getTotal().add((product.getPrice().subtract((product.getPrice().multiply(product.getDiscount().getDiscountPercent())
+                                .divide(BigDecimal.valueOf(100))))).multiply(j)));
+                    }
+                    session.setAttribute("order", order);
+                }
+                response.sendRedirect(request.getContextPath() + "/cart");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/home-page");
+            }
+        } else if(action.equals("checkout")){
+            UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "User");
+            if (user == null) {
+                response.sendRedirect(
+                        request.getContextPath() + "/login-dang-nhap?action=login&messageResponse=not_login");
+            } else {
+                if (SessionUtil.getInstance().getValue(request, "order") == null) {
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Giỏ hàng rỗng, không thể thanh toán");
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/cart.jsp");
+                    requestDispatcher.forward(request, response);
+                } else {
+                    OrderDetailsModel order = (OrderDetailsModel) SessionUtil.getInstance().getValue(request, "order");
+                    order.setUsersModel(user);
+                    Integer orderDetailId = orderDetailsService.save(order);
+                    order.setOrder_id(orderDetailId);
+                    List<OrderItemsModel> listItems = order.getOrderItemsList();
+                    for (OrderItemsModel item : listItems) {
+                        item.setOrderDetails(order);
+                        orderItemsService.save(item);
+                    }
+                    SessionUtil.getInstance().removeValue(request, "order");
+                    request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Check Out successfully an email will send to your mail!");
+                    RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
+                    rd.forward(request, response);
                 }
             }
 
         }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
+        doGet(req, resp);
     }
 }
