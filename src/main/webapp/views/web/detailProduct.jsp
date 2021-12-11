@@ -32,8 +32,8 @@
                         </div>
                     </div>
                     <div class="price">
-                        <div class="new-price"> ${model.price - model.price*model.discount.discountPercent/100}</div>
-                        <div class="old-price"> ${model.price}</div>
+                        <div class="new-price"><fmt:formatNumber type = "number" value = "${model.price - model.price*model.discount.discountPercent/100}" /> đ</div>
+                        <div class="old-price"><fmt:formatNumber type = "number" value = "${model.price} " /> đ</div>
                     </div>
                 </div>
 

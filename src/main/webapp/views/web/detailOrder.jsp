@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div>
-                <table class="w-100p m-b-8px table">
+                <table class="w-100p m-b-8px table" style="overflow-x:auto;">
                     <colgroup>
                         <col span="1" style="width:15%"/>
                         <col span="1" style="width:30%"/>
@@ -121,8 +121,8 @@
                             <td>
                                 <span>${item.quantity}</span>
                             </td>
-                            <td class="t-a-right">
-                                <span>${(item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}</span>
+                            <td>
+                                <span><fmt:formatNumber type = "number" value = "${(item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}" /> đ</span>
                                 <c:set var="Sum"
                                        value="${Sum + (item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}"/>
                             </td>
@@ -132,10 +132,11 @@
                     <%--End item--%>
                 </table>
             </div>
+
             <div class="flex-column  align-item-flex-end">
-                <span><b>Item price:</b>${Sum}</span><br/>
-                <span><b>Shipping price:</b>   0 đ</span><br/>
-                <span><b>Total:</b>${Sum}</span>
+                <span class="cl-red"><b>Item price: </b><fmt:formatNumber type = "number" value = "${Sum}" /> đ</span><br/>
+                <span><b>Shipping price: </b>   0 đ</span><br/>
+                <span class="cl-red f-s-24px"><b> <i class="fa fa-shield-alt cl-red"></i> Total: </b><fmt:formatNumber type = "number" value = "${Sum}" /> đ</span></span>
             </div>
         </div>
     </div>
