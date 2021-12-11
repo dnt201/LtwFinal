@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="flex-row jt-ct-center align-item-center">
-            <h1 class="m-r-8px t-a-center">Order (id order)</h1>
+            <h1 class="m-r-8px t-a-center">Order ${model.order_id}</h1>
         </div>
         <div class="detail-order-wrap">
             <div class="quatroiluoiluon jt-ct-sb">
@@ -52,19 +52,19 @@
                 <div class="quatroiluoiluon1">
                     <div>
                         <span class="w-170px"><b>Address: </b></span>
-                        <span>${model.usersModel.address}/span>
+                        <span>${model.usersModel.address}</span>
                     </div>
                     <div>
                         <span><b>Phone number: </b></span>
                         <span>${model.usersModel.phone}</span>
                     </div>
-
                 </div>
             </div>
             <div>
                 <table class="w-100p m-b-8px table">
                     <colgroup>
-                        <col span="1" style="width: 45%"/>
+                        <col span="1" style="width:15%"/>
+                        <col span="1" style="width:30%"/>
                         <col span="1" style="width:10%"/>
                         <col span="1" style="width:10%"/>
                         <col span="1" style="width:10%"/>
@@ -73,6 +73,7 @@
                     </colgroup>
                     <thead>
                     <tr>
+                        <th>Product image</th>
                         <th>Product name</th>
                         <th>Unit price</th>
                         <th>Discount</th>
@@ -88,7 +89,11 @@
                     <c:set var="Sum" value="${0}"/>
                     <c:forEach var="item" items="${model.orderItemsList}">
                         <tr class="t-a-center">
-                            <td class="t-a-left p-l-4px">
+                            <td>
+                                <img class="t-a-left p-l-4px"
+                                     src=<c:url value='${item.productModel.image}'/>alt="image" style="width: 150px; height: auto"/>
+                            </td>
+                            <td>
                                 <span>${item.productModel.productName}</span>
                             </td>
                             <td>
@@ -105,10 +110,11 @@
                             </td>
                             <td class="t-a-right">
                                 <span>${(item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}</span>
-                                <c:set var="Sum" value="${Sum + (item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}"/>
+                                <c:set var="Sum"
+                                       value="${Sum + (item.productModel.price - item.productModel.price*item.productModel.discount.discountPercent/100)*item.quantity}"/>
                             </td>
                         </tr>
-                    </c:forEach>>
+                    </c:forEach>
                     </tbody>
                     <%--End item--%>
                 </table>

@@ -47,6 +47,8 @@
         <a class="collapse-item" href="<c:url value='/admin/product'/>">Products</a>
         <a class="collapse-item" href="<c:url value='/admin/brand'/>">Brand</a>
         <a class="collapse-item" href="<c:url value='/admin/discount'/>">Discount</a>
+        <a class="collapse-item" href="<c:url value='/admin/order'/>">Order</a>
+
       </div>
     </div>
   </li>

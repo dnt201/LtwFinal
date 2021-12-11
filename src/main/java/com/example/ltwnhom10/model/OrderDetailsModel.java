@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order_detail")
-public class OrderDetailsModel {
+public class OrderDetailsModel  extends AbstractModel<OrderDetailsModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id", nullable = false)
