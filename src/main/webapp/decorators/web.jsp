@@ -38,6 +38,8 @@
           href="<c:url value='/assets/web/css/detailOrder.css'/> ">
     <link rel="stylesheet" type="text/css"
           href="<c:url value='/assets/web/css/about.css'/> ">
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/assets/web/css/userDetail.css'/> ">
 
     <!-- Font family -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Genos:wght@300&display=swap"

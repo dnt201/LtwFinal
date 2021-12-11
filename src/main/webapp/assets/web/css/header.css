@@ -299,6 +299,7 @@
     #top-nav.nav.active .nav-list {
         display: flex;
         opacity: 1;
+        width: 100%;
     }
 }
 /*End: Navbar*/

@@ -17,13 +17,26 @@
                 </li>
                 <li style="margin-left: 12px">
                     <i class="fas fa-angle-right"></i>
-                    Profile
+                    <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
+                    <a href="<c:url value='/me'/>">
+                        <i class="ace-icon fa fa-user"></i>
+                    </a>
+                    </c:if>
+                    <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
+                        <a href="<c:url value='/admin'/>">
+                            <i class="ace-icon fa fa-columns"></i>
+                        </a>
+                    </c:if>
+                </li>
+                <li style="margin-left: 12px">
+                    <i class="fas fa-angle-right"></i>
+                    Detail Order
                 </li>
 
             </ul>
         </div>
         <div class="flex-row jt-ct-center align-item-center">
-            <h1 class="m-r-8px t-a-center">Order ${model.order_id}</h1>
+            <h1 class="m-r-8px t-a-center">Order #${model.order_id}</h1>
         </div>
         <div class="detail-order-wrap">
             <div class="quatroiluoiluon jt-ct-sb">
@@ -73,13 +86,13 @@
                     </colgroup>
                     <thead>
                     <tr>
-                        <th>Product image</th>
-                        <th>Product name</th>
-                        <th>Unit price</th>
-                        <th>Discount</th>
-                        <th>Sale price</th>
-                        <th>Quantity</th>
-                        <th>Total price</th>
+                        <th class="t-a-center">Product image</th>
+                        <th class="t-a-center">Product name</th>
+                        <th class="t-a-center">Unit price</th>
+                        <th class="t-a-center">Discount</th>
+                        <th class="t-a-center">Sale price</th>
+                        <th class="t-a-center">Quantity</th>
+                        <th class="t-a-center">Total price</th>
                     </tr>
                     </thead>
 

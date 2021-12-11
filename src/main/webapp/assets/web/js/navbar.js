@@ -7,9 +7,21 @@ function toggleNav() {
         x.className = "nav";
     }
 }
-function validatePassWorkConfirm() {
+function validatePassWordConfirm() {
     let x = document.forms["register-form"]["password"].value;
     let y = document.forms["register-form"]["confPassword"].value;
+    console.log(x,y);
+    if (x !== y) {
+        console.log("x khác y");
+        document.getElementById("mess_error_change_password").innerHTML = "Password not match! Please try again!";
+        return false;
+    }
+    else document.getElementById("mess_error_change_password").innerHTML = "";
+}
+
+function validatePassWordChange() {
+    let x = document.forms["change-password-form"]["password"].value;
+    let y = document.forms["change-password-form"]["confPassword"].value;
     console.log(x,y);
     if (x !== y) {
         console.log("x khác y");
@@ -17,8 +29,8 @@ function validatePassWorkConfirm() {
         return false;
     }
     else document.getElementById("mess_error_register").innerHTML = "";
-
 }
+
 window.onscroll = function() {scrollFunction()};
 function topFunction(){
     document.body.scrollTop = 0; // For Safari

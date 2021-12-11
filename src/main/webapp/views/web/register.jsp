@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp" %>
 
 <div class="form_register_container">
-    <form class="wrap-register" name="register-form" onsubmit="return validatePassWorkConfirm()" method="post">
+    <form class="wrap-register" name="register-form" onsubmit="return validatePassWordConfirm()" method="post">
         <span >Register</span>
         <p><i>Many thanks for your registration!</i></p>
 

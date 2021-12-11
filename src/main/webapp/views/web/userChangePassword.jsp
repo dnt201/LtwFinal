@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 12/11/2021
+  Time: 4:33 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 
@@ -24,13 +31,13 @@
                 </li>
                 <li style="margin-left: 12px">
                     <i class="fas fa-angle-right"></i>
-                    Update Profile
+                    Change password
                 </li>
             </ul>
         </div>
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle"
+                <img class="rounded-circle mt-5"
                      width="150px"
                      src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                 >
@@ -50,43 +57,40 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
-                <form action="<c:url value='/me'/>">
+                <form onsubmit="return validatePassWordChange()"
+                      name="change-password-form"
+                      action="<c:url value='/me'/>"
+                      method="post"
+                >
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <label class="labels">Full Name: </label>
-                            <input type="text" class="form-control" placeholder="Enter your name..."
-                                   value="${model.name}"
-                                   name="name">
+                            <label class="labels">Current password: </label>
+                            <input type="text" class="form-control" placeholder="Enter your current password..."
+                                   name="curPassword">
                         </div>
                         <div class="col-md-12">
-                            <label class="labels">Email: </label>
-                            <input type="email" class="form-control" placeholder="Enter your email..."
-                                   value="${model.email}"
-                                   name="email">
+                            <label class="labels">New password: </label>
+                            <input type="text" class="form-control" placeholder="Enter your new password..."
+                                   name="password">
                         </div>
+
                         <div class="col-md-12">
-                            <label class="labels">Address: </label>
-                            <input type="text" class="form-control" placeholder="Enter your address..."
-                                   value="${model.address}"
-                                   name="address">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">Phone number: </label>
-                            <input type="number" class="form-control" placeholder="Enter your phone number..."
-                                   name="phone"
-                                   value="${model.phone}">
+                            <label class="labels">Confirm password: </label>
+                            <input type="text" class="form-control" placeholder="Enter your confirm password..."
+                                   name="confPassword">
                         </div>
                     </div>
                     <div class="mt-5 text-center d-flex flex-column justify-content-center">
                         <c:if test="${not empty messageResponse}">
-                            <i class="red_16px_bold"><b>${messageResponse}</b></i>
+                            <i class="red_16px_bold"><b id="mess_error_change_password">${messageResponse}</b></i>
                         </c:if>
-                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="action" value="change">
                         <input type="hidden" name="user_id" value="${model.user_id}">
-                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                        <button class="btn btn-primary profile-button" type="submit">Change Password</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+

@@ -83,7 +83,7 @@
     <div class="product-detail-information">
         <div class="wrap">
             <h2>Thông số kỹ thuật</h2>
-            <div class="line-itezm">
+            <div class="line-item">
                 <div>Tên sản phẩm</div>
                 <div>${model.productName}</div>
             </div>
