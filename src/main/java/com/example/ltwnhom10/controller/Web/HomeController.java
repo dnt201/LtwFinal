@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout"})
+@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/login", "/logout","/about"})
 public class HomeController extends HttpServlet {
 
     @Override
@@ -32,6 +32,8 @@ public class HomeController extends HttpServlet {
                    request.setAttribute("messageResponse", "Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại!");
                else if(message.equals("not_login"))
                    request.setAttribute("messageResponse","Đăng nhập để hoàn tất đơn hàng!");
+               else if(message.equals("not-yet-login"))
+                   request.setAttribute("messageResponse","Bạn chưa đăng nhập!");
            }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/login.jsp");
             requestDispatcher.forward(request, response);
@@ -42,10 +44,15 @@ public class HomeController extends HttpServlet {
             //SessionUtil.getInstance().removeValue(request, order);
             response.sendRedirect(request.getContextPath()+"/home-page");
         }
+        else if(action != null && action.equals("about")){
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/about.jsp");
+            requestDispatcher.forward(request, response);
+        }
         else if (action != null && action.equals("products")){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/products.jsp");
             requestDispatcher.forward(request, response);
         }
+
         else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/home.jsp");
             requestDispatcher.forward(request, response);
@@ -87,13 +94,11 @@ public class HomeController extends HttpServlet {
                 }
             }
             else {
-                request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
                 response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
             }
         }
         else{
-            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
             response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
         }

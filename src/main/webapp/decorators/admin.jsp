@@ -22,7 +22,6 @@
     <script src="<c:url value='/assets/admin/js/sb-admin-2.min.js'/>"></script>
     <script src="<c:url value='/assets/admin/js/bootstrap.bundle.js'/>"></script>
     <!-- My javascript -->
-
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css" />
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -37,6 +36,10 @@
           href="<c:url value='/assets/web/css/footer.css'/> ">
     <link rel="stylesheet" type="text/css"
           href="<c:url value='/assets/admin/css/form-custom.css'/> ">
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/assets/web/css/dashboardAdmin.css'/> ">
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/assets/web/css/about.css'/> ">
 
     <!-- Font family -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Genos:wght@300&display=swap"

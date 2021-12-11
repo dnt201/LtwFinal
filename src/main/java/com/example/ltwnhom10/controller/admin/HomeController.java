@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet {
                     request.getContextPath() + "/logout");
         }
         else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/web/adminPage.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/admin/adminPage.jsp");
             requestDispatcher.forward(request, response);
         }
     }

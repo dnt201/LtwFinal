@@ -17,7 +17,7 @@
             <a href="<c:url value='/home-page'/>">Home</a>
         </li>
         <li>
-            <a href="<c:url value='/about'/>">About</a>
+            <a href="<c:url value='/about?action=about'/>">About</a>
         </li>
         <li>
             <a href="<c:url value='/products?action=products'/>">Products</a>
@@ -39,12 +39,11 @@
             </c:if>
             <c:if test="${not empty User}">
                 <li class="cover-size btn user">
-                    <a href="<c:url value='/user'/>">
+                    <a href="<c:url value='/me'/>">
                         <i class="fa fa-user"></i>
                     </a>
                 </li>
                 <li class="cover-size btn login">
-                    <c:out value="${User.getRoleModel().getRoleName()}"/>
                     <a href="<c:url value='/logout?action=logout'/>">
                         Logout
                     </a>

@@ -1,8 +1,7 @@
 package com.example.ltwnhom10.controller.Web;
 
 import com.example.ltwnhom10.constance.CoreConstant;
-import com.example.ltwnhom10.model.OrderDetailsModel;
-import com.example.ltwnhom10.model.UsersModel;
+import com.example.ltwnhom10.model.*;
 import com.example.ltwnhom10.service.IOrderDetailsService;
 import com.example.ltwnhom10.service.IUserService;
 import com.example.ltwnhom10.service.impl.OrderDetailsService;
@@ -40,34 +39,67 @@ public class UpdateProfileController  extends HttpServlet {
         if (action == null) {
             UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, CoreConstant.SESSION_DATA);
             if (user == null){
-                response.sendRedirect(request.getContextPath() + "/login?action=login");
+                response.sendRedirect(request.getContextPath() + "/login?action=login&&message=not-yet-login");
             }
             else {
                 List<OrderDetailsModel> listOrder = orderDetailsService.findByUserId(user.getUser_id());
-
                 request.setAttribute("orders", listOrder);
                 request.setAttribute(CoreConstant.MODEL, user);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");
                 requestDispatcher.forward(request, response);
             }
         }
+        else if(action!= null && action.equals("update-profile")) {
+            UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, CoreConstant.SESSION_DATA);
+            if (user == null){
+                response.sendRedirect(request.getContextPath() + "/login?action=login&&message=not-yet-login");
+            }
+            else {
+                List<OrderDetailsModel> listOrder = orderDetailsService.findByUserId(user.getUser_id());
+                request.setAttribute("orders", listOrder);
+                request.setAttribute(CoreConstant.MODEL, user);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userUpdateProfile.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        }
         else if (action != null && action.equals("update")){
-            UsersModel user = FormUtil.toModel(UsersModel.class, request);
+            UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, CoreConstant.SESSION_DATA);
+            if (user == null){
+                response.sendRedirect(request.getContextPath() + "/login?action=login&&message=not-yet-login");
+            }
+            else {
+              UsersModel user1 = FormUtil.toModel(UsersModel.class, request);
+              UsersModel userModel = new UsersModel();
 
-            Bcrypt bcrypt = new Bcrypt(10);
-            String password = bcrypt.hash(user.getPassword());
-            user.setPassword(password);
-            userService.update(user);
+              userModel = userService.findByID(user1.getUser_id());
 
-            SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
+              userModel.setName(user1.getName());
+              userModel.setEmail(user1.getEmail());
+              userModel.setAddress(user1.getAddress());
+              userModel.setPhone(user1.getPhone());
 
-            user = userService.findUserByUsername(user.getUsername());
-            SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
+              userService.update(userModel);
+              SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
+              request.setAttribute(CoreConstant.MODEL, userModel);
+              SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, userModel);
+              request.setAttribute("messageResponse","Thay đổi thông tin thành công!");
 
+              RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userUpdateProfile.jsp");
+              requestDispatcher.forward(request, response);
+            }
+//            UsersModel user = FormUtil.toModel(UsersModel.class, request);
+//
+//            Bcrypt bcrypt = new Bcrypt(10);
+//            String password = bcrypt.hash(user.getPassword());
+//            user.setPassword(password);
+//            userService.update(user);
+//
+//            SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
+//
+//            user = userService.findUserByUsername(user.getUsername());
+//            SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
+//
 
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");
-            requestDispatcher.forward(request, response);
         }
         else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");

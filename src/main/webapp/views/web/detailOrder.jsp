@@ -1,14 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 12/9/2021
-  Time: 9:40 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <div class="detail-order-container">
     <div class="wrap">
+        <div class="breadcrumb" id="breadcrumbs">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('breadcrumbs', 'fixed')
+                } catch (e) {
+                }
+            </script>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="<c:url value='/home-page'/>">
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                    </a>
+                </li>
+                <li style="margin-left: 12px">
+                    <i class="fas fa-angle-right"></i>
+                    Profile
+                </li>
+
+            </ul>
+        </div>
         <div class="flex-row jt-ct-center align-item-center">
             <h1 class="m-r-8px t-a-center">Order (id order)</h1>
         </div>

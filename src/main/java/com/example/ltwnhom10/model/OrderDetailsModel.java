@@ -23,7 +23,7 @@ public class OrderDetailsModel {
     @JoinColumn(name = "user_id",nullable = false)
     private UsersModel usersModel;
 
-    @OneToMany(mappedBy = "orderDetails",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderDetails",fetch = FetchType.EAGER)
     private List<OrderItemsModel> orderItemsList;
 
     public Integer getOrder_id() {
