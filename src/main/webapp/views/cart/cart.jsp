@@ -43,11 +43,11 @@
                         </colgroup>
                         <thead>
                         <tr>
-                            <th>Item</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                            <th class="t-a-center">Item</th>
+                            <th class="t-a-center">Image</th>
+                            <th class="t-a-center">Price</th>
+                            <th class="t-a-center">Quantity</th>
+                            <th class="t-a-center">Total</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,13 +88,13 @@
 
                                     </td>
                                     <td>
-                                        <form action="<c:url value ='/cart' />">
+                                        <form class="flex" action="<c:url value ='/cart' />">
                                             <input type="hidden" name="product_id" value="${item.productModel.product_id}"/>
                                             <input type="hidden" name="action" value="update"/>
                                         <input class="w-80p" type="number" id="quantity" name="quantity"
                                                value="${item.quantity}" />
-                                        <button class="remove-cart-item-btn"><i
-                                                class="fa fa-sync-alt remove-cart-item cl-success"></i></button>
+                                        <button class="reload-item-quantity"><i
+                                                class="fa fa-sync-alt  cl-success"></i></button>
                                         </form>
                                         <c:if test="${item.productModel.discount.discountPercent > 0}">
                                             <span class="alert-danger">
@@ -126,8 +126,6 @@
 
                 </div>
                 <div class="right-container flex-8">
-
-
                     <c:if test="${empty order}">
                         <h3 class="t-a-center"> Opps! Bạn chưa mua gì cả ❤</h3>
                     </c:if>
@@ -135,7 +133,11 @@
                         <h2>Summary</h2>
                         <div class="m-bt-16px summary-lazy-css">
                             <span>Tổng số lượng hàng: </span>
-                            <span class="ta-right f-b">${order.total}</span>
+                            <c:set var="total" value="${0}"/>
+                            <c:forEach var="item123" items="${order.orderItemsList}">
+                                <c:set var="total" value="${total + item123.quantity}"/>
+                            </c:forEach>
+                            <span class="ta-right f-b">${total}</span>
                         </div>
 
                         <div class="m-bt-16px summary-lazy-css">

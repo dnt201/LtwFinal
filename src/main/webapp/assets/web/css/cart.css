@@ -167,7 +167,6 @@ th {
     margin-top:4px;
     color:white;
     padding:4px;
-    border-radius: 25%;
 }
 
 .cart-page-left .cart-item-price-x {
@@ -189,10 +188,18 @@ th {
     background-color:rgb(221, 33, 33);;
     color: white;
     border: none;
-    padding: 8px 4px;
     border: 1px solid rgb(221, 33, 33);
     transition:1s;
     vertical-align: baseline;
+}
+
+.cart-page-left .reload-item-quantity {
+    border: 1px solid #29ab9a;
+    background-color: transparent;
+    padding:0 2px;
+}
+.cart-page-left .reload-item-quantity:hover {
+    cursor: pointer;
 }
 
 .cart-page-left .left-footer {
@@ -219,6 +226,10 @@ th {
 .cart-page-right .summary-lazy-css {
     display: flex;
     flex-direction: column;
+}
+
+.CartPage table tbody td {
+    margin: 8px 0 16px;
 }
 
 

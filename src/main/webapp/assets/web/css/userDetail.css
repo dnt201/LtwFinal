@@ -4,6 +4,14 @@
 p {
     word-break: break-all;
 }
+.t-a-center {
+    text-align: center;
+}
+.red_16px_bold {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
 .cl-red {
     color:#e01020;
 }

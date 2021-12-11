@@ -199,6 +199,10 @@
     .detail-product-page-container .product-detail .product-detail-right .price {
         flex-direction: column;
     }
+    .detail-product-page-container .product-detail-information .wrap {
+        width: 90%;
+    }
+
 }
 @media screen and (max-width: 920px) {
     .detail-product-page-container .product-detail {
@@ -217,6 +221,9 @@
 @media screen and (max-width: 600px) {
     .detail-product-page-container .product-detail .product-detail-right .price {
         flex-direction: column;
+    }
+    .detail-product-page-container .product-detail-information .wrap {
+        width: 98%;
     }
 }
 
@@ -274,68 +281,21 @@
 }
 
 /*------------------ Review ------------------*/
-.review-container {
-    padding: 16px 8px;
-    margin-left: 2.5%;
-    text-align: left;
-    width: 100%;
-}
-.review-container .review-header {
-    text-decoration: underline;
-    width: 100%;
-    font-weight: bold;
-    font-size: 36px;
-}
-.review-container .review-list {
-    padding: 4px 8px;
-    margin: 8px 0px 4px;
-}
-
-
-.review-container .review-list .review-item {
-    padding: 4px 8px;
-    margin-bottom: 8px;
-}
-
-.review-container .review-list .review-item .item-header {
+.product-detail-information .wrap .line-item {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
 }
-.review-container .review-list .review-item .item-header .btn-delete-review {
-    font-size: 18px;
-    padding: 8px;
+
+.product-detail-information .wrap>div.line-item:nth-of-type(odd){
+    background-color: rgb(246,246,246);
+}
+
+.product-detail-information .wrap div.line-item {
+    padding: 12px 16px;
+}
+
+.product-detail-information .wrap line-item-infor{
     background-color: transparent;
-    border: none;
-    color: #e01020;
-    transition:1s;
-}
-.review-container .review-list .review-item .item-header .btn-delete-review:hover {
-    background-color: #e01020;
-    color: white;
-    transition:1s;
-    border-radius: 25%;
-}
-.review-container .review-list .review-item .item-content {
-    padding: 4px 8px;
-    background-color: ghostwhite;
-    margin: 4px 0px;
-}
-.review-container
-.review-list
-.review-item
-.item-content
-.item-content-container {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-}
-
-.review-container
-.review-list
-.review-item
-.item-content
-.item-content-container
-> b {
-    font-size: 20px;
-    margin-right: 8px;
+    padding: 0.75rem 1rem;
+    color: rgb(130, 134, 158);
 }

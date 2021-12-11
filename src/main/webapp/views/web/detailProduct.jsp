@@ -3,7 +3,7 @@
 <div class="detail-product-page-container">
     <div class="product-detail">
         <div class="product-detail-left loader_center">
-            <img src={`${model.image}`} alt="123"/>
+            <img src="${model.image}" alt="123"/>
         </div>
         <div class="product-detail-right">
             <h1 class="name">${model.productName}</h1>
@@ -32,11 +32,15 @@
                         </div>
                     </div>
                     <div class="price">
-                        <div class="new-price"><fmt:formatNumber type = "number" value = "${model.price - model.price*model.discount.discountPercent/100}" /> đ</div>
-                        <div class="old-price"><fmt:formatNumber type = "number" value = "${model.price} " /> đ</div>
+                        <c:if test="${model.discount.discountPercent > 0}">
+                            <div class="new-price"><fmt:formatNumber type = "number" value = "${model.price-model.price*model.discount.discountPercent/100}" /> đ</div>
+                            <div class="old-price"><fmt:formatNumber type = "number" value = "${model.price}" /> đ</div>
+                        </c:if>
+                        <c:if test="${model.discount.discountPercent <= 0}">
+                            <div class="new-price"><fmt:formatNumber type ="number" value ="${model.price}"/> đ</div>
+                        </c:if>
                     </div>
                 </div>
-
                 <div class="button">
                     <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                         <input type="hidden" name="action" value="add"/>
@@ -81,48 +85,48 @@
         </div>
     </div>
     <div class="product-detail-information">
-        <div class="wrap">
+        <div class="wrap pt-5">
             <h2>Thông số kỹ thuật</h2>
             <div class="line-item">
-                <div>Tên sản phẩm</div>
-                <div>${model.productName}</div>
+                <div class="flex-1">Tên sản phẩm</div>
+                <div class="flex-3">${model.productName}</div>
             </div>
             <div class="line-item">
-                <div>Thương hiệu</div>
-                <div${model.brandModel.brand_name}</div>
+                <div class="flex-1">Thương hiệu</div>
+                <div class="flex-3">${model.brandModel.brand_name}</div>
             </div>
             <div class="line-item">
-                <div>Màu sắc</div>
-                <div>${model.color}</div>
+                <div class="flex-1">Màu sắc</div>
+                <div class="flex-3">${model.color}</div>
             </div>
-            <div class="line-item"> Thông tin chung</div>
+            <div class="line-item-infor f-s-16px pt-1 pb-1"> Thông tin chung</div>
             <div class="line-item">
-                <div>Thế hệ CPU</div>
-                <div>${model.cpu}</div>
-            </div>
-            <div class="line-item">
-                <div>Card đồ họa</div>
-                <div>${model.vga}</div>
+                <div class="flex-1">Thế hệ CPU</div>
+                <div class="flex-3">${model.cpu}</div>
             </div>
             <div class="line-item">
-                <div>RAM</div>
-                <div>${model.ram}</div>
+                <div class="flex-1">Card đồ họa</div>
+                <div class="flex-3">${model.vga}</div>
             </div>
             <div class="line-item">
-                <div>Màn hình</div>
-                <div>${model.monitor}</div>
+                <div class="flex-1">RAM</div>
+                <div class="flex-3">${model.ram}</div>
             </div>
             <div class="line-item">
-                <div>Lưu trữ</div>
-                <div>${model.storage}</div>
+                <div class="flex-1">Màn hình</div>
+                <div class="flex-3">${model.monitor}</div>
             </div>
             <div class="line-item">
-                <div>Pin</div>
-                <div>${model.pin}</div>
+                <div class="flex-1">Lưu trữ</div>
+                <div class="flex-3">${model.storage}</div>
             </div>
             <div class="line-item">
-                <div>Cổng kết nối</div>
-                <div>${model.connection}</div>
+                <div class="flex-1">Pin</div>
+                <div class="flex-3">${model.pin}</div>
+            </div>
+            <div class="line-item">
+                <div class="flex-1">Cổng kết nối</div>
+                <div class="flex-3">${model.connection}</div>
             </div>
         </div>
     </div>
