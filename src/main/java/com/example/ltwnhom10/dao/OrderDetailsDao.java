@@ -7,10 +7,13 @@ package com.example.ltwnhom10.dao;
 
 import com.example.ltwnhom10.model.OrderDetailsModel;
 
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public interface OrderDetailsDao extends GenericDao<Integer, OrderDetailsModel>{
     Integer saveReturnId(OrderDetailsModel orderDetailModel);
+    List<OrderDetailsModel> findByUserId(Integer userId);
 }

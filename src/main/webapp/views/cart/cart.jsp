@@ -53,12 +53,6 @@
                         <tbody>
                         <%-- map cart item--%>
                         <c:forEach var="item" items="${order.orderItemsList}">
-<<<<<<< HEAD
-                            <form action="/cart">
-                               <input type="hidden" name="id" value="${item.id}"/>
-=======
-
->>>>>>> Backend
                                 <tr class="item vtc-al-baseline ta-center  row-item-lazzy-quatroidat">
                                     <td class="flex al-it-center jfct-center item-infor">
                                         <div>

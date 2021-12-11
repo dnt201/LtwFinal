@@ -31,7 +31,7 @@ public class OrderItemsDaoImpl extends AbstractDao<Integer, OrderItemsModel> imp
                 transaction = session.beginTransaction();
                 StringBuilder sql = new StringBuilder("from ");
                 sql.append(this.getPersistenceClassName());
-                sql.append(" WHERE orderDetails.orderId= "+id.toString());
+                sql.append(" WHERE orderDetail.order_id= "+id.toString());
                 Query query = session.createQuery(sql.toString());
                 result = query.list();
                 transaction.commit();

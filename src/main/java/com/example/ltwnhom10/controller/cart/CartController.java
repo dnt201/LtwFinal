@@ -116,14 +116,23 @@ public class CartController extends HttpServlet {
 
             int id = Integer.parseInt(request.getParameter("product_id"));
 
-            for (int i=0;i<listItems.size();i++)
-                if (listItems.get(i).getProductModel().getProduct_id() == id) listItems.remove(listItems.get(i));
+            for (int i=0;i<listItems.size();i++) {
+                if (listItems.get(i).getProductModel().getProduct_id() == id){
+                    OrderItemsModel orderItemsModel = listItems.get(i);
+                    order.setTotal(order.getTotal().subtract(BigDecimal.valueOf(orderItemsModel.getQuantity()).multiply(orderItemsModel.getProductModel().getPrice()
+                            .subtract(orderItemsModel.getProductModel().getPrice().multiply(orderItemsModel.getProductModel().getDiscount().getDiscountPercent().divide(BigDecimal.valueOf(100)))))));
+
+                    listItems.remove(listItems.get(i));
+                    break;
+                }
+            }
 
             order.setOrderItemsList(listItems);
 
             SessionUtil.getInstance().removeValue(request, "order");
             session.setAttribute("order", order);
 
+            System.out.println(request.getContextPath());
             response.sendRedirect(request.getContextPath() + "/cart?message=removeSuccess");
         }
         else if (action.equals("update")){
@@ -153,7 +162,7 @@ public class CartController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, "order");
             session.setAttribute("order", order);
 
-            response.sendRedirect(request.getContextPath() + "/cart?message=removeSuccess");
+            response.sendRedirect(request.getContextPath() + "/cart?message=updateSuccess");
         }
         else if(action.equals("checkout")){
             UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "User");

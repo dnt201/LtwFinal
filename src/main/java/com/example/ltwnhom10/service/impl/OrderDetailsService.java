@@ -13,7 +13,10 @@ import java.util.List;
 public class OrderDetailsService implements IOrderDetailsService {
     @Inject
     private OrderDetailsDao orderDetailsDao;
-    public OrderDetailsService() {orderDetailsDao = new OrderDetailsDaoImpl(); }
+
+    public OrderDetailsService() {
+        orderDetailsDao = new OrderDetailsDaoImpl();
+    }
 
     @Override
     public Integer save(OrderDetailsModel orderDetailModel) {
@@ -42,4 +45,8 @@ public class OrderDetailsService implements IOrderDetailsService {
         return orderDetailsDao.findAll();
     }
 
+    @Override
+    public List<OrderDetailsModel> findByUserId(Integer userId) {
+        return orderDetailsDao.findByUserId(userId);
+    }
 }

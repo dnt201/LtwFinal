@@ -1,8 +1,11 @@
 package com.example.ltwnhom10.controller.Web;
 
 import com.example.ltwnhom10.constance.CoreConstant;
+import com.example.ltwnhom10.model.OrderDetailsModel;
 import com.example.ltwnhom10.model.UsersModel;
+import com.example.ltwnhom10.service.IOrderDetailsService;
 import com.example.ltwnhom10.service.IUserService;
+import com.example.ltwnhom10.service.impl.OrderDetailsService;
 import com.example.ltwnhom10.service.impl.UserService;
 import com.example.ltwnhom10.utl.Bcrypt;
 import com.example.ltwnhom10.utl.FormUtil;
@@ -17,12 +20,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "UpdateProfileController", urlPatterns = {"/me"})
 public class UpdateProfileController  extends HttpServlet {
 
     @Inject
     private IUserService userService;
+    private IOrderDetailsService orderDetailsService;
+
+    public UpdateProfileController(){
+        this.userService = new UserService();
+        this.orderDetailsService = new OrderDetailsService();
+    }
     @Override
     protected  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -33,6 +43,9 @@ public class UpdateProfileController  extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/login?action=login");
             }
             else {
+                List<OrderDetailsModel> listOrder = orderDetailsService.findByUserId(user.getUser_id());
+
+                request.setAttribute("orders", listOrder);
                 request.setAttribute(CoreConstant.MODEL, user);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");
                 requestDispatcher.forward(request, response);
@@ -50,6 +63,8 @@ public class UpdateProfileController  extends HttpServlet {
 
             user = userService.findUserByUsername(user.getUsername());
             SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, user);
+
+
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/userDetail.jsp");
             requestDispatcher.forward(request, response);

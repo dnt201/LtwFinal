@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -33,16 +34,21 @@
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Address: </label>
-                        <input type="text" class="form-control" placeholder="Enter your address..." value="${model.address}"
+                        <input type="text" class="form-control" placeholder="Enter your address..."
+                               value="${model.address}"
                                name="address">
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Phone number: </label>
-                        <input type="number" class="form-control" placeholder="Enter your phone number..." value="${model.phone}">
+                        <input type="number" class="form-control" placeholder="Enter your phone number..."
+                               value="${model.phone}">
                     </div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                    Profile</button></div>
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" type="button">Save
+                        Profile
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -50,13 +56,31 @@
         <div class="col-md-12 ">
             <h1>List order</h1>
         </div>
-        <!-- Render list order -->
-        <div class="col-md-12">
-            <span class="col-md-3">order_id</span>
-            <span class="col-md-3">usersModel</span>
-            <span class="col-md-3">total</span>
-            <span class="col-md-3">createAt</span>
-        </div>
+        ${orders.size()}
+
+        <c:forEach var="item" items="${orders}">
+            <div class="row">
+                <div class="col-md-4">${item.order_id}</div>
+                <div class="col-md-4">
+                    <table>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <c:forEach var="lineItem" items="${item.getOrderItemsList()}">
+                                <td class="col-md-4">${lineItem.productModel.productName}</td>
+                                <td class="col-md-4">${lineItem.quantity}</td>
+                                <td class="col-md-4">${(lineItem.productModel.price-(lineItem.productModel.price*lineItem.productModel.discount.discountPercent/100))*lineItem.quantity}</td>
+                            </c:forEach>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4">${item.total}</div>
+                <div class="col-md-4">${item.createAt}</div>
+            </div>
+        </c:forEach>
     </div>
 
 
