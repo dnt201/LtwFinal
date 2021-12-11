@@ -18,6 +18,9 @@ public class BrandService implements IBrandService {
     public void save(BrandModel brandModel) { brandDao.save(brandModel); }
 
     @Override
+    public void deleteOne(BrandModel brandModel) { brandDao.deleteOne(brandModel); }
+
+    @Override
     public void update(BrandModel brandModel) {brandDao.update(brandModel); }
 
     @Override

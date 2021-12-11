@@ -28,6 +28,9 @@ public class DiscountService implements IDiscountService {
     }
 
     @Override
+    public void deleteOne(DiscountModel discountModel) { discountDAO.deleteOne(discountModel); }
+
+    @Override
     public DiscountModel findByID(Integer discountId) {
         return discountDAO.findById(discountId);
     }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface IBrandService {
     void save(BrandModel brandModel);
     void update(BrandModel brandModel);
+    void deleteOne(BrandModel brandModel);
     BrandModel findById(Integer brandId);
     Integer delete(List<Integer> list);
     List<BrandModel> findAll();

@@ -10,5 +10,5 @@ public interface IOrderItemsService {
     OrderItemsModel findByID(Integer orderItemId);
     public Integer delete(List<Integer> ids);
     public List<OrderItemsModel> findAll();
-    public List<OrderItemsModel> findByOrderDetailId(Integer id);
+    public List<OrderItemsModel> findByProductId(Integer id);
 }

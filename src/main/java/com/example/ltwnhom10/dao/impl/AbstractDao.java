@@ -171,6 +171,21 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
     }
 
     @Override
+    public void deleteOne(T entity){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try{
+            session.delete(entity);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public List<T> findAllPaging(Pageable pageable) {
         List<T> list = new ArrayList<T>();
         Session session = HibernateUtil.getSessionFactory().openSession();

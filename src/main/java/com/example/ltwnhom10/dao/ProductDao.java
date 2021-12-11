@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface ProductDao extends GenericDao<Integer, ProductModel>{
     public List<ProductModel> findByBrand(Integer brandId);
+    public List<ProductModel> findByDiscount(Integer discountId);
 }

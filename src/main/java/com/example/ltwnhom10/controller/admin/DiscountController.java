@@ -1,9 +1,13 @@
 package com.example.ltwnhom10.controller.admin;
 
 import com.example.ltwnhom10.constance.CoreConstant;
+import com.example.ltwnhom10.model.BrandModel;
 import com.example.ltwnhom10.model.DiscountModel;
+import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.service.IDiscountService;
+import com.example.ltwnhom10.service.IProductService;
 import com.example.ltwnhom10.service.impl.DiscountService;
+import com.example.ltwnhom10.service.impl.ProductService;
 import com.example.ltwnhom10.utl.FormUtil;
 import com.example.ltwnhom10.utl.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,14 +20,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DiscountAdmin", urlPatterns = {"/admin/discount"})
 public class DiscountController extends HttpServlet {
     private IDiscountService discountService;
+    private IProductService productService;
     DiscountModel discount = new DiscountModel();
 
     public DiscountController() {
         this.discountService = new DiscountService();
+        this.productService = new ProductService();
     }
 
     @Override
@@ -63,6 +70,29 @@ public class DiscountController extends HttpServlet {
             request.setAttribute("discountModel", discount);
             url = "/views/admin/insert/DiscountInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+        }
+        else if (action.equals(CoreConstant.ACTION_DELETE)){
+            Integer id = Integer.parseInt(request.getParameter("discount_id"));
+            List<ProductModel> productModels = productService.findByDiscount(id);
+
+            if (productModels.size() > 0){
+                url = "/views/admin/list/DiscountList.jsp";
+                DiscountModel model = new DiscountModel();
+                model.setListResult(discountService.findAll());
+
+                request.setAttribute(CoreConstant.MODEL, model);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Delete Brand Fail");
+            }
+            else {
+                url = "/views/admin/list/DiscountList.jsp";
+                discountService.deleteOne(discountService.findByID(id));
+
+                DiscountModel model = new DiscountModel();
+                model.setListResult(discountService.findAll());
+
+                request.setAttribute(CoreConstant.MODEL, model);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Delete Brand Success");
+            }
         }
         else {
             DiscountModel model = new DiscountModel();

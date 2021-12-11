@@ -42,7 +42,7 @@ public class OrderItemsService implements IOrderItemsService {
     }
 
     @Override
-    public List<OrderItemsModel> findByOrderDetailId(Integer id) {
-        return orderItemsDAO.findByOrderDetailId(id);
+    public List<OrderItemsModel> findByProductId(Integer id) {
+        return orderItemsDAO.findByProductId(id);
     }
 }

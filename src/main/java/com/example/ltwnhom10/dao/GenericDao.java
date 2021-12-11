@@ -14,6 +14,7 @@ public interface GenericDao<ID extends Serializable, T> {
     List<T> findAll();
     T update(T entity);
     void save(T entity);
+    void deleteOne(T entity);
     T findById(ID id);
     Integer delete(List<ID> ids);
     public List<T> findAllPaging(Pageable pageable);

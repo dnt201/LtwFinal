@@ -28,6 +28,7 @@
                     List Brand
                 </li>
             </ul>
+            ${messageResponse}
         </div>
         <span class="me-2" id="categoryBulkAction">
             <label>Sort by:</label>
