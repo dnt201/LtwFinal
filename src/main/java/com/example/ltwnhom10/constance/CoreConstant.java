@@ -19,4 +19,5 @@ public class CoreConstant {
     public static final String ACTION_EDIT = "edit";
     public static final String ACTION_INSERT = "insert";
     public static final String ACTION_UPDATE = "update";
+    public static final String ACTION_DELETE = "delete";
 }

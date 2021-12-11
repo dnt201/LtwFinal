@@ -22,7 +22,7 @@ public class OrderItemsDaoImpl extends AbstractDao<Integer, OrderItemsModel> imp
         return persistenceClass.getSimpleName();
     }
     @Override
-    public List<OrderItemsModel> findByOrderDetailId(Integer id) {
+    public List<OrderItemsModel> findByProductId(Integer id) {
         List<OrderItemsModel> result = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -31,7 +31,7 @@ public class OrderItemsDaoImpl extends AbstractDao<Integer, OrderItemsModel> imp
                 transaction = session.beginTransaction();
                 StringBuilder sql = new StringBuilder("from ");
                 sql.append(this.getPersistenceClassName());
-                sql.append(" WHERE orderDetail.order_id= "+id.toString());
+                sql.append(" WHERE productModel.product_id= "+id.toString());
                 Query query = session.createQuery(sql.toString());
                 result = query.list();
                 transaction.commit();

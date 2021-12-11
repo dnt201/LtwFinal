@@ -2,6 +2,7 @@ package com.example.ltwnhom10.service.impl;
 
 import com.example.ltwnhom10.dao.ProductDao;
 import com.example.ltwnhom10.dao.impl.ProductDaoImpl;
+import com.example.ltwnhom10.model.DiscountModel;
 import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.paging.Pageable;
 import com.example.ltwnhom10.service.IProductService;
@@ -20,6 +21,9 @@ public class ProductService implements IProductService {
 
     @Override
     public void update(ProductModel productModel) { productDao.update(productModel); }
+
+    @Override
+    public void deleteOne(ProductModel productModel) { productDao.deleteOne(productModel); }
 
     @Override
     public ProductModel findByID(Integer productId){
@@ -45,4 +49,7 @@ public class ProductService implements IProductService {
     public List<ProductModel> findByBrand(Integer brandId) {
         return productDao.findByBrand(brandId);
     }
+
+    @Override
+    public List<ProductModel> findByDiscount(Integer discountId) { return  productDao.findByDiscount(discountId); }
 }

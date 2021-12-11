@@ -2,8 +2,12 @@ package com.example.ltwnhom10.controller.admin;
 
 import com.example.ltwnhom10.constance.CoreConstant;
 import com.example.ltwnhom10.model.BrandModel;
+import com.example.ltwnhom10.model.OrderItemsModel;
+import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.service.IBrandService;
+import com.example.ltwnhom10.service.IProductService;
 import com.example.ltwnhom10.service.impl.BrandService;
+import com.example.ltwnhom10.service.impl.ProductService;
 import com.example.ltwnhom10.utl.FormUtil;
 import com.example.ltwnhom10.utl.HttpUtil;
 
@@ -14,13 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "BrandAdmin", urlPatterns = {"/admin/brand"})
 public class BrandController extends HttpServlet {
     private IBrandService brandService;
+    private IProductService productService;
 
     public BrandController() {
         this.brandService = new BrandService();
+        this.productService = new ProductService();
     }
 
     @Override
@@ -59,6 +66,29 @@ public class BrandController extends HttpServlet {
             request.setAttribute("BrandModel", brand);
             url = "/views/admin/insert/BrandInsert.jsp";
             request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+        }
+        else if (action.equals(CoreConstant.ACTION_DELETE)){
+            Integer id = Integer.parseInt(request.getParameter("brand_id"));
+            List<ProductModel> productModels = productService.findByBrand(id);
+
+            if (productModels.size() > 0){
+                url = "/views/admin/list/BrandList.jsp";
+                BrandModel model = new BrandModel();
+                model.setListResult(brandService.findAll());
+
+                request.setAttribute(CoreConstant.MODEL, model);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Delete Brand Fail");
+            }
+            else {
+                url = "/views/admin/list/BrandList.jsp";
+                brandService.deleteOne(brandService.findById(id));
+
+                BrandModel model = new BrandModel();
+                model.setListResult(brandService.findAll());
+
+                request.setAttribute(CoreConstant.MODEL, model);
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Delete Brand Success");
+            }
         }
         else {
             BrandModel model = new BrandModel();

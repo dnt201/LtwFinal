@@ -27,6 +27,7 @@
                     List discount
                 </li>
             </ul>
+            ${messageResponse}
         </div>
         <form id="formsubmit" action="<c:url value='/admin/discount'/>" method="get">
             <div class="card card-table">

@@ -22,7 +22,7 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
                 transaction = session.beginTransaction();
                 StringBuilder sqlcmd = new StringBuilder("from ");
                 sqlcmd.append(this.getPersistenceClassName());
-                sqlcmd.append(" WHERE brand.brand_id= "+brandId.toString());
+                sqlcmd.append(" WHERE brandModel.brand_id= "+brandId.toString());
 
                 Query query = session.createQuery(sqlcmd.toString());
                 products = query.getResultList();
@@ -39,7 +39,36 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
         catch (HibernateException e){
             throw e;
         }
+        return products;
+    }
 
+    @Override
+    public List<ProductModel> findByDiscount(Integer discountId){
+        List<ProductModel> products = null;
+        try{
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = null;
+            try{
+                transaction = session.beginTransaction();
+                StringBuilder sqlcmd = new StringBuilder("from ");
+                sqlcmd.append(this.getPersistenceClassName());
+                sqlcmd.append(" WHERE discount.discount_id= "+discountId.toString());
+
+                Query query = session.createQuery(sqlcmd.toString());
+                products = query.getResultList();
+                transaction.commit();
+            }
+            catch (HibernateException e){
+                transaction.rollback();
+                throw e;
+            }
+            finally {
+                session.close();
+            }
+        }
+        catch (HibernateException e){
+            throw e;
+        }
         return products;
     }
 }
