@@ -13,24 +13,11 @@ function validatePassWordConfirm() {
     console.log(x,y);
     if (x !== y) {
         console.log("x khác y");
-        document.getElementById("mess_error_change_password").innerHTML = "Password not match! Please try again!";
-        return false;
-    }
-    else document.getElementById("mess_error_change_password").innerHTML = "";
-}
-
-function validatePassWordChange() {
-    let x = document.forms["change-password-form"]["password"].value;
-    let y = document.forms["change-password-form"]["confPassword"].value;
-    console.log(x,y);
-    if (x !== y) {
-        console.log("x khác y");
         document.getElementById("mess_error_register").innerHTML = "Password not match! Please try again!";
         return false;
     }
     else document.getElementById("mess_error_register").innerHTML = "";
 }
-
 window.onscroll = function() {scrollFunction()};
 function topFunction(){
     document.body.scrollTop = 0; // For Safari
@@ -82,6 +69,19 @@ function handleAddWithNumber(url){
     let theURL = url+'&&'+document.getElementById("quantity-add-card").value;
     xmlHttp.open( "GET", theURL, true ); // false for synchronous request
     xmlHttp.send( null );
+}
+
+
+function validateChange() {
+    let x = document.forms["change-password-form"]["password"].value;
+    let y = document.forms["change-password-form"]["confPassword"].value;
+    console.log(x,y);
+    if (x !== y) {
+        console.log("x khác y");
+        document.getElementById("mess_error_change_password").innerHTML = "Password not match! Please try again!";
+        return false;
+    }
+    else document.getElementById("mess_error_change_password").innerHTML = "";
 }
 
 

@@ -93,8 +93,8 @@
                                             <input type="hidden" name="action" value="update"/>
                                         <input class="w-80p" type="number" id="quantity" name="quantity"
                                                value="${item.quantity}" />
-                                        <button class="remove-cart-item-btn">Update<i
-                                                class="fa fa-times remove-cart-item"></i></button>
+                                        <button class="remove-cart-item-btn"><i
+                                                class="fa fa-sync-alt remove-cart-item cl-success"></i></button>
                                         </form>
                                         <c:if test="${item.productModel.discount.discountPercent > 0}">
                                             <span class="alert-danger">

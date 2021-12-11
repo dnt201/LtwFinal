@@ -57,7 +57,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
-                <form onsubmit="return validatePassWordChange()"
+                <form onsubmit="return validateChange()"
                       name="change-password-form"
                       action="<c:url value='/me'/>"
                       method="post"
@@ -82,8 +82,9 @@
                     </div>
                     <div class="mt-5 text-center d-flex flex-column justify-content-center">
                         <c:if test="${not empty messageResponse}">
-                            <i class="red_16px_bold"><b id="mess_error_change_password">${messageResponse}</b></i>
+                            <i class="red_16px_bold"><b class="red_16px_bold">${messageResponse}</b></i>
                         </c:if>
+                        <i class="red_16px_bold"><b id="mess_error_change_password"></b></i>
                         <input type="hidden" name="action" value="change">
                         <input type="hidden" name="user_id" value="${model.user_id}">
                         <button class="btn btn-primary profile-button" type="submit">Change Password</button>
