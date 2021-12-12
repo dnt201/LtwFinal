@@ -46,7 +46,6 @@ myStorage = document.getElementById("store-url-firebase");
 document.querySelector("#firebase-trigger").addEventListener("click",async function(event) {
     event.preventDefault();
     if(myImageUpFirebase.files[0]===undefined) {
-
     }
     else {
         const file = myImageUpFirebase.files[0];

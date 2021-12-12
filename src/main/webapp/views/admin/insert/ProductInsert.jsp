@@ -44,7 +44,7 @@
                             <div class="row gy-3">
                                 <div class="col-md-6">
                                     <h6 class="form-label fw-bold">Image <i class="fa fa-images"></i></h6>
-                                    <input type =hidden id ="store-url-firebase" name="image">
+                                    <input type =hidden id ="store-url-firebase" name="image" value="${model.image}">
                                     <input type="file" id="image-up-firebase" name="khongphaicainay" class="form-control"
                                            required>
                                     <c:if test="${empty model}">
