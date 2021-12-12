@@ -57,19 +57,28 @@ public class DiscountController extends HttpServlet {
         }
         else if (action.equals(CoreConstant.ACTION_ADD)){
             discount = FormUtil.toModel(DiscountModel.class, request);
-            discountService.save(discount);
-            //url = "/views/admin/List/ListDiscount.jsp";
-            url = "/views/web/adminPage.jsp";
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
-            request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_SUCCESS);
+            if (discountService.findByName(discount.getDiscountName()) == null){
+                discountService.save(discount);
+                url = "/views/admin/insert/DiscountInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
+            }
+            else {
+                url = "/views/admin/insert/DiscountInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Fail. Discount Name exist");
+            }
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             discount = FormUtil.toModel(DiscountModel.class, request);
-            discountService.update(discount);
-
-            request.setAttribute("discountModel", discount);
-            url = "/views/admin/insert/DiscountInsert.jsp";
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+            if (discountService.findByName(discount.getDiscountName()) == null){
+                discountService.update(discount);
+                request.setAttribute("discountModel", discount);
+                url = "/views/admin/insert/DiscountInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+            }
+            else {
+                url = "/views/admin/insert/DiscountInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Fail. Discount Name exist");
+            }
         }
         else if (action.equals(CoreConstant.ACTION_DELETE)){
             Integer id = Integer.parseInt(request.getParameter("discount_id"));

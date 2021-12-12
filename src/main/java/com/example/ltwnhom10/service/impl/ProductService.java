@@ -52,4 +52,9 @@ public class ProductService implements IProductService {
 
     @Override
     public List<ProductModel> findByDiscount(Integer discountId) { return  productDao.findByDiscount(discountId); }
+
+    @Override
+    public ProductModel findByName(String productName) {
+        return productDao.findByName(productName);
+    }
 }

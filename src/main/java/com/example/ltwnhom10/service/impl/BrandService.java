@@ -30,6 +30,11 @@ public class BrandService implements IBrandService {
     }
 
     @Override
+    public BrandModel findByName(String brandName){
+        return brandDao.findByName(brandName);
+    }
+
+    @Override
     public Integer delete(List<Integer> list) { return brandDao.delete(list); }
 
     @Override

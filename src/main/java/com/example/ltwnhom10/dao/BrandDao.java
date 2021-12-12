@@ -12,5 +12,5 @@ import com.example.ltwnhom10.model.BrandModel;
  * @author asus
  */
 public interface BrandDao extends GenericDao<Integer, BrandModel>{
-    
+    BrandModel findByName(String brandName);
 }

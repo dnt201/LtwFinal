@@ -14,7 +14,7 @@ public class BrandModel extends AbstractModel<BrandModel> {
     @Column(name = "brand_name",nullable = false)
     private String brand_name;
 
-    @OneToMany(mappedBy = "brandModel",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "brandModel",fetch = FetchType.EAGER)
     private List<ProductModel> productList;
 
     public Integer getBrand_id() {

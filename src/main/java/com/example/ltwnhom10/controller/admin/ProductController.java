@@ -70,36 +70,46 @@ public class ProductController extends HttpServlet {
         else if (action.equals(CoreConstant.ACTION_ADD)) {
             product = FormUtil.toModel(ProductModel.class, request);
 
-            DiscountModel discount = new DiscountModel();
-            BrandModel brand = new BrandModel();
+            if (productService.findByName(product.getProductName())==null) {
+                DiscountModel discount = new DiscountModel();
+                BrandModel brand = new BrandModel();
 
-            brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
-            discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
+                brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
+                discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
 
-            product.setDiscount(discount);
-            product.setBrandModel(brand);
-            productService.save(product);
+                product.setDiscount(discount);
+                product.setBrandModel(brand);
+                productService.save(product);
 
-            url = "/views/admin/insert/ProductInsert.jsp";
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
+                url = "/views/admin/insert/ProductInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Success");
+            }
+            else {
+                url = "/views/admin/insert/ProductInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Product Fail. Product Name Exist");
+            }
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             product = FormUtil.toModel(ProductModel.class, request);
 
-            DiscountModel discount = new DiscountModel();
-            BrandModel brand = new BrandModel();
+            if (productService.findByName(product.getProductName()) == null) {
+                DiscountModel discount = new DiscountModel();
+                BrandModel brand = new BrandModel();
 
-            brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
-            discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
+                brand.setBrand_id(Integer.parseInt(request.getParameter("brand_id")));
+                discount.setDiscount_id(Integer.parseInt(request.getParameter("discount_id")));
 
-            product.setDiscount(discount);
-            product.setBrandModel(brand);
-            productService.update(product);
-            request.setAttribute(CoreConstant.MODEL, product);
-//            request.setAttribute("brandModel", brandService.findAll());
-//            request.setAttribute("discountModel", discountService.findAll());
-            url = "/views/admin/insert/ProductInsert.jsp";
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
+                product.setDiscount(discount);
+                product.setBrandModel(brand);
+                productService.update(product);
+                request.setAttribute(CoreConstant.MODEL, product);
+                url = "/views/admin/insert/ProductInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Success");
+            }
+            else {
+                url = "/views/admin/insert/ProductInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Product Fail. Product Name Exist");
+            }
         }
         else if (action.equals(CoreConstant.ACTION_DELETE)){
             Integer id = Integer.parseInt(request.getParameter("product_id"));

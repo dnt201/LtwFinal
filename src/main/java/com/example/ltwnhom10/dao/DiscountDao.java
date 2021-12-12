@@ -5,6 +5,7 @@
  */
 package com.example.ltwnhom10.dao;
 
+import com.example.ltwnhom10.model.BrandModel;
 import com.example.ltwnhom10.model.DiscountModel;
 
 /**
@@ -12,5 +13,5 @@ import com.example.ltwnhom10.model.DiscountModel;
  * @author asus
  */
 public interface DiscountDao extends GenericDao<Integer, DiscountModel>{
-    
+    DiscountModel findByName(String discountName);
 }

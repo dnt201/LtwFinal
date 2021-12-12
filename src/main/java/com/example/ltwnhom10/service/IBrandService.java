@@ -9,6 +9,7 @@ public interface IBrandService {
     void update(BrandModel brandModel);
     void deleteOne(BrandModel brandModel);
     BrandModel findById(Integer brandId);
+    BrandModel findByName(String brandName);
     Integer delete(List<Integer> list);
     List<BrandModel> findAll();
 }

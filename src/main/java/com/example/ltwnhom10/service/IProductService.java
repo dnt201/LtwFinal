@@ -10,6 +10,7 @@ public interface IProductService {
     void update(ProductModel productModel);
     void deleteOne(ProductModel productModel);
     ProductModel findByID(Integer productId);
+    ProductModel findByName(String productName);
     Integer delete(List<Integer> list);
     List<ProductModel> findAllPaging(Pageable pageable);
     List<ProductModel> findAll();

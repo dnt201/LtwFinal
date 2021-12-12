@@ -54,18 +54,29 @@ public class BrandController extends HttpServlet {
         else if (action.equals(CoreConstant.ACTION_ADD)) {
             brand = FormUtil.toModel(BrandModel.class, request);
             if (brand != null) {
-                brandService.save(brand);
-                url = "/views/admin/insert/BrandInsert.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
+                if (brandService.findByName(brand.getBrand_name()) == null) {
+                    brandService.save(brand);
+                    url = "/views/admin/insert/BrandInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Brand Success");
+                }
+                else {
+                    url = "/views/admin/insert/BrandInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Brand Exist. Can not add new");
+                }
             }
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             brand = FormUtil.toModel(BrandModel.class, request);
-            brandService.update(brand);
-
-            request.setAttribute("BrandModel", brand);
-            url = "/views/admin/insert/BrandInsert.jsp";
-            request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+            if (brandService.findByName(brand.getBrand_name()) == null) {
+                brandService.update(brand);
+                request.setAttribute("BrandModel", brand);
+                url = "/views/admin/insert/BrandInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+            }
+            else {
+                url = "/views/admin/insert/BrandInsert.jsp";
+                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Brand Exist. Can not Update");
+            }
         }
         else if (action.equals(CoreConstant.ACTION_DELETE)){
             Integer id = Integer.parseInt(request.getParameter("brand_id"));

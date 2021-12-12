@@ -45,4 +45,9 @@ public class DiscountService implements IDiscountService {
         List<DiscountModel> result = discountDAO.findAll();
         return result;
     }
+
+    @Override
+    public DiscountModel findByName(String discountName) {
+        return discountDAO.findByName(discountName);
+    }
 }
