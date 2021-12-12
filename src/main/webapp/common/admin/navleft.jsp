@@ -7,7 +7,7 @@
 <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
   <c:redirect url ="/home-page"/>
 </c:if>
-<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" style="width: 6.5rem!important;" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/admin'/>">
     <div class="sidebar-brand-icon rotate-n-15">

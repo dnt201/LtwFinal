@@ -315,9 +315,7 @@
     color:red;
 }
 .image-previews {
-    min-width: 50%;
-    min-height: 25vh;
-    max-height: 120px;
+    max-width: 90%;
     padding-bottom: 8px;
-    margin-left: 10%;
+    margin-left: 5%;
 }

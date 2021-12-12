@@ -46,45 +46,65 @@ public class DiscountController extends HttpServlet {
             request.setAttribute(CoreConstant.MODEL, model);
             url = "/views/admin/list/DiscountList.jsp";
         }
-        else if (action.equals(CoreConstant.ACTION_INSERT)){
+        else if (action.equals(CoreConstant.ACTION_INSERT)) {
             url = "/views/admin/insert/DiscountInsert.jsp";
         }
-        else if (action.equals(CoreConstant.ACTION_EDIT)){
+        else if (action.equals(CoreConstant.ACTION_EDIT)) {
             url = "/views/admin/insert/DiscountInsert.jsp";
             Integer id = Integer.parseInt(request.getParameter("discount_id"));
             discount = discountService.findByID(id);
             request.setAttribute("discountModel", discount);
         }
-        else if (action.equals(CoreConstant.ACTION_ADD)){
+        else if (action.equals(CoreConstant.ACTION_ADD)) {
             discount = FormUtil.toModel(DiscountModel.class, request);
-            if (discountService.findByName(discount.getDiscountName()) == null){
+            if (discountService.findByName(discount.getDiscountName()) == null) {
                 discountService.save(discount);
                 url = "/views/admin/insert/DiscountInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Success");
-            }
-            else {
+            } else {
                 url = "/views/admin/insert/DiscountInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Add Discount Fail. Discount Name exist");
             }
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             discount = FormUtil.toModel(DiscountModel.class, request);
-            if (discountService.findByName(discount.getDiscountName()) == null){
+            DiscountModel discountCur = discountService.findByName(discount.getDiscountName());
+
+            if (discountCur == null) {
                 discountService.update(discount);
                 request.setAttribute("discountModel", discount);
                 url = "/views/admin/insert/DiscountInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
             }
             else {
-                url = "/views/admin/insert/DiscountInsert.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Fail. Discount Name exist");
+                if (discountCur.getDiscount_id().equals(discount.getDiscount_id())) {
+                    discountService.update(discount);
+                    request.setAttribute("discountModel", discount);
+                    url = "/views/admin/insert/DiscountInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+                }
+                else {
+                    request.setAttribute("discountModel", discountCur);
+                    url = "/views/admin/insert/DiscountInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Fail. Discount Name exist");
+                }
             }
+//            if (discountService.findByName(discount.getDiscountName()) == null){
+//                discountService.update(discount);
+//                request.setAttribute("discountModel", discount);
+//                url = "/views/admin/insert/DiscountInsert.jsp";
+//                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Success");
+//            }
+//            else {
+//                url = "/views/admin/insert/DiscountInsert.jsp";
+//                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Discount Fail. Discount Name exist");
+//            }
         }
-        else if (action.equals(CoreConstant.ACTION_DELETE)){
+        else if (action.equals(CoreConstant.ACTION_DELETE)) {
             Integer id = Integer.parseInt(request.getParameter("discount_id"));
             List<ProductModel> productModels = productService.findByDiscount(id);
 
-            if (productModels.size() > 0){
+            if (productModels.size() > 0) {
                 url = "/views/admin/list/DiscountList.jsp";
                 DiscountModel model = new DiscountModel();
                 model.setListResult(discountService.findAll());

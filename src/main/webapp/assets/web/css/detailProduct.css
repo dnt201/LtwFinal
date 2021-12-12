@@ -162,6 +162,17 @@
 .detail-product-page-container
 .product-detail
 .product-detail-right
+.button > a {
+    font-weight: 500;
+    width: 45%;
+    margin-top: 32px;
+    padding: 8px 24px;
+    font-size: 24px;
+    border: none;
+}
+.detail-product-page-container
+.product-detail
+.product-detail-right
 .button
 > button:hover {
     background-color:#e01020;

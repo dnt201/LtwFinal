@@ -8,32 +8,50 @@
             <div class="filter-wrap">
                 <div class="filter-header">Hãng sản xuất</div>
                 <div class="filter-body">
-                    <div class="find-filter-wrap">
-                        <c:forEach var="item" items="${brand.listResult}">
+                    <form name="quaTroiNan" action="<c:url value='/products'/>">
+                        <input type="hidden" id="brand_id" name="brand_id" value="">
+                        <input type="hidden" name ="action" value="products">
+                        <div class="find-filter-wrap">
                             <div class="filter-item mg-b-8px">
-                                <input type="radio" class="option-input radio" name="brand"
-                                       value=${item.brand_name}
+                                <input type="radio" checked class="option-input radio" name="brand"
+                                    <c:if test="${empty selected || selected == -1}">
+                                       checked
+                                    </c:if>
+                                       onchange="handleFilterBrand('all')"
+                                       value="all"
                                 />
-                                <span>${item.brand_name}</span>
+                                <span>All</span>
                             </div>
-                        </c:forEach>
-                    </div>
+                            <c:forEach var="item" items="${brand.listResult}">
+                                <div class="filter-item mg-b-8px">
+                                    <input type="radio" class="option-input radio" name="brand"
+                                           onchange="handleFilterBrand('${item.brand_id}')"
+                                           value=${item.brand_name}
+                                           <c:if test="${not empty selected && (item.brand_id==selected)}">
+                                                   checked
+                                           </c:if>
+                                    />
+                                    <span>${item.brand_name}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="filter-wrap m-t-16px">
                 <div class="filter-header">Mức giá</div>
                 <div class="filter-wrap-price">
-                    <div class="price-filter active"> All
+                    <div class="price-filter active" onclick="alertFeatureUpdate()"> All
                     </div>
-                    <div class="price-filter"> Dưới 10tr
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> Dưới 10tr
                     </div>
-                    <div class="price-filter"> 10Tr - 15Tr
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> 10Tr - 15Tr
                     </div>
-                    <div class="price-filter"> 15Tr - 20Tr
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> 15Tr - 20Tr
                     </div>
-                    <div class="price-filter"> 20Tr - 30Tr</div>
-                    <div class="price-filter"> 30Tr - 40Tr</div>
-                    <div class="price-filter"> Trên 40tr</div>
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> 20Tr - 30Tr</div>
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> 30Tr - 40Tr</div>
+                    <div class="price-filter" onclick="alertFeatureUpdate()"> Trên 40tr</div>
 
                     <div class="price-filter-input-wrap">
                         <div class="m-b-8px">Hoặc nhập giá trị dưới đây</div>
@@ -46,15 +64,15 @@
                             />
                         </div>
                     </div>
-                    <button class="btn-apply-price" onclick="">Áp dụng</button>
+                    <button class="btn-apply-price" onclick="alertFeatureUpdate()">Áp dụng</button>
                 </div>
             </div>
         </div>
         <div class="product-list">
             <div class="list-header">
                 <div class="header-name-list">
-                    <h2 class="mg-r-8px">Loại sản phẩm: </h2>
-                    <h2><c:out value="${model.totalItem}"/> </h2>
+                    <h2 class="mg-r-8px">Số lượng: </h2>
+                    <h2>${model.listResult.size()}</h2>
                 </div>
                 <div class="header-sort-list">
                     <span class="mg-r-8px">Sắp xếp theo</span>
@@ -85,13 +103,14 @@
                         <h4 class="name"><b>${item.productName}</b></h4>
                         <div class="box-price">
                             <div class="sale-product">
-                                <span class="price-sale"><fmt:formatNumber type = "number" value = "${item.price - item.price*item.discount.discountPercent/100}" /> đ</span>
-                                <span class="price-old"><fmt:formatNumber type = "number" value = "${item.price}" /> đ</span>
+                                <span class="price-sale"><fmt:formatNumber type="number"
+                                                                           value="${item.price - item.price*item.discount.discountPercent/100}"/> đ</span>
+                                <span class="price-old"><fmt:formatNumber type="number" value="${item.price}"/> đ</span>
                             </div>
                             <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
-                                <a class="add-to-card" href="<c:url value='/cart?action=add&&product_id=${item.product_id}'/> ">
+                                <button class="add-to-card" onclick="handleAddWith('<c:url value='/cart?action=add&&product_id=${item.product_id}'/> ')">
                                     <i class="fas fa-cart-plus add-to-card-icon"></i>
-                                </a>
+                                </button>
                             </c:if>
                         </div>
                         <table>
@@ -100,7 +119,8 @@
                                 <td>
                                     <div class="detail">
                                         <img
-                                                src="<c:url value='/assets/web/images/cpu.png'/>" data-ll-status="loaded"
+                                                src="<c:url value='/assets/web/images/cpu.png'/>"
+                                                data-ll-status="loaded"
                                                 alt=""/>
                                         <b>${item.sCpu}</b>
                                     </div>
@@ -135,7 +155,8 @@
                             <tr>
                                 <td>
                                     <div class="detail">
-                                        <img src="<c:url value='/assets/web/images/weight.png'/>" data-ll-status="loaded"
+                                        <img src="<c:url value='/assets/web/images/weight.png'/>"
+                                             data-ll-status="loaded"
                                              alt=""/>
                                         <b>${item.sWeight}</b>
                                     </div>

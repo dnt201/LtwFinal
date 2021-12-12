@@ -80,6 +80,11 @@
 .home-content .themdzochodzuiiiii {
     width:  45%;
 }
+@media (max-width: 768px) {
+    #accordionSidebar.sidebar {
+        width: 6.5rem!important;
+    }
+}
 @media (max-width: 1270px) {
     .overview-boxes .box{
         width: calc(100% / 2 - 15px);

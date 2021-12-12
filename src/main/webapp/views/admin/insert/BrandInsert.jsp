@@ -65,16 +65,14 @@
                             <div style="margin-top: 10px" class="form-text" id="notification"></div>
                             <c:if test="${empty BrandModel}">
                                 <input type="hidden" name="action" value="add"/>
-                                <button style="margin-top: 10px"
+                                <button style="margin-top: 12px"
                                         class="btn btn-outline-primary mb-4" type="submit">Add brand</button>
                             </c:if>
                             <c:if test="${not empty BrandModel}">
                                 <input type="hidden" value=${BrandModel.brand_id} id="brand_id" name="brand_id">
                                 <input type="hidden" name="action" value="update"/>
-                                <button  style="margin-top: 10px"
+                                <button  style="margin-top: 12px"
                                         class="btn btn-outline-danger mb-4"  type="submit">Update</button>
-                                <button  style="margin-top: 10px"
-                                        class="btn btn-outline-success mb-4"  type="submit">Save</button>
                             </c:if>
 
                         </div>

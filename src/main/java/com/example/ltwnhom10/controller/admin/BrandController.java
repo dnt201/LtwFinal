@@ -2,6 +2,7 @@ package com.example.ltwnhom10.controller.admin;
 
 import com.example.ltwnhom10.constance.CoreConstant;
 import com.example.ltwnhom10.model.BrandModel;
+import com.example.ltwnhom10.model.DiscountModel;
 import com.example.ltwnhom10.model.OrderItemsModel;
 import com.example.ltwnhom10.model.ProductModel;
 import com.example.ltwnhom10.service.IBrandService;
@@ -67,16 +68,37 @@ public class BrandController extends HttpServlet {
         }
         else if (action.equals(CoreConstant.ACTION_UPDATE)) {
             brand = FormUtil.toModel(BrandModel.class, request);
-            if (brandService.findByName(brand.getBrand_name()) == null) {
+            BrandModel brandCur = brandService.findByName(brand.getBrand_name());
+
+            if (brandCur == null) {
                 brandService.update(brand);
                 request.setAttribute("BrandModel", brand);
                 url = "/views/admin/insert/BrandInsert.jsp";
                 request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
             }
             else {
-                url = "/views/admin/insert/BrandInsert.jsp";
-                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Brand Exist. Can not Update");
+                if (brandCur.getBrand_id().equals(brand.getBrand_id())) {
+                    brandService.update(brand);
+                    request.setAttribute("BrandModel", brand);
+                    url = "/views/admin/insert/BrandInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+                }
+                else {
+                    request.setAttribute("BrandModel", brandCur);
+                    url = "/views/admin/insert/BrandInsert.jsp";
+                    request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Fail. Discount Name exist");
+                }
             }
+//            if (brandService.findByName(brand.getBrand_name()) == null) {
+//                brandService.update(brand);
+//                request.setAttribute("BrandModel", brand);
+//                url = "/views/admin/insert/BrandInsert.jsp";
+//                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Update Brand Success");
+//            }
+//            else {
+//                url = "/views/admin/insert/BrandInsert.jsp";
+//                request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Brand Exist. Can not Update");
+//            }
         }
         else if (action.equals(CoreConstant.ACTION_DELETE)){
             Integer id = Integer.parseInt(request.getParameter("brand_id"));

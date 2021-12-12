@@ -32,13 +32,30 @@ public class ProductController extends HttpServlet {
         BrandModel model = new BrandModel();
         IBrandService brandService = new BrandService();
 
-        Pageable pageable = new PageRequest(product.getPage(),product.getMaxPageItem(),new Sorter(product.getSortName(),product.getSortBy()));
-        product.setListResult(productService.findAllPaging(pageable));
-        product.setTotalItem(productService.getTotalItem());
+//        Pageable pageable = new PageRequest(product.getPage(),product.getMaxPageItem(),new Sorter(product.getSortName(),product.getSortBy()));
+//        product.setListResult(productService.findAllPaging(pageable));
+//        product.setTotalItem(productService.getTotalItem());
+//
+//
+//        if(product.getMaxPageItem()!=null)
+//            product.setTotalPage((int) Math.ceil((double) product.getTotalItem() / product.getMaxPageItem()));
 
-        if(product.getMaxPageItem()!=null)
-            product.setTotalPage((int) Math.ceil((double) product.getTotalItem() / product.getMaxPageItem()));
-
+        String temp = request.getParameter("brand_id");
+        if(temp!= null) {
+            if(!temp.equals("")) {
+                Integer brand_id_filter = Integer.parseInt(temp);
+                request.setAttribute("selected", brand_id_filter);
+                product.setListResult(productService.findByBrand(brand_id_filter));
+            }
+            else {
+                product.setListResult(productService.findAll());
+                request.setAttribute("selected",-1);
+            }
+        }
+        else {
+            product.setListResult(productService.findAll());
+            request.setAttribute("selected",-1);
+        }
         model.setListResult(brandService.findAll());
         request.setAttribute("brand", model);
         request.setAttribute(CoreConstant.MODEL, product);

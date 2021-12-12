@@ -221,7 +221,7 @@
                             <c:if test="${not empty model}">
                                 <input type="hidden" name="action" value="update" />
                                 <input type="hidden" name="product_id" value="${model.product_id}"/>
-                                <button style="margin-top: 10px" class="btn btn-outline-danger mb-4" type="submit" id="firebase-trigger">Update</button>
+                                <button style="margin-top: 12px" class="btn btn-outline-danger mb-4" type="submit" id="firebase-trigger">Update</button>
                             </c:if>
                         </div>
                     </div>

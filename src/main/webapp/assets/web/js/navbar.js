@@ -45,30 +45,34 @@ myImageUpFirebase.onchange = evt => {
 myStorage = document.getElementById("store-url-firebase");
 document.querySelector("#firebase-trigger").addEventListener("click",async function(event) {
     event.preventDefault();
-    const file = myImageUpFirebase.files[0];
-    const metadata = {
-        contentType: file.type
-    };
-    const ref = firebase.storage().ref();
-    const name = file.name;
-    const up = ref.child(name).put(file, metadata);
+    if(myImageUpFirebase.files[0]===undefined) {
 
-    await up.then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-            myStorage.value = url;
-        })
-        .catch(console.error)
+    }
+    else {
+        const file = myImageUpFirebase.files[0];
+        const metadata = {
+            contentType: file.type
+        };
+        const ref = firebase.storage().ref();
+        const name = file.name;
+        const up = ref.child(name).put(file, metadata);
 
+        await up.then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                myStorage.value = url;
+            })
+            .catch(console.error)
+    }
     document.getElementById("wtfloihoai").submit();
 }, false);
 
-function handleAddWithNumber(url){
+function handleAddWith(url){
     let xmlHttp = new XMLHttpRequest();
     console.log("onclick");
     console.log(url);
-    let theURL = url+'&&'+document.getElementById("quantity-add-card").value;
-    xmlHttp.open( "GET", theURL, true ); // false for synchronous request
+    xmlHttp.open( "GET", url, true ); // false for synchronous request
     xmlHttp.send( null );
+    location.reload();
 }
 
 
@@ -84,4 +88,19 @@ function validateChange() {
     else document.getElementById("mess_error_change_password").innerHTML = "";
 }
 
+function  alertFeatureUpdate(){
+    alert("Opps! Tính năng đang được cập nhập! Vui lòng thử lại sau!")
+}
+
+function  handleFilterBrand(brandId){
+    console.log(brandId);
+    if(brandId==="all"){
+        document.forms["quaTroiNan"]["brand_id"].value = null;
+        document.forms["quaTroiNan"].submit();
+    }
+    else {
+        document.forms["quaTroiNan"]["brand_id"].value = brandId;
+        document.forms["quaTroiNan"].submit();
+    }
+}
 

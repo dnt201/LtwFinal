@@ -33,11 +33,14 @@
                     </div>
                     <div class="price">
                         <c:if test="${model.discount.discountPercent > 0}">
-                            <div class="new-price"><fmt:formatNumber type = "number" value = "${model.price-model.price*model.discount.discountPercent/100}" /> đ</div>
-                            <div class="old-price"><fmt:formatNumber type = "number" value = "${model.price}" /> đ</div>
+                            <div class="new-price"><fmt:formatNumber type="number"
+                                                                     value="${model.price-model.price*model.discount.discountPercent/100}"/>
+                                đ
+                            </div>
+                            <div class="old-price"><fmt:formatNumber type="number" value="${model.price}"/> đ</div>
                         </c:if>
                         <c:if test="${model.discount.discountPercent <= 0}">
-                            <div class="new-price"><fmt:formatNumber type ="number" value ="${model.price}"/> đ</div>
+                            <div class="new-price"><fmt:formatNumber type="number" value="${model.price}"/> đ</div>
                         </c:if>
                     </div>
                 </div>
@@ -45,10 +48,10 @@
                     <c:if test="${User.getRoleModel().getRoleName() !='admin'}">
                         <input type="hidden" name="action" value="add"/>
                         <input type="hidden" name="product_id" value="${model.product_id}"/>
-                        <button type="submit" > Add to cart <i class="fa fa-cart-arrow-down"></i></button>
+                        <button type="submit"> Add to cart <i class="fa fa-cart-arrow-down"></i></button>
                     </c:if>
                     <c:if test="${User.getRoleModel().getRoleName() =='admin'}">
-                        <a className="btn-details" href=""> Details</a>
+                            <a class="btn-details" href="<c:url value='/admin/product?action=edit&product_id=${model.product_id}'/>"> Details</a>
                     </c:if>
                 </div>
             </form>
@@ -67,7 +70,7 @@
                         <option value='4'>4 - Very Good</option>
                         <option value='5'>5 - Excellent</option>
                     </select>
-                    <button class="btn-post-review" onClick="">Post</button>
+                    <button class="btn-post-review" onclick="alertFeatureUpdate()">Post</button>
                 </div>
                 <textarea class="review-input" id="w3review" name="w3review" rows="4"/></textarea>
             </div>

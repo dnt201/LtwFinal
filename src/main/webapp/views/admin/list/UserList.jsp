@@ -50,7 +50,7 @@
                                 <td>${item.name}</td>
                                 <td>${item.email}
                                 <td>${item.phone}</td>
-                                <td>${item.createAt}</td>
+                                <td><fmt:formatDate value="${item.createAt}" pattern="MM/dd/yyyy"/> </td>
                             </tr>
                             <%--</c:if>--%>
                         </c:forEach>
