@@ -51,5 +51,8 @@
             <i class='fa fa-user-shield cart four' ></i>
         </div>
     </div>
-    <img/>
+    <div class="wrap-themdzochodzuiiiii">
+        <img class="themdzochodzuiiiii" src="<c:url value='/assets/web/images/ajoKz.png'/>"/>
+        <img class="themdzochodzuiiiii" src="<c:url value='/assets/web/images/free-bar-.png'/>"/>
+    </div>
 </div>
