@@ -42,7 +42,7 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, CoreConstant.SESSION_DATA);
             System.out.println("Logout");
             //SessionUtil.getInstance().removeValue(request, order);
-            response.sendRedirect(request.getContextPath()+"/home-page");
+            response.sendRedirect(request.getContextPath()+"/login?action=login");
         }
         else if(action != null && action.equals("about")){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/web/about.jsp");
@@ -82,15 +82,6 @@ public class HomeController extends HttpServlet {
                 else{ request.setAttribute(CoreConstant.ALERT, CoreConstant.TYPE_ERROR);
                     request.setAttribute(CoreConstant.MESSAGE_RESPONSE, "Username or password is incorrect!");
                     response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
-                }
-            } else if (model != null) {
-                model = userService.findByUsernameAndPassword(model.getUsername(), model.getPassword());
-                SessionUtil.getInstance().putValue(request, CoreConstant.SESSION_DATA, model);
-                String role = user.getRoleModel().getRoleName();
-                if (role.equals(CoreConstant.ROLE_USER)) {
-                    response.sendRedirect(request.getContextPath() + "/home-page");
-                } else if (role.equals(CoreConstant.ROLE_ADMIN)) {
-                    response.sendRedirect(request.getContextPath() + "/admin");
                 }
             }
             else {
