@@ -15,7 +15,7 @@
                 <span style="color: #f8e825;}"><i class="far fa-star"></i></span>
                 <span><i>0 lượt đánh giá</i></span>
             </div>
-            <p class="des"> Description </p>
+            <p class="des"> Description: ${model.description} </p>
             <form action="<c:url value='/cart'/>">
                 <div class="status-quantity-price">
                     <div class="status-quantity">

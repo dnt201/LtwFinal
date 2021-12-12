@@ -72,7 +72,9 @@
                                     </td>
                                     <td>
                                         <c:if test="${item.productModel.discount.discountPercent <= 0}">
-                                            <span class="cart-item-price">${item.productModel.price} đ </span>
+                                            <span class="cart-item-price">
+                                                    <fmt:formatNumber type="number"
+                                                                      value="${item.productModel.price}"/> đ </span>
                                         </c:if>
 
                                         <c:if test="${item.productModel.discount.discountPercent > 0}">
