@@ -24,10 +24,12 @@
                 </li>
                 <li style="margin-left: 12px">
                     <i class="fas fa-angle-right"></i>
-                    List discount
+                    List user
                 </li>
             </ul>
         </div>
+        <h2 class="t-a-center"> List user </h2>
+        <h6 class="t-a-center red_16px_bold">${messageResponse}</h6>
         <form id="formsubmit" action="<c:url value='/admin/product'/>" method="get">
             <div class="card card-table">
                 <div class="preload-wrapper">

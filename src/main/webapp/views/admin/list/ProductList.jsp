@@ -24,7 +24,7 @@
                 </li>
                 <li style="margin-left: 12px">
                     <i class="fas fa-angle-right"></i>
-                    List discount
+                    List product
                 </li>
             </ul>
         </div>
