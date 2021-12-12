@@ -26,7 +26,8 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         if (action != null && action.equals("register")){
             String message = request.getParameter("message");
             System.out.println("Đã nhận action kia:"+message);
@@ -45,7 +46,8 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServerException, IOException{
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         RoleService roleService = new RoleService();
         IUserService userService = new UserService();
         UsersModel usersModel = FormUtil.toModel(UsersModel.class, request);
