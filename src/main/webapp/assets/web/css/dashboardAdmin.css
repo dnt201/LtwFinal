@@ -25,7 +25,7 @@
 }
 .home-content .box .number{
     display: inline-block;
-    font-size: 35px;
+    font-size: 28px;
     margin-top: -6px;
     font-weight: 500;
 }
@@ -71,9 +71,32 @@
     color: #e05260;
     background: #f7d4d7;
 }
-@media (max-width: 1000px) {
+.home-content .wrap-themdzochodzuiiiii {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.home-content .themdzochodzuiiiii {
+    width:  45%;
+}
+@media (max-width: 1270px) {
     .overview-boxes .box{
         width: calc(100% / 2 - 15px);
+        margin-bottom: 15px;
+    }
+}
+@media (max-width: 900px) {
+    .home-content .wrap-themdzochodzuiiiii {
+        flex-direction: column;
+    }
+    .home-content .themdzochodzuiiiii {
+        width:  90%;
+    }
+}
+@media (max-width: 720px) {
+    .overview-boxes .box{
+        width: calc(100% - 15px);
         margin-bottom: 15px;
     }
 }

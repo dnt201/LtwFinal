@@ -27,8 +27,9 @@
                     List discount
                 </li>
             </ul>
-            ${messageResponse}
         </div>
+        <h2 class="t-a-center"> List Discount </h2>
+        <h6 class="t-a-center red_16px_bold">${messageResponse}</h6>
         <form id="formsubmit" action="<c:url value='/admin/discount'/>" method="get">
             <div class="card card-table">
                 <div class="preload-wrapper">

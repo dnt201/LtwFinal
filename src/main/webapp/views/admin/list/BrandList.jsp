@@ -28,8 +28,9 @@
                     List Brand
                 </li>
             </ul>
-            ${messageResponse}
         </div>
+        <h2 class="t-a-center"> List Brand </h2>
+        <h6 class="t-a-center red_16px_bold">${messageResponse}</h6>
         <span class="me-2" id="categoryBulkAction">
             <label>Sort by:</label>
             <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
