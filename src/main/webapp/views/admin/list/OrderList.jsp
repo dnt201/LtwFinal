@@ -42,6 +42,7 @@
                             <th>Email</th>
                             <th>Total</th>
                             <th>Create At</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,7 +53,10 @@
                                 <td>${item.usersModel.username}</td>
                                 <td>${item.usersModel.email}
                                 <td>${item.total}</td>
-                                <td>${item.createAt}</td>
+                                <td><fmt:formatDate value="${item.createAt}" pattern="MM/dd/yyyy"/></td>
+                                <td><a class="speed_css" href="<c:url value='/order/detail?order_id=${item.order_id}'/>">
+                                    <i class="far fa-eye"></i>
+                                </a></td>
                             </tr>
                             <%--</c:if>--%>
                         </c:forEach>
