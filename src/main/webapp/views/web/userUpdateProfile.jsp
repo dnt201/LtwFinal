@@ -72,8 +72,10 @@
                         </div>
                         <div class="col-md-12">
                             <label class="labels">Phone number: </label>
-                            <input type="number" class="form-control" placeholder="Enter your phone number..."
+                            <input class="form-control" placeholder="Enter your phone number..."
                                    name="phone"
+                                   pattern="[0-9]{10}"
+                                   type="tel"
                                    value="${model.phone}">
                         </div>
                     </div>

@@ -35,7 +35,9 @@
             <label class="m-b-4px">Phone number</label>
             <input id="phoneNumber"
                    name="phone"
-                   class="w100 m-b-4px p-lr-4px" type="text" placeholder="Enter your phone number..."
+                   pattern="[0-9]{10}"
+                   type="tel"
+                   class="w100 m-b-4px p-lr-4px"placeholder="Enter your phone number..."
             />
         </div>
         <div class="form_control wrap_password flex_column_start w100">
